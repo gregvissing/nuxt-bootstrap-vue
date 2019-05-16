@@ -2,59 +2,12 @@
     <b-container>
         <h1 class="text-center">Areas to Support</h1>
         <p>Your gift to the UC and UC Health makes an impact where you want. Give to your favorite college, program or department, or contribute to the university’s most pressing needs.</p>
+
         <div class="marquee">
-            <div class="slideitem">
-                <a href="https://give.ucdavis.edu/Search/Tags/water?appeal=19064">
-                    <img
-                        src="https://give.ucdavis.edu/Content/images/food-ic.svg"
-                        alt="food category"
-                    >
-                    <h4 class="theme">food</h4>
-                </a>
-            </div>
-            <div class="slideitem">
-                <a href="https://give.ucdavis.edu/Search/Tags/water?appeal=19064">
-                    <img
-                        src="https://give.ucdavis.edu/Content/images/water-ic.svg"
-                        alt="water category"
-                    >
-                    <h4 class="theme">water</h4>
-                </a>
-            </div>
-            <div class="slideitem">
-                <a href="https://give.ucdavis.edu/Search/Tags/society?appeal=19064">
-                    <img
-                        src="https://give.ucdavis.edu/Content/images/society-ic.svg"
-                        alt="society category"
-                    >
-                    <h4 class="theme">society</h4>
-                </a>
-            </div>
-            <div class="slideitem">
-                <a href="https://give.ucdavis.edu/Search/Tags/environment?appeal=19064">
-                    <img
-                        src="https://give.ucdavis.edu/Content/images/environment-ic.svg"
-                        alt="environment category"
-                    >
-                    <h4 class="theme">environment</h4>
-                </a>
-            </div>
-            <div class="slideitem">
-                <a href="https://give.ucdavis.edu/Search/Tags/energy?appeal=19064">
-                    <img
-                        src="https://give.ucdavis.edu/Content/images/energy-ic.svg"
-                        alt="energy category"
-                    >
-                    <h4 class="theme">energy</h4>
-                </a>
-            </div>
-            <div class="slideitem">
-                <a href="https://give.ucdavis.edu/Search/Tags/arts?appeal=19064">
-                    <img
-                        src="https://give.ucdavis.edu/Content/images/arts-ic.svg"
-                        alt="arts category"
-                    >
-                    <h4 class="theme">arts</h4>
+            <div v-for="(area, index) in areas" :key="index" class="slideitem">
+                <a href="#">
+                    <font-awesome-icon size="2x" :icon="area.icon" :style="{ color: area.color }"/>
+                    <h4 class="theme">{{ area.title }}</h4>
                 </a>
             </div>
         </div>
@@ -62,7 +15,14 @@
 </template>
 
 <script>
-export default {};
+import { areasToSupport } from "@/store";
+export default {
+    data() {
+        return {
+            areas: areasToSupport
+        };
+    }
+};
 </script>
 
 <style lang="scss" scoped>

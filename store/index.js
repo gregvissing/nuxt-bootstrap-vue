@@ -36,6 +36,32 @@ export const featuredfunds = [{
   image: 'https://via.placeholder.com/350x150'
 }];
 
+export const areasToSupport = [{
+  title: 'Law',
+  icon: 'gavel',
+  color: 'orange'
+}, {
+  title: 'Engineering',
+  icon: 'calculator',
+  color: 'blue'
+}, {
+  title: 'Art',
+  icon: 'palette',
+  color: 'red'
+}, {
+  title: 'Science',
+  icon: 'vials',
+  color: 'green'
+}, {
+  title: 'Medical',
+  icon: 'briefcase-medical',
+  color: 'purple'
+}, {
+  title: 'Criminal Justice',
+  icon: 'balance-scale',
+  color: 'black'
+}];
+
 export const impactstories = [{
     title: 'Inventing Tomorrow',
     text: '<p>Chara Hood is not easily discouraged. During a recent co-op with L\'Oréal, the third year chemical engineering student was asked to resolve why a machine wasn\'t capping a shampoo bottle efficiently, a challenge she relished.</p><blockquote > "I have a knack for looking at multiple perspectives of a problem and finding solutions,"she says. "That\'s why I am drawn to engineering.\"</blockquote><p> The same determination that allowed her to conquer the shampoo cap propelled Hood to seek out UC\'s Emerging Ethnic Engineers (E3), a program empowering underrepresented ethnic students in UC\'s College of Engineering and Applied Science.Through E3, Hood found her best friends, connected with faculty and received a much - needed scholarship from the Marathon Petroleum Scholars program. </p>',
