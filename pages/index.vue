@@ -1,68 +1,45 @@
+/* eslint-disable */
 <template>
-  <section class="container">
     <div>
-      <logo />
-      <h1 class="title">
-        bootstrap-vue
-      </h1>
-      <h2 class="subtitle">
-        My groovy Nuxt.js project
-      </h2>
-      <div class="links">
-        <a
-          href="https://nuxtjs.org/"
-          target="_blank"
-          class="button--green"
-        >Documentation</a>
-        <a
-          href="https://github.com/nuxt/nuxt.js"
-          target="_blank"
-          class="button--grey"
-        >GitHub</a>
-      </div>
+        <Hero/>
+
+        <Areas/>
+
+        <FeaturedFunds/>
+
+        <ImpactStories/>
     </div>
-  </section>
 </template>
 
 <script>
-import Logo from '~/components/Logo.vue'
+import axios from "axios";
+
+import Hero from "~/components/UI/Hero.vue";
+import Areas from "~/components/UI/Areas.vue";
+import FeaturedFunds from "~/components/UI/FeaturedFunds.vue";
+import ImpactStories from "~/components/UI/ImpactStories.vue";
 
 export default {
-  components: {
-    Logo
-  }
-}
+    components: {
+        Hero,
+        Areas,
+        FeaturedFunds,
+        ImpactStories
+    }
+};
 </script>
 
-<style>
-.container {
-  margin: 0 auto;
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-}
+<style lang="scss" scoped>
+@import "@/assets/scss/style.scss";
 
-.title {
-  font-family: 'Quicksand', 'Source Sans Pro', -apple-system, BlinkMacSystemFont,
-    'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-  display: block;
-  font-weight: 300;
-  font-size: 100px;
-  color: #35495e;
-  letter-spacing: 1px;
-}
-
-.subtitle {
-  font-weight: 300;
-  font-size: 42px;
-  color: #526488;
-  word-spacing: 5px;
-  padding-bottom: 15px;
-}
-
-.links {
-  padding-top: 15px;
+.main {
+    background-image: url("https://www.alumni.uc.edu/image/home-full-width/MM-Geen-3.jpg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    width: 100%;
+    max-width: 100%;
+    padding: 0;
+    margin-top: 85px;
 }
 </style>
