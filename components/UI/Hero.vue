@@ -42,9 +42,9 @@ export default {
     }
     .lead {
         font-style: italic;
+        font-weight: bold;
         font-size: 2em;
         font-family: "Droid Serif";
-        font-weight: 200;
     }
     .typeahead-container {
         margin-top: 2em;

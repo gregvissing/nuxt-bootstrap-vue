@@ -15,8 +15,8 @@
                     <b-nav-item to="/why-give/">WHY GIVE</b-nav-item>
                     <b-nav-item to="/areas-to-support/">AREAS TO SUPPORT</b-nav-item>
                     <b-nav-item class="donate" to="/donate/">DONATE NOW</b-nav-item>
-                    <b-nav-item class="cart" to="/">
-                        <font-awesome-icon icon="shopping-cart"/>
+                    <b-nav-item class="cart" to="/cart/">
+                        <font-awesome-icon icon="shopping-cart" size="lg"/>
                     </b-nav-item>
                 </b-navbar-nav>
             </b-collapse>
@@ -79,6 +79,13 @@ nav {
                     .nuxt-link-active {
                         background: $white;
                         color: $red !important;
+                    }
+                }
+                &.cart {
+                    svg {
+                        path {
+                            fill: $white;
+                        }
                     }
                 }
             }
