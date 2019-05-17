@@ -13,7 +13,7 @@
                         <div class="card__content">
                             <div class="card__title">{{ fund.title }}</div>
                             <p class="card__text">{{ fund.text }}</p>
-                            <button class="btn btn--block card__btn">Donate Now</button>
+                            <a :href="fund.donateLink" class="btn btn--block card__btn">Donate Now</a>
                         </div>
                     </div>
                 </li>

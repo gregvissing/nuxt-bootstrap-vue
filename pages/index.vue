@@ -20,6 +20,7 @@ import FeaturedFunds from "~/components/UI/FeaturedFunds.vue";
 import ImpactStories from "~/components/UI/ImpactStories.vue";
 
 export default {
+    scrollToTop: true,
     components: {
         Hero,
         Areas,
