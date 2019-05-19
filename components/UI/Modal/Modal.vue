@@ -54,13 +54,13 @@
                         <hr>
                         <h3>Funding Opportunities</h3>
 
-                        <!-- <div v-for="(fund, index) in item.fundingOpportunities" :key="index">
+                        <div v-for="(fund, index) in item.fundingOpportunities" :key="index">
                             <strong>{{ fund.name }}</strong>
                             <div
                                 v-for="(item, index) in fund.funds"
                                 :key="index"
                             >{{ item.fundName }}</div>
-                        </div>-->
+                        </div>
                     </div>
 
                     <button class="modal-default-button" @click="$emit('close')">X</button>
@@ -89,6 +89,7 @@ export default {
 
 <style lang="scss">
 @import "@/assets/scss/style.scss";
+
 .modal-mask {
     position: fixed;
     z-index: 99999998;
@@ -117,9 +118,9 @@ export default {
                 background: $black;
                 border-radius: 0;
                 border-bottom: 3px solid $red;
-                h3 {
+                h2 {
                     margin-top: 0;
-                    color: #42b983;
+                    color: $white;
                 }
             }
             .modal-body {

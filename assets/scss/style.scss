@@ -30,26 +30,28 @@ $twelve: 100%;
 
 $gutter: 1rem !global;
 
+@import "./_include-media.scss";
+
 @mixin transition($args...) {
-  -webkit-transition: $args;
-  -moz-transition: $args;
-  -ms-transition: $args;
-  -o-transition: $args;
-  transition: $args;
+    -webkit-transition: $args;
+    -moz-transition: $args;
+    -ms-transition: $args;
+    -o-transition: $args;
+    transition: $args;
 }
 
 // Container Mixin
 @mixin grid($width: $container) {
 
-  $container: $width;
+    $container: $width;
 
-  display: flex;
-  flex-direction: row;
-  flex-flow: wrap;
-  flex: 0 1 auto;
+    display: flex;
+    flex-direction: row;
+    flex-flow: wrap;
+    flex: 0 1 auto;
 
-  max-width: $container;
-  margin: 0 auto;
+    max-width: $container;
+    margin: 0 auto;
 
 }
 
@@ -102,15 +104,15 @@ $gutter: 1rem !global;
 
 // GENERAL STYLES
 body {
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  -moz-font-feature-settings: "liga"on;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    -moz-font-feature-settings: "liga"on;
 }
 
 hr {
-  border-top: 5px solid;
-  border-color: $red;
+    border-top: 5px solid;
+    border-color: $red;
 }
 
 // END: GENERAL STYLES
@@ -119,14 +121,15 @@ hr {
 a,
 p,
 span,
-button {
-  font-family: 'Open Sans' !important;
+button,
+div {
+    font-family: 'Open Sans' !important;
 }
 
 h1 {
-  &.page-title {
-    border-bottom: 5px solid $red;
-  }
+    &.page-title {
+        border-bottom: 5px solid $red;
+    }
 }
 
 // END: Typography
@@ -134,22 +137,22 @@ h1 {
 // BUTTON styles
 .btn,
 button {
-  border-radius: 0 !important;
-  border: none;
-  @include transition(all .4s ease);
+    border-radius: 0 !important;
+    border: none;
+    @include transition(all .4s ease);
 
-  &.btn-primary {
-    background-color: $red;
-  }
+    &.btn-primary {
+        background-color: $red;
+    }
 
-  &.btn-secondary {
-    background-color: $black;
-  }
+    &.btn-secondary {
+        background-color: $black;
+    }
 
-  &:focus {
-    outline: none;
-    box-shadow: none;
-  }
+    &:focus {
+        outline: none;
+        box-shadow: none;
+    }
 }
 
 // END: BUTTON styles
@@ -159,100 +162,100 @@ button {
 // }
 
 .title {
-  font-family: "Quicksand", "Source Sans Pro", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-  /* 1 */
-  display: block;
-  font-weight: 300;
-  font-size: 48px;
-  color: #35495e;
-  letter-spacing: 1px;
-  margin-top: 1rem;
+    font-family: "Quicksand", "Source Sans Pro", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    /* 1 */
+    display: block;
+    font-weight: 300;
+    font-size: 48px;
+    color: #35495e;
+    letter-spacing: 1px;
+    margin-top: 1rem;
 }
 
 .subtitle {
-  font-weight: 300;
-  font-size: 24px;
-  color: #526488;
-  word-spacing: 5px;
-  padding-bottom: 15px;
+    font-weight: 300;
+    font-size: 24px;
+    color: #526488;
+    word-spacing: 5px;
+    padding-bottom: 15px;
 }
 
 .links {
-  padding-top: 15px;
+    padding-top: 15px;
 
-  a {
-    margin: 0 10px;
-  }
+    a {
+        margin: 0 10px;
+    }
 }
 
 a {
-  @include transition(all .4s ease);
+    @include transition(all .4s ease);
 }
 
 .card,
 .card img {
-  border-radius: 0;
+    border-radius: 0;
 }
 
 // CARD styles
 .cards {
-  display: flex;
-  flex-wrap: wrap;
-  list-style: none;
-  margin: 0;
-  padding: 0;
-
-  .cards__item {
     display: flex;
-    padding: 1rem;
+    flex-wrap: wrap;
+    list-style: none;
+    margin: 0;
+    padding: 0;
 
-    @media (min-width: 40rem) {
-      width: 50%;
-    }
-
-    @media (min-width: 56rem) {
-      width: 33.3333%;
-    }
-
-    .card {
-      background-color: white;
-      /* border-radius: 0.25rem; */
-      box-shadow: 0 20px 40px -14px rgba(0, 0, 0, 0.25);
-      display: flex;
-      flex-direction: column;
-      overflow: hidden;
-
-      &:hover {
-        .card__image {
-          filter: contrast(100%);
-        }
-      }
-
-      .card__image {
-        background-position: center center;
-        background-repeat: no-repeat;
-        background-size: cover;
-        /* border-top-left-radius: 0.25rem;
-                border-top-right-radius: 0.25rem; */
-        filter: contrast(70%);
-        //filter: saturate(180%);
-        overflow: hidden;
-        position: relative;
-        transition: filter 0.5s cubic-bezier(0.43, 0.41, 0.22, 0.91);
-
-        &::before {
-          content: "";
-          display: block;
-          padding-top: 56.25%; // 16:9 aspect ratio
-        }
+    .cards__item {
+        display: flex;
+        padding: 1rem;
 
         @media (min-width: 40rem) {
-          &::before {
-            padding-top: 66.6%; // 3:2 aspect ratio
-          }
+            width: 50%;
         }
 
-        /* &.card__image--flowers {
+        @media (min-width: 56rem) {
+            width: 33.3333%;
+        }
+
+        .card {
+            background-color: white;
+            /* border-radius: 0.25rem; */
+            box-shadow: 0 20px 40px -14px rgba(0, 0, 0, 0.25);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+
+            &:hover {
+                .card__image {
+                    filter: contrast(100%);
+                }
+            }
+
+            .card__image {
+                background-position: center center;
+                background-repeat: no-repeat;
+                background-size: cover;
+                /* border-top-left-radius: 0.25rem;
+                border-top-right-radius: 0.25rem; */
+                filter: contrast(70%);
+                //filter: saturate(180%);
+                overflow: hidden;
+                position: relative;
+                transition: filter 0.5s cubic-bezier(0.43, 0.41, 0.22, 0.91);
+
+                &::before {
+                    content: "";
+                    display: block;
+                    padding-top: 56.25%; // 16:9 aspect ratio
+                }
+
+                @media (min-width: 40rem) {
+                    &::before {
+                        padding-top: 66.6%; // 3:2 aspect ratio
+                    }
+                }
+
+                /* &.card__image--flowers {
                     background-image: url(https://unsplash.it/800/600?image=82);
                 }
 
@@ -264,35 +267,210 @@ a {
                     background-image: url(https://unsplash.it/800/600?image=39);
                 } */
 
-        /* &.card__image--fence {
+                /* &.card__image--fence {
                     background-image: url(https://unsplash.it/800/600?image=59);
                 } */
-      }
+            }
 
-      .card__content {
-        display: flex;
-        flex: 1 1 auto;
-        flex-direction: column;
-        padding: 1rem;
+            .card__content {
+                display: flex;
+                flex: 1 1 auto;
+                flex-direction: column;
+                padding: 1rem;
 
-        .card__title {
-          /* color: $gray-dark; */
-          color: $black;
-          font-size: 1.25rem;
-          font-weight: 300;
-          letter-spacing: 2px;
-          text-transform: uppercase;
+                .card__title {
+                    /* color: $gray-dark; */
+                    color: $black;
+                    font-size: 1.25rem;
+                    font-weight: 400;
+                    letter-spacing: 2px;
+                    text-transform: uppercase;
+                }
+
+                .card__text {
+                    flex: 1 1 auto;
+                    font-size: 0.875rem;
+                    line-height: 1.5;
+                    margin-bottom: 1.25rem;
+                }
+            }
         }
-
-        .card__text {
-          flex: 1 1 auto;
-          font-size: 0.875rem;
-          line-height: 1.5;
-          margin-bottom: 1.25rem;
-        }
-      }
     }
-  }
 }
 
 // END: CARD styles
+
+// NAV styles
+nav {
+    @include media("<=desktop") {
+        padding: 0;
+
+        #nav_text_collapse {
+            background: $black;
+
+            .nav-item {
+                border-bottom: 1px solid $white;
+
+                .nav-link {
+                    padding: 1rem 3%;
+                    text-align: right;
+
+                    &:hover {
+                        color: $red;
+                    }
+
+                    &.nuxt-link-active {
+                        background-color: $white !important;
+                        color: $black;
+                    }
+                }
+
+                &:last-child {
+                    border: none;
+                }
+            }
+
+        }
+    }
+
+    >.container {
+        @include media("<=desktop") {
+            max-width: 100% !important;
+
+            .navbar-brand {
+                margin-left: 3%;
+            }
+        }
+    }
+
+    .navbar-toggler {
+        right: 3% !important;
+    }
+}
+
+// END: NAV styles
+
+// AMOUNTS styles
+#amounts {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-flex-flow: row wrap;
+    justify-content: space-around;
+
+    label.btn {
+        border: 1px solid $black;
+
+        &:focus {
+            box-shadow: none !important;
+            outline: none !important;
+        }
+
+        &.active {
+            background-color: $black !important;
+            border-color: $black !important;
+
+            &.focus {
+                box-shadow: none !important;
+            }
+        }
+
+        span {
+            padding: 1rem !important;
+        }
+    }
+}
+
+// END: AMOUNTS styles
+
+// INTERNAL styles
+.internal {
+    >.container {
+        @include media("<=desktop") {
+            max-width: 100% !important;
+
+            .container {
+                max-width: 100% !important;
+            }
+        }
+    }
+
+    #internal-hero {
+        margin-top: 60px;
+    }
+}
+
+// END: INTERNAL styles
+
+// MODAL styles
+.modal-lg,
+.modal-xl {
+    width: 90% !important;
+    max-width: 90% !important;
+}
+
+.modal-content {
+    border-radius: 0 !important;
+}
+
+// END: MODAL styles
+
+// ACCORDION styles
+#accordion {
+    width: 100%;
+
+    .card {
+        border-radius: 0;
+
+        header {
+            border-radius: 0 !important;
+
+            a {
+                text-align: left;
+                background-color: $black;
+                color: $white;
+                padding: 1rem 2rem;
+
+                svg {
+                    @include transition(all 0.4s ease);
+                    margin-right: 10px;
+                    transform: rotate(0deg);
+                }
+
+                &:hover,
+                &[aria-expanded="true"] {
+                    background: $red;
+                }
+
+                &[aria-expanded="true"] {
+                    svg {
+                        transform: rotate(-135deg);
+                    }
+                }
+            }
+        }
+    }
+}
+
+// END: ACCORDION styles
+
+// FOOTER styles
+footer {
+    >.container {
+        @include media("<=desktop") {
+            max-width: 95% !important;
+
+            .container {
+                max-width: 100% !important;
+            }
+        }
+    }
+}
+
+// END: FOOTER styles

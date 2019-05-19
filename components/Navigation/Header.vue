@@ -1,6 +1,5 @@
 <template>
     <b-navbar toggleable="lg" fixed="top">
-        <b-navbar-toggle target="nav_text_collapse"></b-navbar-toggle>
         <b-container>
             <b-navbar-brand class="d-flex align-items-center">
                 <nuxt-link to="/">
@@ -20,6 +19,7 @@
                     </b-nav-item>
                 </b-navbar-nav>
             </b-collapse>
+            <b-navbar-toggle target="nav_text_collapse"></b-navbar-toggle>
         </b-container>
     </b-navbar>
 </template>
@@ -96,6 +96,19 @@ nav {
             img {
                 height: 50px;
             }
+        }
+        .navbar-toggler {
+            top: 0.6em !important;
+        }
+    }
+    .container {
+        position: relative;
+        .navbar-toggler {
+            position: absolute;
+            right: 0;
+            top: 0.8em;
+            border: 1px solid rgba(0, 0, 0, 0.5);
+            border-radius: 5px !important;
         }
     }
 }

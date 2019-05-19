@@ -1,14 +1,6 @@
 <template>
     <div>
         <b-container class="main">
-            <!-- <Typeahead
-                placeholder="What Fund you are looking for..."
-                filter-key="titledesc"
-                :start-at="2"
-            ></Typeahead>
-
-            <hr>-->
-
             <p>Your support of the University of Cincinnati and UC Health changes lives. From creating vital student scholarships to funding leading-edge research to providing for world-class patient care, our donors make a difference. Browse our Areas to Support database to see where you can make an impact at UC and UC Health.</p>
 
             <hr>
@@ -38,6 +30,7 @@
                                 v-model="form.Donor.Address.PostalCode"
                                 required
                                 placeholder="Enter Zip Code"
+                                autocomplete="off"
                             ></b-form-input>
                             <p class="zip-error">Not a real zip code.</p>
                         </b-form-group>
@@ -163,12 +156,7 @@
                 <!-- Email & Phone -->
                 <b-form-row>
                     <b-col>
-                        <b-form-group
-                            id="input-group-1"
-                            label="Email address:"
-                            label-for="input-1"
-                            description="We'll never share your email with anyone else."
-                        >
+                        <b-form-group id="input-group-1" label="Email address:" label-for="input-1">
                             <b-form-input
                                 id="input-1"
                                 v-model="form.Donor.EmailAddress"
@@ -192,14 +180,318 @@
 
                 <hr>
 
+                <label for>
+                    <strong>Gift Fields</strong>
+                </label>
+                <!-- Designations -->
+                <b-form-row>
+                    <b-col>
+                        <label for>Designations (Amount - Designation ID)</label>
+                        <div v-for="(designation, index) in form.Gift.Designations" :key="index">
+                            <p>${{ designation.Amount }} - {{ designation.DesignationId }}</p>
+                        </div>
+                    </b-col>
+                </b-form-row>
+
+                <!-- Finder Number -->
+                <b-form-row>
+                    <b-col>
+                        <b-form-group id="input-group-2" label="Finder Number:" label-for="input-2">
+                            <b-form-input
+                                id="input-2"
+                                v-model="form.Gift.FinderNumber"
+                                required
+                                placeholder="Enter Finder Number"
+                            ></b-form-input>
+                        </b-form-group>
+                    </b-col>
+                    <b-col>
+                        <b-form-group id="input-group-2" label="Source Code:" label-for="input-2">
+                            <b-form-input
+                                id="input-2"
+                                v-model="form.Gift.SourceCode"
+                                required
+                                placeholder="Enter Source Code"
+                            ></b-form-input>
+                        </b-form-group>
+                    </b-col>
+                    <b-col>
+                        <b-form-group id="input-group-2" label="Is Anonymous?:" label-for="input-2">
+                            <b-form-checkbox
+                                v-model="form.Gift.IsAnonymous"
+                                name="check-button"
+                                switch
+                            >
+                                Switch Checkbox
+                                <b>(Checked: {{ form.Gift.IsAnonymous }})</b>
+                            </b-form-checkbox>
+                        </b-form-group>
+                    </b-col>
+                </b-form-row>
+
+                <!-- Payment Method -->
+                <b-form-row>
+                    <b-col>
+                        <b-form-group
+                            id="input-group-2"
+                            label="Payment Method:"
+                            label-for="input-2"
+                        >
+                            <b-form-input
+                                id="input-2"
+                                v-model="form.Gift.PaymentMethod"
+                                required
+                                placeholder="Enter Payment Method"
+                            ></b-form-input>
+                        </b-form-group>
+                    </b-col>
+                    <b-col>
+                        <b-form-group id="input-group-2" label="Comments:" label-for="input-2">
+                            <b-form-input
+                                id="input-2"
+                                v-model="form.Gift.Comments"
+                                required
+                                placeholder="Enter Comments"
+                            ></b-form-input>
+                        </b-form-group>
+                    </b-col>
+                    <b-col>
+                        <b-form-group
+                            id="input-group-2"
+                            label="Create Gift Aid Declaration:"
+                            label-for="input-2"
+                        >
+                            <b-form-checkbox
+                                v-model="form.Gift.CreateGiftAidDeclaration"
+                                name="check-button"
+                                switch
+                            >
+                                Switch Checkbox
+                                <b>(Checked: {{ form.Gift.CreateGiftAidDeclaration }})</b>
+                            </b-form-checkbox>
+                        </b-form-group>
+                    </b-col>
+                </b-form-row>
+
+                <!-- Attributes -->
+                <b-form-row>
+                    <b-col>
+                        <label for>Attributes (AttributeId - Value)</label>
+                        <div v-for="(attribute, index) in form.Gift.Attributes" :key="index">
+                            <p>{{ attribute.AttributeId }} - {{ attribute.Value }}</p>
+                        </div>
+                    </b-col>
+                </b-form-row>
+
+                <!-- Recurrence -->
+                <b-form-row>
+                    <b-col cols="4">
+                        <b-form-group id="input-group-2" label="Day Of Month:" label-for="input-2">
+                            <b-form-select
+                                v-model="form.Gift.Recurrence.DayOfMonth"
+                                :options="daysOfMonth"
+                                class="mb-0"
+                            >
+                                <!-- This slot appears above the options from 'options' prop -->
+                                <template slot="first">
+                                    <option :value="null" disabled>-- Please select an option --</option>
+                                </template>
+                            </b-form-select>
+                        </b-form-group>
+                    </b-col>
+                    <b-col cols="4">
+                        <b-form-group id="input-group-2" label="Day Of Week:" label-for="input-2">
+                            <b-form-select
+                                v-model="form.Gift.Recurrence.DayOfWeek"
+                                :options="daysOfWeek"
+                                class="mb-0"
+                            >
+                                <!-- This slot appears above the options from 'options' prop -->
+                                <template slot="first">
+                                    <option :value="null" disabled>-- Please select an option --</option>
+                                </template>
+                            </b-form-select>
+                        </b-form-group>
+                    </b-col>
+                    <b-col cols="4">
+                        <b-form-group id="input-group-2" label="Frequency:" label-for="input-2">
+                            <b-form-select
+                                v-model="form.Gift.Recurrence.Frequency"
+                                :options="frequency"
+                                class="mb-0"
+                            >
+                                <!-- This slot appears above the options from 'options' prop -->
+                                <template slot="first">
+                                    <option :value="null" disabled>-- Please select an option --</option>
+                                </template>
+                            </b-form-select>
+                        </b-form-group>
+                    </b-col>
+                    <b-col cols="4">
+                        <label for>Start Date</label>
+                        <b-form-input v-model="form.Gift.Recurrence.StartDate" type="date"></b-form-input>
+                    </b-col>
+                    <b-col cols="4">
+                        <label for>End Date</label>
+                        <b-form-input v-model="form.Gift.Recurrence.EndDate" type="date"></b-form-input>
+                    </b-col>
+                </b-form-row>
+                <hr>
+                <!-- Tribute -->
+                <b-form-row>
+                    <b-col>
+                        <b-form-group id="input-group-2" label="Tribute:" label-for="input-2">
+                            <b-form-checkbox v-model="tribute" name="check-button" switch>
+                                Switch Checkbox
+                                <b>(Checked: {{ tribute }})</b>
+                            </b-form-checkbox>
+                        </b-form-group>
+                    </b-col>
+                </b-form-row>
+
+                <b-form-row v-show="tribute">
+                    <b-col cols="4">
+                        <b-form-group id="input-group-2" label="Zip Code:" label-for="input-2">
+                            <b-form-input
+                                id="input-2"
+                                class="zip"
+                                v-model="form.Gift.Tribute.Acknowledgee.PostalCode"
+                                required
+                                placeholder="Enter Zip Code"
+                                autocomplete="off"
+                            ></b-form-input>
+                            <p class="zip-error">Not a real zip code.</p>
+                        </b-form-group>
+                    </b-col>
+                </b-form-row>
+
+                <b-form-row v-show="tribute">
+                    <!-- City -->
+                    <b-col cols="6">
+                        <b-form-group id="input-group-2" label="City:" label-for="input-2">
+                            <b-form-input
+                                id="input-2"
+                                v-model="form.Gift.Tribute.Acknowledgee.City"
+                                required
+                                placeholder="Enter city"
+                            ></b-form-input>
+                        </b-form-group>
+                    </b-col>
+                    <!-- State -->
+                    <b-col cols="3">
+                        <b-form-group id="input-group-2" label="State:" label-for="input-2">
+                            <b-form-input
+                                id="input-2"
+                                v-model="form.Gift.Tribute.Acknowledgee.State"
+                                required
+                                placeholder="Enter State"
+                            ></b-form-input>
+                        </b-form-group>
+                    </b-col>
+
+                    <!-- Country -->
+                    <b-col cols="3">
+                        <b-form-group id="input-group-2" label="Country:" label-for="input-2">
+                            <b-form-input
+                                id="input-2"
+                                v-model="form.Gift.Tribute.Acknowledgee.Country"
+                                required
+                                placeholder="Enter country"
+                            ></b-form-input>
+                        </b-form-group>
+                    </b-col>
+
+                    <!-- Street Address -->
+                    <b-col cols="12">
+                        <b-form-group
+                            id="input-group-2"
+                            label="Street Address:"
+                            label-for="input-2"
+                        >
+                            <b-form-input
+                                id="input-2"
+                                class="streetAddress"
+                                v-model="form.Gift.Tribute.Acknowledgee.AddressLines"
+                                required
+                                placeholder="Enter Street Address"
+                            ></b-form-input>
+                        </b-form-group>
+                    </b-col>
+                    <b-col cols="6">
+                        <b-form-group
+                            id="input-group-2"
+                            cols="4"
+                            label="First Name:"
+                            label-for="input-2"
+                        >
+                            <b-form-input
+                                id="input-2"
+                                v-model="form.Gift.Tribute.TributeDefinition.FirstName"
+                                required
+                                placeholder="Enter first name"
+                            ></b-form-input>
+                        </b-form-group>
+                    </b-col>
+                    <b-col cols="6">
+                        <b-form-group
+                            id="input-group-2"
+                            cols="4"
+                            label="Last Name:"
+                            label-for="input-2"
+                        >
+                            <b-form-input
+                                id="input-2"
+                                v-model="form.Gift.Tribute.TributeDefinition.LastName"
+                                required
+                                placeholder="Enter Last name"
+                            ></b-form-input>
+                        </b-form-group>
+                    </b-col>
+                    <b-col cols="12">
+                        <b-form-group
+                            id="input-group-2"
+                            cols="4"
+                            label="Description:"
+                            label-for="input-2"
+                        >
+                            <b-form-textarea
+                                id="textarea"
+                                v-model="form.Gift.Tribute.TributeDefinition.Description"
+                                placeholder="Enter Description"
+                                rows="3"
+                                max-rows="6"
+                            ></b-form-textarea>
+                        </b-form-group>
+                    </b-col>
+                    <b-col cols="4">
+                        <b-form-group label="Tribute Type">
+                            <b-form-radio-group
+                                id="radio-group-1"
+                                v-model="form.Gift.Tribute.TributeDefinition.Type"
+                                :options="tributeTypes"
+                                name="radio-options"
+                            ></b-form-radio-group>
+                        </b-form-group>
+                    </b-col>
+                    <b-col cols="3">
+                        <b-form-group id="input-group-2" label="Tribute ID:" label-for="input-2">
+                            <b-form-input
+                                id="input-2"
+                                v-model="form.Gift.Tribute.TributeId"
+                                required
+                                placeholder="Enter Tribute ID"
+                            ></b-form-input>
+                        </b-form-group>
+                    </b-col>
+                </b-form-row>
+
+                <hr>
                 <b-button type="submit" variant="primary">Submit</b-button>
                 <b-button type="reset" variant="danger">Reset</b-button>
             </b-form>
             <b-card class="mt-3" header="Form Data Result">
                 <pre class="m-0">{{ form }}</pre>
             </b-card>
-
-            <hr>
         </b-container>
     </div>
 </template>
@@ -220,6 +512,61 @@ export default {
             // selected: null,
             error: "",
             city: " ",
+            tribute: false,
+            tributeTypes: [
+                { value: "Tribute", text: "In Honor of" },
+                { value: "Memorium", text: "In Memorium" }
+            ],
+            frequency: [
+                { value: "1", text: "Weekly" },
+                { value: "2", text: "Monthly" },
+                { value: "3", text: "Quarterly" },
+                { value: "4", text: "Annually" },
+                { value: "7", text: "Every 4 weeks" }
+            ],
+            daysOfMonth: [
+                { value: "1", text: "1" },
+                { value: "2", text: "2" },
+                { value: "3", text: "3" },
+                { value: "4", text: "4" },
+                { value: "5", text: "5" },
+                { value: "6", text: "6" },
+                { value: "7", text: "7" },
+                { value: "8", text: "8" },
+                { value: "9", text: "9" },
+                { value: "10", text: "10" },
+                { value: "11", text: "11" },
+                { value: "12", text: "12" },
+                { value: "13", text: "13" },
+                { value: "14", text: "14" },
+                { value: "15", text: "15" },
+                { value: "16", text: "16" },
+                { value: "17", text: "17" },
+                { value: "18", text: "18" },
+                { value: "19", text: "19" },
+                { value: "20", text: "20" },
+                { value: "21", text: "21" },
+                { value: "22", text: "22" },
+                { value: "23", text: "23" },
+                { value: "24", text: "24" },
+                { value: "25", text: "25" },
+                { value: "26", text: "26" },
+                { value: "27", text: "27" },
+                { value: "28", text: "28" },
+                { value: "29", text: "29" },
+                { value: "30", text: "30" },
+                { value: "31", text: "31" }
+            ],
+
+            daysOfWeek: [
+                { value: "0", text: "Sunday" },
+                { value: "1", text: "Monday" },
+                { value: "2", text: "Tuesday" },
+                { value: "3", text: "Wednesday" },
+                { value: "4", text: "Thursday" },
+                { value: "5", text: "Friday" },
+                { value: "6", text: "Saturday" }
+            ],
 
             titles: [
                 { value: "Miss", text: "Miss" },
@@ -306,6 +653,64 @@ export default {
                     LastName: "",
                     Phone: "",
                     Title: ""
+                },
+                Gift: {
+                    Designations: [
+                        {
+                            Amount: 5,
+                            DesignationId:
+                                "3439a5c7-9977-4f9c-ba11-fadfb8144d35"
+                        },
+                        {
+                            Amount: 15,
+                            DesignationId:
+                                "3439a5c7-9977-4f9c-ba11-fadfb8144d35"
+                        }
+                    ],
+                    FinderNumber: 0,
+                    SourceCode: "Sample Source Code",
+                    IsAnonymous: false,
+                    PaymentMethod: 1,
+                    Comments: "Gift comments here.",
+                    CreateGiftAidDeclaration: false,
+                    Attributes: [
+                        {
+                            AttributeId: "BD18B3FD-B382-4183-A415-8F84B1E0E411",
+                            Value: "Volunteer;Member;Alumni"
+                        },
+                        {
+                            AttributeId: "3607C77D-19DC-4EE0-A0CD-A352762A8EF0",
+                            Value: "1985"
+                        }
+                    ],
+                    Recurrence: {
+                        DayOfMonth: 26,
+                        DayOfWeek: null,
+                        EndDate: null,
+                        Frequency: 2,
+                        Month: null,
+                        StartDate: "/Date(1337227200000-0400)/"
+                    },
+                    Tribute: {
+                        Acknowledgee: {
+                            AddressLines: "123 Sunset ln.",
+                            City: "Charleston",
+                            Country: "USA",
+                            Email: "email@address.com",
+                            FirstName: "Jane",
+                            LastName: "Doe",
+                            Phone: "123-123-1234",
+                            PostalCode: "29482",
+                            State: "SC"
+                        },
+                        TributeDefinition: {
+                            Description: "New tribute",
+                            FirstName: "John",
+                            LastName: "Hancock",
+                            Type: "Tribute"
+                        },
+                        TributeId: null
+                    }
                 }
             },
             show: true
@@ -354,12 +759,14 @@ export default {
                         self.error = "zip code not found";
                         self.city = "";
                         $(".cityState").slideUp();
+                        $(".zip-error").slideDown();
                         // $(".error").addClass("no");
                     } else {
                         self.form.Donor.Address.City = result.city;
                         self.form.Donor.Address.State = result.state;
                         self.form.Donor.Address.Country = result.country;
                         $(".cityState").slideDown();
+                        $(".zip-error").slideUp();
                         // $(".display").addClass("animated fadeInDown");
                     }
                     console.log(result);
@@ -401,6 +808,12 @@ export default {
     padding: 5px 10px;
     margin-top: 10px;
     display: none;
+}
+
+.custom-control-input:checked ~ .custom-control-label::before {
+    color: #fff;
+    border-color: green !important;
+    background-color: green !important;
 }
 
 #giftType {

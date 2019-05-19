@@ -72,12 +72,19 @@ export default {
     }
 }
 
-.internal {
+/* .internal {
     > .container {
         margin-top: 0;
         /* margin-top: 85px; */
+
+/*@include media("<=desktop") {
+            max-width: 95% !important;
+            .container {
+                max-width: 100% !important;
+            }
+        }
     }
-}
+} */
 
 .fade-enter-active,
 .fade-leave-active {

@@ -52,35 +52,6 @@ export default {
 <style lang="scss" scoped>
 @import "@/assets/scss/style.scss";
 
-#accordion {
-    width: 100%;
-    .card {
-        border-radius: 0;
-        header {
-            border-radius: 0 !important;
-            a {
-                text-align: left;
-                background-color: $black;
-                color: $white;
-                padding: 1rem 2rem;
-                svg {
-                    @include transition(all 0.4s ease);
-                    margin-right: 10px;
-                    transform: rotate(0deg);
-                }
-                &:hover,
-                &[aria-expanded="true"] {
-                    background: $red;
-                }
-                &[aria-expanded="true"] {
-                    svg {
-                        transform: rotate(-135deg);
-                    }
-                }
-            }
-        }
-    }
-}
 .accordion {
     width: 100%;
     margin: 2em 0;
