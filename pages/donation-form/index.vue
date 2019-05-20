@@ -41,7 +41,7 @@ export default {
                     completed: false
                 },
                 {
-                    icon: "report_problem",
+                    icon: "location_on",
                     name: "second",
                     title: "Address Info",
                     subtitle: "Subtitle sample",
@@ -49,7 +49,7 @@ export default {
                     completed: false
                 },
                 {
-                    icon: "announcement",
+                    icon: "attach_money",
                     name: "third",
                     title: "Sample title 3",
                     subtitle: "Subtitle sample",
@@ -88,12 +88,12 @@ export default {
 <style lang="scss" scoped>
 @import "@/assets/scss/style.scss";
 
-#app {
+/* #app {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-align: center;
     color: #2c3e50;
-}
+} */
 .pointer {
     cursor: pointer;
 }
@@ -123,18 +123,19 @@ a {
 .text-light-grey {
     color: #888;
 }
+
 .box.formated {
     position: relative;
     padding: 0;
-}
-.box.formated .heading {
-    font-size: 1rem;
-    text-transform: capitalize;
-    padding: 0.8rem 1.5rem;
-    background-color: #fafafa;
-}
-.box.formated .content {
-    padding: 1rem 2rem;
+    .heading {
+        font-size: 1rem;
+        text-transform: capitalize;
+        padding: 0.8rem 1.5rem;
+        background-color: #fafafa;
+    }
+    .content {
+        padding: 1rem 2rem;
+    }
 }
 i.top-left {
     position: absolute;
@@ -144,8 +145,8 @@ i.top-left {
 .vertical-separator {
     display: flex;
     justify-content: space-around;
-}
-.vertical-separator .line {
-    border-right: 1px solid #cccccc;
+    .line {
+        border-right: 1px solid #cccccc;
+    }
 }
 </style>

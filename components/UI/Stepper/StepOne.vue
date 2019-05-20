@@ -1,6 +1,31 @@
 <template>
     <div style="padding: 2rem 3rem; text-align: left;">
         <div class="field">
+            <label class="label">First Name</label>
+            <div class="control">
+                <input
+                    :class="['input', ($v.form.firstName.$error) ? 'is-danger' : '']"
+                    type="text"
+                    placeholder="Text input"
+                    v-model="form.firstName"
+                >
+            </div>
+            <p v-if="$v.form.lastName.$error" class="help is-danger">This first name is invalid</p>
+        </div>
+        <div class="field">
+            <label class="label">Last Name</label>
+            <div class="control">
+                <input
+                    :class="['input', ($v.form.lastName.$error) ? 'is-danger' : '']"
+                    type="text"
+                    placeholder="Text input"
+                    v-model="form.lastName"
+                >
+            </div>
+            <p v-if="$v.form.lastName.$error" class="help is-danger">This last name is invalid</p>
+        </div>
+        <hr>
+        <div class="field">
             <label class="label">Username</label>
             <div class="control">
                 <input
@@ -46,6 +71,8 @@ export default {
     data() {
         return {
             form: {
+                firstName: "",
+                lastName: "",
                 username: "",
                 demoEmail: "",
                 message: ""
@@ -54,6 +81,12 @@ export default {
     },
     validations: {
         form: {
+            firstName: {
+                required
+            },
+            lastName: {
+                required
+            },
             username: {
                 required
             },
@@ -96,3 +129,7 @@ export default {
     }
 };
 </script>
+
+<style lang="scss" scoped>
+@import "@/assets/scss/style.scss";
+</style>
