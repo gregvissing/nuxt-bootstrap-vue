@@ -15,17 +15,6 @@
                     ></b-form-radio-group>
                 </b-form-group>
 
-                <!-- <b-form-group class="text-center">
-                    <b-form-radio-group
-                        id="giftTypes"
-                        v-model="form.giftType"
-                        :options="options"
-                        buttons
-                        button-variant="outline-dark"
-                        size="lg"
-                        name="radio-btn-outline"
-                    ></b-form-radio-group>
-                </b-form-group>-->
                 <div>Selected: {{form.giftType}}</div>
             </b-col>
         </b-form-row>
