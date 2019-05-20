@@ -13,6 +13,29 @@ export const mutations = {
     }
 };
 
+// Gift Types
+export const giftTypes = [{
+        text: "One-Time Gift",
+        value: "onetime",
+    },
+    {
+        text: "Monthly Gift",
+        value: "monthly",
+    },
+    {
+        text: "Pledge Payment",
+        value: "pledge",
+    },
+    {
+        text: "Faculty & Staff",
+        value: "facultyStaff",
+    },
+    {
+        text: "Senior Class Gift",
+        value: "seniorClass",
+    }
+];
+
 // Cart page
 export const amounts = [{
         text: "$50",

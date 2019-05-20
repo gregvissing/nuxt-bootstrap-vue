@@ -20,6 +20,7 @@
 
 <script>
 import HorizontalStepper from "~/components/UI/Stepper/HorizontalStepper.vue";
+import StepGiftType from "~/components/UI/Stepper/StepGiftType.vue";
 import StepOne from "~/components/UI/Stepper/StepOne.vue";
 import StepTwo from "~/components/UI/Stepper/StepTwo.vue";
 
@@ -32,6 +33,14 @@ export default {
     data() {
         return {
             demoSteps: [
+                {
+                    icon: "list",
+                    name: "first",
+                    title: "Gift Type",
+                    subtitle: "Subtitle sample",
+                    component: StepGiftType,
+                    completed: false
+                },
                 {
                     icon: "person",
                     name: "first",
