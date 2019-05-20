@@ -3,7 +3,19 @@
         <b-form-row>
             <b-col cols>
                 <h1>Make A Gift</h1>
-                <b-form-group class="text-center">
+                <b-form-group>
+                    <b-form-radio-group
+                        id="giftTypes"
+                        v-model="form.giftType"
+                        :options="options"
+                        buttons
+                        button-variant="outline-dark"
+                        size="lg"
+                        name="radio-options"
+                    ></b-form-radio-group>
+                </b-form-group>
+
+                <!-- <b-form-group class="text-center">
                     <b-form-radio-group
                         id="giftTypes"
                         v-model="form.giftType"
@@ -13,8 +25,8 @@
                         size="lg"
                         name="radio-btn-outline"
                     ></b-form-radio-group>
-                </b-form-group>
-                <!-- <div>Selected: {{form.giftType}}</div> -->
+                </b-form-group>-->
+                <div>Selected: {{form.giftType}}</div>
             </b-col>
         </b-form-row>
     </div>
@@ -43,7 +55,7 @@ export default {
             form: {
                 giftType: ""
             },
-            selected: this.value
+            selected: ""
         };
     },
     validations: {
@@ -122,9 +134,5 @@ export default {
             right: 0;
         }
     }
-}
-
-.form-group {
-    margin-bottom: 50px;
 }
 </style>
