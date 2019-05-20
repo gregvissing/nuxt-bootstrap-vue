@@ -6,7 +6,7 @@
         >
             <!-- <p>For more information visit website</p> -->
             <b-button size="lg" class="mr-4" variant="primary" href="#">Donate Now</b-button>
-            <b-button size="lg" variant="secondary" to="/donate/">Search Funds</b-button>
+            <b-button size="lg" variant="secondary" to="/search-funds/">Search Funds</b-button>
 
             <div class="typeahead-container">
                 <Typeahead
@@ -47,6 +47,7 @@ export default {
         font-family: "Droid Serif";
     }
     .typeahead-container {
+        position: relative;
         margin-top: 2em;
         padding: 1em;
         background-color: rgba(0, 0, 0, 0.25);

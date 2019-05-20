@@ -5,27 +5,6 @@
             <!-- <app-sidebar :pricerange.sync="highprice"/> -->
             <Amounts/>
 
-            <!-- <NewModal
-                :show="showNewDashboardModal"
-                @close="showNewDashboardModal = false"
-                @ok="addNewDashboard"
-            ></NewModal>
-
-            <NewModal
-                :show="showDuplicateDashboardModal"
-                @close="showDuplicateDashboardModal = false"
-                @ok="duplicateDashboard"
-            ></NewModal>
-
-            <button v-on:click="showNewDashboardModal = true">New</button>
-            <button v-on:click="showDuplicateDashboardModal = true">Copy</button>-->
-
-            <!-- <button type="button" class="btn btn-secondary" @click="showModal">Open Modal!</button>
-
-            <AlligatorModal v-show="isModalVisible" @close="closeModal">
-                <h5 slot="header" class="modal-title">Custom Moda Title here!</h5>
-            </AlligatorModal>-->
-
             <transition-group name="items" tag="section" class="content">
                 <app-item
                     v-for="(item, index) in products"
@@ -34,6 +13,35 @@
                     :index="index"
                 />
             </transition-group>
+        </div>
+
+        <div>
+            <div v-if="cartTotal > 0">
+                <h1>Cart</h1>
+                <div class="cartitems" v-for="(item, index) in cart" :key="index">
+                    <div class="carttext">
+                        <h4>{{ item.name }}</h4>
+                        <p>{{ item.price | usdollar }} x {{ item.count }}</p>
+                        <p>
+                            Total for this item:
+                            <strong>{{ item.price * item.count }}</strong>
+                        </p>
+                    </div>
+                    <!-- <img class="cartimg" :src="`/${item.img}`" :alt="`Image of ${item.name}`"> -->
+                </div>
+                <div class="total">
+                    <h3>Total: {{ total | usdollar }}</h3>
+                </div>
+                <!-- <app-checkout :total="total" @successSubmit="success = true"></app-checkout> -->
+            </div>
+
+            <div v-else class="empty">
+                <h1>Cart</h1>
+                <h3>Your cart is empty.</h3>
+                <nuxt-link exact to="/">
+                    <button>Fill er up!</button>
+                </nuxt-link>
+            </div>
         </div>
     </main>
 </template>
@@ -45,9 +53,6 @@ import AppItem from "~/components/cart/AppItem.vue";
 
 import Amounts from "~/components/cart/Amounts.vue";
 
-import NewModal from "~/components/UI/Modal/NewModal.vue";
-import AlligatorModal from "~/components/UI/Modal/AlligatorModal.vue";
-
 export default {
     pageTitle: "Shopping Cart",
     layout: "shopping",
@@ -55,19 +60,22 @@ export default {
         // AppSidebar,
         // AppMasthead,
         AppItem,
-        Amounts,
-
-        NewModal,
-        AlligatorModal
+        Amounts
+    },
+    props: {
+        total: {
+            type: [Number, String],
+            default: "50.00"
+        },
+        success: {
+            type: Boolean,
+            default: false
+        }
     },
     data() {
         return {
             highprice: 300,
-
-            showNewDashboardModal: false,
-            showDuplicateDashboardModal: false,
-
-            isModalVisible: false
+            success: false
         };
     },
     methods: {
@@ -78,13 +86,6 @@ export default {
             alert(
                 "Duplicate function: Name: " + name + " Category: " + category
             );
-        },
-
-        showModal() {
-            this.isModalVisible = true;
-        },
-        closeModal() {
-            this.isModalVisible = false;
         }
     },
     computed: {
@@ -94,18 +95,18 @@ export default {
                     ? el.price < this.highprice && el.sale
                     : el.price < this.highprice
             );
+        },
+        cart() {
+            return this.$store.state.cart;
+        },
+        cartTotal() {
+            return this.$store.state.cartTotal;
+        },
+        total() {
+            return Object.values(this.cart)
+                .reduce((acc, el) => acc + el.count * el.price, 0)
+                .toFixed(2);
         }
-        // cart() {
-        //     return this.$store.state.cart;
-        // },
-        // cartTotal() {
-        //     return this.$store.state.cartTotal;
-        // },
-        // total() {
-        //     return Object.values(this.cart)
-        //         .reduce((acc, el) => acc + el.count * el.price, 0)
-        //         .toFixed(2);
-        // }
     },
     filters: {
         usdollar: function(value) {

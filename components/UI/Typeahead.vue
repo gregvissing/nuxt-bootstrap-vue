@@ -1,15 +1,9 @@
 /* eslint-disable */
 <template>
     <div>
-        <!-- <input
-            v-model="query"
-            @blur="reset"
-            type="text"
-            class="SearchInput"
-            :placeholder="placeholder"
-        >-->
         <input v-model="query" type="text" class="SearchInput" :placeholder="placeholder">
         <b-button class="typeahead-button">Search</b-button>
+        <div id="results-container"></div>
         <transition-group name="fade" tag="ul" class="Results">
             <li v-for="(item, index) in filtered" :key="index+1">
                 <span>
@@ -55,7 +49,8 @@ export default {
     data() {
         return {
             items: [],
-            query: ""
+            query: "",
+            areas: []
         };
     },
     mounted() {
@@ -91,7 +86,7 @@ export default {
     },
     methods: {
         fetchItems() {
-            // var vm = this;
+            var vm = this;
             axios
                 .get(
                     // "https://foundation.uc.edu/WebApi/Query/40664e66-2729-4b1a-8cea-964b987c0833"
@@ -102,6 +97,7 @@ export default {
                     // console.log(this.rows);
                     // var topLevelAll = [];
                     var fundMaster = [];
+                    var areaMaster = [];
                     $.each(this.rows, function() {
                         // define values
                         var values = this.Values;
@@ -111,13 +107,21 @@ export default {
                             splitter.shift();
                         }
                         splitter.push(values[4]); // Descriptions
+
+                        var area = values[8];
+                        areaMaster.push(area);
+
                         // topLevelAll.push(splitter[0]);
                         fundMaster.push(splitter);
                     });
-                    // function onlyUnique(value, index, self) {
-                    //     return self.indexOf(value) === index;
-                    // }
-                    // var topLevelUnique = topLevelAll.filter(onlyUnique);
+
+                    function onlyUnique(value, index, self) {
+                        return self.indexOf(value) === index;
+                    }
+                    var topLevelUnique = areaMaster.filter(onlyUnique);
+                    // console.log(topLevelUnique);
+                    vm.areas = topLevelUnique;
+
                     function multiDimensionalUnique(arr) {
                         var uniques = [];
                         var itemsFound = {};
@@ -192,12 +196,15 @@ export default {
 
 .Results {
     width: 100%;
-    margin: 0 auto;
+    margin: 1em auto 0;
     padding: 0;
     text-align: left;
-    position: relative;
+    position: absolute;
+    left: 0;
+    right: 0;
     li {
-        background: rgba(53, 73, 94, 0.5);
+        /* background: rgba(53, 73, 94, 0.5); */
+        background-color: #eee;
         margin: 0;
         padding: 1em 1em 1.5em 1em;
         list-style: none;

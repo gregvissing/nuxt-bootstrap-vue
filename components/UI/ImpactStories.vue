@@ -10,9 +10,16 @@
                 <b-col>
                     <h3>{{ impactstory.title }}</h3>
                     <div v-html="impactstory.text"></div>
+                    <b-button
+                        variant="secondary"
+                        @click="showModal(impactstory)"
+                    >Learn More About {{ impactstory.name }}</b-button>
                 </b-col>
                 <b-col v-bind:style="{ 'background-image': 'url(' + impactstory.image + ')' }"></b-col>
             </b-row>
+            <b-modal id="modal2" hide-footer cancel-disabled size="xl" :title="selectedStory.title">
+                <div v-html="selectedStory.text"></div>
+            </b-modal>
         </b-container>
     </div>
 </template>
@@ -23,8 +30,20 @@ import { impactstories } from "@/store";
 export default {
     data() {
         return {
-            impactstories: impactstories
+            impactstories: impactstories,
+            selectedStory: []
         };
+    },
+    methods: {
+        showModal(item) {
+            this.selectedStory = item;
+            this.$root.$emit("bv::show::modal", "modal2");
+        }
+    },
+    filters: {
+        uppercase: function(value) {
+            return value.uppercase;
+        }
     }
 };
 </script>
@@ -60,5 +79,9 @@ export default {
             flex-direction: row-reverse;
         }
     }
+}
+
+.modal-title {
+    text-transform: uppercase;
 }
 </style>

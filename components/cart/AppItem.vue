@@ -5,7 +5,7 @@
         <!-- <span class="salepill" v-if="item.sale">Sale</span> -->
         <!-- <img :src="`/${item.img}`" :alt="`Image of ${item.name}`"> -->
         <p>{{ item.price | usdollar }}</p>
-        <button class="add" @click="addItem">Add Fund</button>
+        <button class="add btn btn-primary" @click="addItem">Add Fund</button>
     </div>
 </template>
 
@@ -49,7 +49,7 @@ export default {
 }
 
 .salepill {
-    background: rgb(232, 35, 25);
+    background: $black;
     color: white;
     font-family: "Barlow", sans-serif;
     position: absolute;

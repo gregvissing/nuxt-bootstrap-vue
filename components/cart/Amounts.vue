@@ -1,26 +1,32 @@
 <template>
     <div>
-        <b-form-group label="Make A Gift">
+        <h1>Make A Gift</h1>
+        <b-form-group>
             <b-form-radio-group
                 id="amounts"
                 v-model="selected"
                 :options="options"
                 buttons
-                button-variant="primary"
+                button-variant="outline-dark"
                 size="lg"
                 name="radio-btn-outline"
-                @click="!showOther"
+                @change="showOther = false"
             >
-                <!-- <b-button @click="showInput">
+                <b-button @click.prevent="otherValue">
                     Other
                     <br>Amount
-                    <b-form-input v-if="showOther" v-model="selected" placeholder="Other Amount"></b-form-input>
-                    <div v-else></div>
-                </b-button>-->
+                    <div v-show="showOther" class="showOther">
+                        <b-form-input v-model="selected" placeholder="Other Amount"></b-form-input>
+                    </div>
+
+                    <!-- <div v-else></div> -->
+                </b-button>
             </b-form-radio-group>
             <!-- <b-form-input v-model="selected" placeholder="Other Amount"></b-form-input> -->
         </b-form-group>
         Selected: {{selected}}
+        <br>
+        showOther: {{showOther}}
     </div>
 </template>
 
@@ -34,17 +40,24 @@ export default {
         },
         options: {
             type: Array,
-            default: () => [...Object.values(amounts), "Other Amount"]
+            default: () => [...Object.values(amounts)]
         }
     },
     data() {
         return {
-            selected: this.value
+            selected: this.value,
+            showOther: false
         };
     },
     watch: {
         selected: function(val) {
             this.$emit("input", val);
+        }
+    },
+    methods: {
+        otherValue() {
+            this.selected = "";
+            this.showOther = true;
         }
     }
 };
@@ -53,6 +66,9 @@ export default {
 <style lang="scss" scoped>
 @import "@/assets/scss/style.scss";
 
+h1 {
+    font-family: "Bree Serif";
+}
 #amounts {
     padding: 0;
     margin: 0;
@@ -65,11 +81,22 @@ export default {
     display: flex;
     -webkit-flex-flow: row wrap;
     justify-content: space-around;
-    label.btn {
+
+    label {
         &.active {
-            background-color: $black !important;
-            border-color: $black !important;
+            &.focus {
+                box-shadow: none !important;
+                outline: none !important;
+            }
         }
+    }
+    button {
+        position: relative;
+    }
+    .showOther {
+        position: absolute;
+        top: 0;
+        bottom: 0;
     }
 }
 </style>

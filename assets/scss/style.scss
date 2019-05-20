@@ -149,9 +149,17 @@ button {
         background-color: $black;
     }
 
-    &:focus {
-        outline: none;
-        box-shadow: none;
+    &:focus,
+    &:active {
+        outline: none !important;
+        box-shadow: none !important;
+    }
+
+    &.btn-outline-dark {
+        &.focus {
+            outline: none !important;
+            box-shadow: none !important;
+        }
     }
 }
 
@@ -385,6 +393,10 @@ nav {
             padding: 1rem !important;
         }
     }
+
+    div.close {
+        position: absolute !important;
+    }
 }
 
 // END: AMOUNTS styles
@@ -409,6 +421,22 @@ nav {
 // END: INTERNAL styles
 
 // MODAL styles
+.b-modal-target {
+    .modal {
+        .modal-dialog {
+            .modal-content {
+                header.modal-header {
+                    border-radius: 0 !important;
+
+                    .close {
+                        background-color: $black !important;
+                    }
+                }
+            }
+        }
+    }
+}
+
 .modal-lg,
 .modal-xl {
     width: 90% !important;
@@ -417,6 +445,16 @@ nav {
 
 .modal-content {
     border-radius: 0 !important;
+}
+
+/* MODAL styles */
+.modal-dialog {
+    max-width: 90% !important;
+    margin: 1.75rem auto;
+
+    // .modal-header {
+    //     .close {}
+    // }
 }
 
 // END: MODAL styles

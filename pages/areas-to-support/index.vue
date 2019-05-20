@@ -35,7 +35,7 @@
                                 v-for="(subarea, index) in area.subareas"
                                 :key="index"
                                 variant="secondary"
-                                @click="showModal(subarea);"
+                                @click="showModal(subarea)"
                             >{{ subarea.name }}</b-button>
                         </div>
                     </div>
@@ -122,15 +122,6 @@ export default {
 
 <style lang="scss" scoped>
 @import "@/assets/scss/style.scss";
-
-.modal-lg,
-.modal-xl {
-    width: 100% !important;
-    max-width: 100% !important;
-}
-.modal-content {
-    border-radius: 0 !important;
-}
 
 .areas-submenu {
     /* position: fixed;
