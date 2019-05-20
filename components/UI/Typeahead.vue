@@ -2,7 +2,7 @@
 <template>
     <div>
         <input v-model="query" type="text" class="SearchInput" :placeholder="placeholder">
-        <b-button class="typeahead-button">Search</b-button>
+        <!-- <b-button class="typeahead-button">Search</b-button> -->
         <div id="results-container"></div>
         <transition-group name="fade" tag="ul" class="Results">
             <li v-for="(item, index) in filtered" :key="index+1">
@@ -164,7 +164,7 @@ export default {
 
 .SearchInput {
     display: inline-block;
-    width: 75% !important;
+    width: 100% !important;
     padding: 1.5em 1em !important;
     font-size: 1em !important;
     outline: 0 !important;
@@ -173,7 +173,7 @@ export default {
 
     border-radius: 0;
     border: none;
-    width: 75%;
+    /* width: 75%; */
     display: inline-block;
     vertical-align: top;
     height: 44px;

@@ -14,8 +14,9 @@
             </div>
 
             <h3>Areas</h3>
-            <div>
-                <p v-for="(area, index) in uniqueAreas" :key="index">{{area}}</p>
+            <!-- List of Areas (Tags\Value) -->
+            <div class="area-list">
+                <p v-for="(area, index) in areaList" :key="index">{{area}}</p>
             </div>
         </b-container>
     </div>
@@ -38,22 +39,57 @@ export default {
             areaList: []
         };
     },
-    computed: {
-        uniqueAreas() {
-            return [...new Set(this.areaList.map(p => p.value))];
-        }
-    }
+    // computed: {
+    //     uniqueAreas() {
+    //         return [...new Set(this.areaList.map(p => p.value))];
+    //     }
+    // },
+    created: function() {
+        var vm = this;
+        const url =
+            "https://foundation.uc.edu/WebApi/Query/d968555d-dea8-4c1a-9b5c-4e3be2d750be";
+        axios
+            .get(url, { responseType: "xml" })
+            .then(response => {
+                // console.log([...Object.values(response.data.Fields)]);
+                this.rows = [...Object.values(response.data.Rows)];
+                var fundMaster = [];
+                var areaMaster = [];
 
-    // created() {
-    //     this.$store.dispatch("fetchFund").then(() => {
-    //         console.log("This would be printed after dispatch!!");
-    //     });
-    // }
+                $.each(this.rows, function() {
+                    // define values
+                    var values = this.Values;
+                    var area = values[8];
+
+                    areaMaster.push(area);
+                });
+
+                function onlyUnique(value, index, self) {
+                    return self.indexOf(value) === index;
+                }
+                var topLevelUnique = areaMaster.filter(onlyUnique);
+                // console.log(topLevelUnique);
+                vm.areaList = topLevelUnique;
+            })
+            .catch(error => console.log(error.message, " @@@"));
+    }
 };
 </script>
 
 <style lang="scss" scoped>
 @import "@/assets/scss/style.scss";
+
+.area-list {
+    p {
+        display: inline-block;
+        padding: 5px 10px;
+        border: 1px solid $black;
+        margin-right: 5px;
+        &:empty {
+            display: none;
+        }
+    }
+}
 
 .zip-error {
     color: #d70000;

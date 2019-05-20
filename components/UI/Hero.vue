@@ -10,7 +10,7 @@
 
             <div class="typeahead-container">
                 <Typeahead
-                    placeholder="What Fund you are looking for..."
+                    placeholder="Start typing the fund you are looking for..."
                     filter-key="titledesc"
                     :start-at="2"
                 ></Typeahead>

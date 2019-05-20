@@ -576,23 +576,6 @@ const createStore = () => {
         },
 
         actions: {
-            // fetchFund({
-            //     commit
-            // }) {
-            //     return new Promise((resolve, reject) => {
-            //         $.get('https://foundation.uc.edu/WebApi/Query/d968555d-dea8-4c1a-9b5c-4e3be2d750be/', function (xml) {
-            //                 console.log(xml);
-            //             })
-            //             // Vue.http.get("hhttps://foundation.uc.edu/WebApi/Query/d968555d-dea8-4c1a-9b5c-4e3be2d750be/")
-            //             .then((response) => {
-            //                 commit("FETCH_FUNDS", response.body);
-            //                 resolve();
-            //             })
-            //             .catch((error => {
-            //                 console.log(error.statusText);
-            //             }));
-            //     });
-            // }
 
         }
     });

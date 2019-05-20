@@ -31,6 +31,7 @@ $twelve: 100%;
 $gutter: 1rem !global;
 
 @import "./_include-media.scss";
+@import "./_HorizontalStepper.scss";
 
 @mixin transition($args...) {
     -webkit-transition: $args;
