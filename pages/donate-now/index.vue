@@ -22,8 +22,8 @@
 import HorizontalStepper from "~/components/UI/Stepper/HorizontalStepper.vue";
 import StepGiftType from "~/components/UI/Stepper/StepGiftType.vue";
 import StepFundSearch from "~/components/UI/Stepper/StepFundSearch.vue";
-import StepOne from "~/components/UI/Stepper/StepOne.vue";
-import StepTwo from "~/components/UI/Stepper/StepTwo.vue";
+import StepPersonalInfo from "~/components/UI/Stepper/StepPersonalInfo.vue";
+import StepAddress from "~/components/UI/Stepper/StepAddress.vue";
 
 export default {
     pageTitle: "Donation Now",
@@ -35,16 +35,16 @@ export default {
         return {
             demoSteps: [
                 {
-                    icon: "list",
-                    name: "first",
-                    title: "Gift Info",
+                    icon: "attach_money",
+                    name: "donation info",
+                    title: "Donation Info",
                     // subtitle: "Subtitle sample",
                     component: StepGiftType,
                     completed: false
                 },
                 {
-                    icon: "attach_money",
-                    name: "first",
+                    icon: "list",
+                    name: "fund info",
                     title: "Fund Info",
                     // subtitle: "Subtitle sample",
                     component: StepFundSearch,
@@ -52,18 +52,18 @@ export default {
                 },
                 {
                     icon: "person",
-                    name: "first",
+                    name: "personal details",
                     title: "Personal Details",
                     // subtitle: "Subtitle sample",
-                    component: StepOne,
+                    component: StepPersonalInfo,
                     completed: false
                 },
                 {
                     icon: "location_on",
-                    name: "second",
+                    name: "address",
                     title: "Address Info",
                     // subtitle: "Subtitle sample",
-                    component: StepTwo,
+                    component: StepAddress,
                     completed: false
                 }
                 // {

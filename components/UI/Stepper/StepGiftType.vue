@@ -1,6 +1,62 @@
 <template>
     <div style="padding: 2rem 3rem; text-align: left;">
         <b-form-row>
+            <b-col cols="12">Choose a Donation Amount</b-col>
+            <b-col>
+                <label>Donate Monthly</label>
+                <p>Your monthly support has lasting impact on changes lives at the University of Cincinnati and UC Health.</p>
+                <b-button-group vertical>
+                    <b-button
+                        block
+                        size="md"
+                        variant="outline-primary"
+                    >Yes! I want to donate $25 a month.</b-button>
+                    <b-button block size="md" variant="outline-primary" class="text-left">
+                        $
+                        <input type="text" class="oneOpen" placeholder="Other">
+                        a month.
+                    </b-button>
+                </b-button-group>
+            </b-col>
+            <b-col>
+                <label>Make a One-Time Gift</label>
+                <b-button-group class="mb-1">
+                    <b-button size="lg" variant="outline-primary">$50</b-button>
+                    <b-button size="lg" variant="outline-primary">$100</b-button>
+                    <b-button size="lg" variant="outline-primary">$250</b-button>
+                    <b-button size="lg" variant="outline-primary">$500</b-button>
+                    <b-button size="lg" variant="outline-primary">$1000</b-button>
+                </b-button-group>
+                <b-button block variant="outline-primary" class="mb-3 p-0">
+                    <b-form-input
+                        size="lg"
+                        v-model="text"
+                        placeholder="Other"
+                        class="oneOpe text-center"
+                    ></b-form-input>
+                    <!-- <input type="text" class="oneOpe text-center" placeholder="Other"> -->
+                </b-button>
+                <!-- <ul class="arr">
+                    <li class="btn" data-set="0">$50</li>
+                    <li class="btn" data-set="1">$100</li>
+                    <li class="btn" data-set="2">$250</li>
+                    <li class="btn" data-set="3">$500</li>
+                    <li class="btn" data-set="3">$1000</li>
+                    <li class="btn otr">
+                        <input type="text" class="oneOpen" placeholder="Other">
+                    </li>
+                </ul>-->
+
+                <b-form-checkbox
+                    id="checkbox-1"
+                    v-model="tribute"
+                    name="checkbox-1"
+                    value="true"
+                    unchecked-value="false"
+                >Is this gift in Honor/Memory of a friend or loved one?</b-form-checkbox>
+            </b-col>
+        </b-form-row>
+        <!-- <b-form-row>
             <b-col cols>
                 <h3>Gift Type</h3>
                 <b-form-group>
@@ -23,7 +79,7 @@
                 <h3>Gift Amount</h3>
                 <Amounts/>
             </b-col>
-        </b-form-row>
+        </b-form-row>-->
     </div>
 </template>
 
@@ -55,7 +111,8 @@ export default {
             form: {
                 giftType: ""
             },
-            selected: ""
+            selected: "",
+            tribute: "false"
         };
     },
     validations: {
@@ -107,6 +164,56 @@ export default {
 
 <style lang="scss" scoped>
 @import "@/assets/scss/style.scss";
+
+.form-row {
+    border: 1px solid $black;
+    .col-12 {
+        background-color: $black;
+        color: $white;
+        padding: 0.5em 1em;
+        font-weight: bold;
+    }
+    .col {
+        padding: 1em;
+        &:nth-child(2) {
+            border-right: 1px solid $black;
+            .btn-group-vertical {
+                width: 100%;
+                max-width: 100%;
+            }
+        }
+        &:last-child {
+            border-left: 1px solid $black;
+            .btn-group {
+                width: 100%;
+                font-weight: bold !important;
+                button {
+                    &:last-child {
+                        input {
+                            display: block !important;
+                            width: 100% !important;
+                            max-width: 100% !important;
+                        }
+                        display: block;
+                        width: 100% !important;
+                    }
+                }
+            }
+        }
+        button {
+            margin: 3px 0;
+        }
+        input {
+            outline: none;
+            border: 0px;
+            box-shadow: none !important;
+            font-weight: bold;
+        }
+        label {
+            font-weight: bold;
+        }
+    }
+}
 
 #giftTypes {
     padding: 0;

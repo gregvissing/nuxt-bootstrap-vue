@@ -12,6 +12,18 @@ button {
         background-color: $black;
     }
 
+    &.btn-outline-primary {
+        color: $red;
+        border: 1px solid #a6a6a6 !important;
+        font-weight: bold !important;
+
+        &:hover {
+            background-color: $red;
+            color: $white;
+        }
+
+    }
+
     &:focus,
     &:active {
         outline: none !important;
