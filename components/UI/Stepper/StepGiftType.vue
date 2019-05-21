@@ -2,7 +2,7 @@
     <div style="padding: 2rem 3rem; text-align: left;">
         <b-form-row>
             <b-col cols>
-                <h1>Make A Gift</h1>
+                <h1>Gift Type</h1>
                 <b-form-group>
                     <b-form-radio-group
                         id="giftTypes"
@@ -18,6 +18,17 @@
                 <div>Selected: {{form.giftType}}</div>
             </b-col>
         </b-form-row>
+        <b-form-row>
+            <b-col>
+                <hr>
+            </b-col>
+        </b-form-row>
+        <b-form-row>
+            <b-col>
+                <h1>Gift Amount</h1>
+                <Amounts/>
+            </b-col>
+        </b-form-row>
     </div>
 </template>
 
@@ -27,9 +38,14 @@ import { giftTypes } from "@/store";
 import { validationMixin } from "vuelidate";
 import { required } from "vuelidate/lib/validators";
 
+import Amounts from "~/components/cart/Amounts.vue";
+
 export default {
     props: ["clickedNext", "currentStep"],
     mixins: [validationMixin],
+    components: {
+        Amounts
+    },
     props: {
         value: {
             default: ""
@@ -111,6 +127,7 @@ export default {
     justify-content: space-around;
     label {
         position: relative;
+        padding: 1rem !important;
         &.active {
             &.focus {
                 box-shadow: none !important;

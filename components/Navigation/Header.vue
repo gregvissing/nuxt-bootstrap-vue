@@ -102,6 +102,11 @@ nav {
                         background: $white;
                         color: $red !important;
                     }
+                    .nav-link {
+                        &:hover {
+                            color: $red;
+                        }
+                    }
                 }
                 &.cart {
                     svg {

@@ -1,6 +1,5 @@
 <template>
     <div>
-        <h1>Make A Gift</h1>
         <b-form-group>
             <b-form-radio-group
                 id="amounts"
