@@ -29,7 +29,7 @@ import axios from "axios";
 import Typeahead from "~/components/UI/Typeahead.vue";
 
 export default {
-    pageTitle: "Donate Now",
+    pageTitle: "Search Funds",
     layout: "internal",
     components: {
         Typeahead

@@ -1,0 +1,11 @@
+footer {
+    >.container {
+        @include media("<=desktop") {
+            max-width: 95% !important;
+
+            .container {
+                max-width: 100% !important;
+            }
+        }
+    }
+}

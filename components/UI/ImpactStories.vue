@@ -17,7 +17,7 @@
                 </b-col>
                 <b-col v-bind:style="{ 'background-image': 'url(' + impactstory.image + ')' }"></b-col>
             </b-row>
-            <b-modal id="modal2" hide-footer cancel-disabled size="xl" :title="selectedStory.title">
+            <b-modal id="modal2" hide-footer cancel-disabled size="lg" :title="selectedStory.title">
                 <div v-html="selectedStory.text"></div>
             </b-modal>
         </b-container>

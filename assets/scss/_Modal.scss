@@ -1,0 +1,40 @@
+// MODAL styles
+.b-modal-target {
+    .modal {
+        .modal-dialog {
+            margin: 1.75rem auto;
+
+            &.modal-xl {
+                width: 100% !important;
+                max-width: 100% !important;
+                margin: 0;
+
+                .modal-content {
+                    height: 100vh;
+
+                    .modal-header {
+                        .close {
+                            background-color: $white !important;
+                            color: $black !important;
+                        }
+                    }
+                }
+            }
+
+            .modal-content {
+                border-radius: 0 !important;
+
+                header.modal-header {
+                    border-radius: 0 !important;
+
+                    .close {
+                        background-color: $black !important;
+                        color: $white;
+                    }
+                }
+            }
+        }
+    }
+}
+
+// END: MODAL styles

@@ -26,7 +26,7 @@
                     id="modal1"
                     hide-footer
                     cancel-disabled
-                    size="xl"
+                    size="lg"
                     :title="selectedFund.title"
                 >
                     <!-- <b-button

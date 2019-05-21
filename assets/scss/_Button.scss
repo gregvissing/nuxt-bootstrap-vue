@@ -1,0 +1,27 @@
+.btn,
+button {
+    border-radius: 0 !important;
+    border: none;
+    @include transition(all .4s ease);
+
+    &.btn-primary {
+        background-color: $red;
+    }
+
+    &.btn-secondary {
+        background-color: $black;
+    }
+
+    &:focus,
+    &:active {
+        outline: none !important;
+        box-shadow: none !important;
+    }
+
+    &.btn-outline-dark {
+        &.focus {
+            outline: none !important;
+            box-shadow: none !important;
+        }
+    }
+}

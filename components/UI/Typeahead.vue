@@ -1,33 +1,67 @@
 /* eslint-disable */
 <template>
     <div>
-        <input v-model="query" type="text" class="SearchInput" :placeholder="placeholder">
-        <!-- <b-button class="typeahead-button">Search</b-button> -->
-        <div id="results-container"></div>
-        <transition-group name="fade" tag="ul" class="Results">
-            <li v-for="(item, index) in filtered" :key="index+1">
-                <span>
-                    <strong>{{ item.title }}</strong>
-                    <br>
-                    <small>{{ item.desc }}</small>
-                </span>
-                <div class="btn-container">
-                    <button class="btn btn-secondary">More Info</button>
-                    <button class="btn btn-primary">Donate Now</button>
-                </div>
-            </li>
-        </transition-group>
-        <p v-show="isEmpty">Sorry, but we can't find any match for given term :(</p>
+        <!-- <input
+            v-model="query"
+            @click="showModal"
+            v-b-modal.modal-xl
+            type="text"
+            class="SearchInput"
+            :placeholder="placeholder"
+        >-->
+        <input
+            @click="showModal"
+            v-b-modal.modal-xl
+            type="text"
+            class="SearchInput"
+            :placeholder="placeholder"
+        >
+        <b-modal
+            id="searchModal"
+            hide-footer
+            cancel-disabled
+            size="xl"
+            title="Search Funds"
+            :header-bg-variant="headerBgVariant"
+            :header-text-variant="headerTextVariant"
+            :body-bg-variant="bodyBgVariant"
+        >
+            <input v-model="query" type="text" class="SearchInput" :placeholder="placeholder">
+            <i class="fas fa-times" v-show="showClear" @click="clearSearch"></i>
+            <!-- <b-button class="typeahead-button">Search</b-button> -->
+            <div id="results-container"></div>
+            <transition-group name="fade" tag="ul" class="Results">
+                <li v-for="(item, index) in filtered" :key="index+1">
+                    <span>
+                        <h5>{{ item.title }}</h5>
+                        <small v-show="item.desc">
+                            <strong>Purpose:</strong>
+                            {{ item.desc }}
+                        </small>
+                    </span>
+                    <div class="btn-container clearfix">
+                        <b-button block variant="secondary">More Info</b-button>
+                        <b-button block variant="primary">Donate Now</b-button>
+                    </div>
+                </li>
+            </transition-group>
+            <p v-show="isEmpty">Sorry, but we can't find any match for given term :(</p>
+        </b-modal>
     </div>
 </template>
 
 <script>
 import $ from "jquery";
 import axios from "axios";
+
+import SearchModal from "~/components/UI/Modal/SearchModal.vue";
 // import _ from 'lodash';
 
 export default {
     name: "Typeahead",
+    components: {
+        SearchModal
+    },
     props: {
         // source: {
         //     type: [String, Array],
@@ -50,7 +84,12 @@ export default {
         return {
             items: [],
             query: "",
-            areas: []
+            areas: [],
+            showClear: false,
+
+            bodyBgVariant: "dark",
+            headerBgVariant: "dark",
+            headerTextVariant: "light"
         };
     },
     mounted() {
@@ -58,6 +97,12 @@ export default {
     },
     computed: {
         filtered() {
+            if (this.query.length >= 1) {
+                this.showClear = true;
+            } else {
+                this.showClear = false;
+            }
+
             if (this.query.length >= this.startAt) {
                 return this.items.filter(item => {
                     if (item.hasOwnProperty(this.filterKey)) {
@@ -154,6 +199,15 @@ export default {
         },
         reset() {
             this.query = "";
+            this.showClear = false;
+        },
+        clearSearch() {
+            this.showClear = false;
+            this.query = "";
+        },
+        showModal(item) {
+            // this.selectedFund = item;
+            this.$root.$emit("bv::show::modal", "searchModal");
         }
     }
 };
@@ -161,6 +215,15 @@ export default {
 
 <style lang="scss" scoped>
 @import "@/assets/scss/style.scss";
+
+.fa-times {
+    position: absolute;
+    right: 4%;
+    top: 35px;
+    margin: 0;
+    font-size: 1.5em;
+    cursor: pointer;
+}
 
 .SearchInput {
     display: inline-block;
@@ -196,42 +259,55 @@ export default {
 
 .Results {
     width: 100%;
-    margin: 1em auto 0;
-    padding: 0;
+    margin: 0 auto;
+    padding: 0 1rem;
     text-align: left;
     position: absolute;
     left: 0;
     right: 0;
+    z-index: 100;
+    height: 80vh;
+    overflow: auto;
     li {
         /* background: rgba(53, 73, 94, 0.5); */
         background-color: #eee;
         margin: 0;
-        padding: 1em 1em 1.5em 1em;
+        padding: 1em;
         list-style: none;
         width: 100%;
         border-bottom: 1px solid #394e62;
         transition: ease-in-out 0.5s;
         position: relative;
         span {
-            width: 75%;
-            display: block;
+            width: 79%;
+            display: inline-block;
+            vertical-align: top;
+            h5 {
+                margin: 0;
+            }
         }
         .btn-container {
-            top: 1em;
-            bottom: 1em;
-            right: 1em;
-            margin: auto;
-            position: absolute;
-            vertical-align: middle;
+            width: 20%;
+            display: inline-block;
             button {
-                display: inline-block;
-                &.btn-primary {
-                    margin-left: 1em;
-                }
+                vertical-align: top;
+            }
+            &:after {
+                content: "";
+                clear: both;
             }
         }
     }
 }
+
+.clearfix {
+    &:after {
+        content: "";
+        clear: both;
+        display: table;
+    }
+}
+
 .fade-enter-active,
 .fade-leave-active {
     transition: opacity 0.3s;

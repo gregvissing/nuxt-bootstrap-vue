@@ -1,0 +1,15 @@
+.internal {
+    >.container {
+        @include media("<=desktop") {
+            max-width: 100% !important;
+
+            .container {
+                max-width: 100% !important;
+            }
+        }
+    }
+
+    #internal-hero {
+        margin-top: 60px;
+    }
+}

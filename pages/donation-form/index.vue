@@ -60,7 +60,7 @@ export default {
                 {
                     icon: "attach_money",
                     name: "third",
-                    title: "Sample title 3",
+                    title: "Tribute",
                     subtitle: "Subtitle sample",
                     component: StepOne,
                     completed: false
