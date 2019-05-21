@@ -28,13 +28,7 @@
                     <b-button size="lg" variant="outline-primary">$1000</b-button>
                 </b-button-group>
                 <b-button block variant="outline-primary" class="mb-3 p-0">
-                    <b-form-input
-                        size="lg"
-                        v-model="text"
-                        placeholder="Other"
-                        class="oneOpe text-center"
-                    ></b-form-input>
-                    <!-- <input type="text" class="oneOpe text-center" placeholder="Other"> -->
+                    <b-form-input size="lg" placeholder="Other" class="text-center"></b-form-input>
                 </b-button>
                 <!-- <ul class="arr">
                     <li class="btn" data-set="0">$50</li>
@@ -207,9 +201,6 @@ export default {
             outline: none;
             border: 0px;
             box-shadow: none !important;
-            font-weight: bold;
-        }
-        label {
             font-weight: bold;
         }
     }

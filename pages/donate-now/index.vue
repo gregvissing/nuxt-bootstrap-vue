@@ -38,15 +38,15 @@ export default {
                     icon: "attach_money",
                     name: "donation info",
                     title: "Donation Info",
-                    // subtitle: "Subtitle sample",
+                    subtitle: "Choose Type/Amount",
                     component: StepGiftType,
                     completed: false
                 },
                 {
                     icon: "list",
                     name: "fund info",
-                    title: "Fund Info",
-                    // subtitle: "Subtitle sample",
+                    title: "Fund",
+                    subtitle: "Choose Fund",
                     component: StepFundSearch,
                     completed: false
                 },
@@ -54,7 +54,7 @@ export default {
                     icon: "person",
                     name: "personal details",
                     title: "Personal Details",
-                    // subtitle: "Subtitle sample",
+                    subtitle: "Enter Your Info",
                     component: StepPersonalInfo,
                     completed: false
                 },
@@ -62,7 +62,7 @@ export default {
                     icon: "location_on",
                     name: "address",
                     title: "Address Info",
-                    // subtitle: "Subtitle sample",
+                    subtitle: "Enter Your Address",
                     component: StepAddress,
                     completed: false
                 }

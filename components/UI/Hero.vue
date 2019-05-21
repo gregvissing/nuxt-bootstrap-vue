@@ -5,7 +5,7 @@
             lead="Your support of UC and UC Health changes lives."
         >
             <!-- <p>For more information visit website</p> -->
-            <b-button size="lg" class="mr-4" variant="primary" href="#">Donate Now</b-button>
+            <b-button size="lg" class="mr-4" variant="primary" to="/donate-now/">Donate Now</b-button>
             <b-button
                 size="lg"
                 variant="secondary"

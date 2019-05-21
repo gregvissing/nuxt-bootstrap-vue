@@ -1,7 +1,17 @@
 <template>
     <div style="padding: 2rem 3rem; text-align: left;">
         <b-form-row>
-            <b-col cols>
+            <b-col cols="12">Choose a Fund to Impact</b-col>
+            <b-col>
+                <div>
+                    <label for>Filter By:</label>
+                </div>
+
+                <b-button-group block class="mb-1" size="lg">
+                    <b-button size="lg" variant="outline-primary">Support Area</b-button>
+                    <b-button size="lg" variant="outline-primary">Fund/Description</b-button>
+                    <b-button size="lg" variant="outline-primary">Fund ID</b-button>
+                </b-button-group>
                 <!-- <h3>Gift Type</h3>
                 <b-form-group>
                     <b-form-radio-group
@@ -108,6 +118,28 @@ export default {
 <style lang="scss" scoped>
 @import "@/assets/scss/style.scss";
 
+.form-row {
+    border: 1px solid $black;
+    .col-12 {
+        background-color: $black;
+        color: $white;
+        padding: 0.5em 1em;
+        font-weight: bold;
+    }
+    .col {
+        padding: 1em;
+        &:nth-child(2) {
+            .btn-group-vertical {
+                width: 100%;
+                max-width: 100%;
+            }
+        }
+    }
+    label {
+        font-weight: bold;
+    }
+}
+
 #giftTypes {
     padding: 0;
     margin: 0;
@@ -121,6 +153,7 @@ export default {
     -webkit-flex-flow: row wrap;
     justify-content: space-around;
     label {
+        display: block !important;
         position: relative;
         padding: 1rem !important;
         &.active {
