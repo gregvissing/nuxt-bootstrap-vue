@@ -13,7 +13,7 @@
                     <b-nav-item to="/ways-to-give/">WAYS TO GIVE</b-nav-item>
                     <b-nav-item to="/why-give/">WHY GIVE</b-nav-item>
                     <b-nav-item to="/areas-to-support/">AREAS TO SUPPORT</b-nav-item>
-                    <b-nav-item class="donate" to="/donate/">DONATE NOW</b-nav-item>
+                    <b-nav-item class="donate" to="/donate-now/">DONATE NOW</b-nav-item>
                     <b-nav-item class="cart" to="/cart/">
                         <div class="cartitem">
                             <div v-if="cartTotal > 0" class="cartcount">{{ cartTotal }}</div>

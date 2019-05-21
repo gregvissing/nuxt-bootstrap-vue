@@ -3,7 +3,7 @@
         <b-container class="main">
             <p>Your support of the University of Cincinnati and UC Health changes lives. From creating vital student scholarships to funding leading-edge research to providing for world-class patient care, our donors make a difference. Browse our Areas to Support database to see where you can make an impact at UC and UC Health.</p>
 
-            <nuxt-link to="/donation-form/">Donation Form</nuxt-link>
+            <nuxt-link to="/donation-now/">Donation Form</nuxt-link>
             <hr>
             <h3>Donation Type</h3>
 

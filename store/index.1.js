@@ -727,3 +727,95 @@ export default createStore;
 
 //helper
 const filter = (array, key, value) => array.filter(item => item[key] === value);
+
+// fetchFund({
+//     commit
+// }) {
+//     return new Promise((resolve, reject) => {
+//         const url =
+//             "https://foundation.uc.edu/WebApi/Query/d968555d-dea8-4c1a-9b5c-4e3be2d750be";
+//         axios
+//             .get(url, {
+//                 responseType: "xml"
+//             })
+//             .then(response => {
+//                 console.log(response.data);
+//             })
+//             .catch(error => console.log(error.message, " @@@"));
+//         $.get('https://foundation.uc.edu/WebApi/Query/d968555d-dea8-4c1a-9b5c-4e3be2d750be/', function (xml) {
+//                 console.log(xml);
+//             })
+//             // Vue.http.get("hhttps://foundation.uc.edu/WebApi/Query/d968555d-dea8-4c1a-9b5c-4e3be2d750be/")
+//             .then((response) => {
+//                 commit("FETCH_FUNDS", response.body);
+//                 resolve();
+//             })
+//             .catch((error => {
+//                 console.log(error.statusText);
+//             }));
+//     });
+// }
+
+// mounted() {
+//         this.fetchItems();
+//     },
+
+//     methods: {
+//         fetchItems() {
+//             var vm = this;
+//             axios
+//                 .get(
+//                     "https://foundation.uc.edu/WebApi/Query/d968555d-dea8-4c1a-9b5c-4e3be2d750be"
+//                 )
+//                 .then(response => {
+//                     this.rows = [...Object.values(response.data.Rows)];
+//                     // console.log(this.rows);
+//                     // var topLevelAll = [];
+//                     // var fundMaster = [];
+//                     var areaMaster = [];
+//                     $.each(this.rows, function () {
+//                         // define values
+//                         var values = this.Values;
+
+//                         var area = values[8];
+//                         areaMaster.push(area);
+//                     });
+
+//                     function onlyUnique(value, index, self) {
+//                         return self.indexOf(value) === index;
+//                     }
+//                     var topLevelUnique = areaMaster.filter(onlyUnique);
+//                     console.log(topLevelUnique);
+//                     vm.areaList = topLevelUnique;
+
+//                     // function multiDimensionalUnique(arr) {
+//                     //     var uniques = [];
+//                     //     var itemsFound = {};
+//                     //     for (var i = 0, l = arr.length; i < l; i++) {
+//                     //         var stringified = JSON.stringify(arr[i]);
+//                     //         if (itemsFound[stringified]) {
+//                     //             continue;
+//                     //         }
+//                     //         if (arr[i][0].length != 0) {
+//                     //             uniques.push(arr[i]);
+//                     //         }
+//                     //         itemsFound[stringified] = true;
+//                     //     }
+//                     //     return uniques;
+//                     // }
+//                     // var uniqueFunds = multiDimensionalUnique(fundMaster);
+
+//                     // var fundArr = [];
+//                     // $.each(uniqueFunds, function(x, subFund) {
+//                     //     var fundRowData = {
+//                     //         title: subFund[0],
+//                     //         desc: subFund[1],
+//                     //         titledesc: subFund[0] + " " + subFund[1]
+//                     //     };
+//                     //     fundArr.push(fundRowData);
+//                     // });
+//                     // // console.log(fundArr);
+//                     // this.items = fundArr;
+//                 });
+//         }
+//     }

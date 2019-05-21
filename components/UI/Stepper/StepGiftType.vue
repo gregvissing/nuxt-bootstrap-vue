@@ -20,11 +20,6 @@
         </b-form-row>
         <b-form-row>
             <b-col>
-                <hr>
-            </b-col>
-        </b-form-row>
-        <b-form-row>
-            <b-col>
                 <h1>Gift Amount</h1>
                 <Amounts/>
             </b-col>

@@ -58,7 +58,7 @@ export default {
                     completed: false
                 },
                 {
-                    icon: "attach_money",
+                    icon: "card_giftcard",
                     name: "third",
                     title: "Tribute",
                     subtitle: "Subtitle sample",

@@ -11,7 +11,7 @@
                 name="radio-btn-outline"
                 @change="showOther = false"
             >
-                <b-button @click.prevent="otherValue">
+                <b-button @click.prevent="otherValue" button-variant="outline-dark">
                     Other
                     <br>Amount
                     <div v-show="showOther" class="showOther">

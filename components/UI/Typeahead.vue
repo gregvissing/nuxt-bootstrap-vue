@@ -9,14 +9,8 @@
             class="SearchInput"
             :placeholder="placeholder"
         >-->
-        <input
-            @click="showModal"
-            v-b-modal.modal-xl
-            type="text"
-            class="SearchInput"
-            :placeholder="placeholder"
-        >
-        <b-modal
+
+        <!-- <b-modal
             id="searchModal"
             hide-footer
             cancel-disabled
@@ -25,28 +19,28 @@
             :header-bg-variant="headerBgVariant"
             :header-text-variant="headerTextVariant"
             :body-bg-variant="bodyBgVariant"
-        >
-            <input v-model="query" type="text" class="SearchInput" :placeholder="placeholder">
-            <i class="fas fa-times" v-show="showClear" @click="clearSearch"></i>
-            <!-- <b-button class="typeahead-button">Search</b-button> -->
-            <div id="results-container"></div>
-            <transition-group name="fade" tag="ul" class="Results">
-                <li v-for="(item, index) in filtered" :key="index+1">
-                    <span>
-                        <h5>{{ item.title }}</h5>
-                        <small v-show="item.desc">
-                            <strong>Purpose:</strong>
-                            {{ item.desc }}
-                        </small>
-                    </span>
-                    <div class="btn-container clearfix">
-                        <b-button block variant="secondary">More Info</b-button>
-                        <b-button block variant="primary">Donate Now</b-button>
-                    </div>
-                </li>
-            </transition-group>
-            <p v-show="isEmpty">Sorry, but we can't find any match for given term :(</p>
-        </b-modal>
+        >-->
+        <input v-model="query" type="text" class="SearchInput" :placeholder="placeholder">
+        <i class="fas fa-times" v-show="showClear" @click="clearSearch"></i>
+        <!-- <b-button class="typeahead-button">Search</b-button> -->
+        <div id="results-container"></div>
+        <transition-group name="fade" tag="ul" class="Results">
+            <li v-for="(item, index) in filtered" :key="index+1">
+                <span>
+                    <h5>{{ item.title }}</h5>
+                    <small v-show="item.desc">
+                        <strong>Purpose:</strong>
+                        {{ item.desc }}
+                    </small>
+                </span>
+                <div class="btn-container clearfix">
+                    <b-button block variant="secondary">More Info</b-button>
+                    <b-button block variant="primary">Donate Now</b-button>
+                </div>
+            </li>
+        </transition-group>
+        <p v-show="isEmpty">Sorry, but we can't find any match for given term :(</p>
+        <!-- </b-modal> -->
     </div>
 </template>
 
@@ -54,13 +48,13 @@
 import $ from "jquery";
 import axios from "axios";
 
-import SearchModal from "~/components/UI/Modal/SearchModal.vue";
+// import SearchModal from "~/components/UI/Modal/SearchModal.vue";
 // import _ from 'lodash';
 
 export default {
     name: "Typeahead",
     components: {
-        SearchModal
+        // SearchModal
     },
     props: {
         // source: {
@@ -85,11 +79,11 @@ export default {
             items: [],
             query: "",
             areas: [],
-            showClear: false,
+            showClear: false
 
-            bodyBgVariant: "dark",
-            headerBgVariant: "dark",
-            headerTextVariant: "light"
+            // bodyBgVariant: "dark",
+            // headerBgVariant: "dark",
+            // headerTextVariant: "light"
         };
     },
     mounted() {
@@ -204,11 +198,11 @@ export default {
         clearSearch() {
             this.showClear = false;
             this.query = "";
-        },
-        showModal(item) {
-            // this.selectedFund = item;
-            this.$root.$emit("bv::show::modal", "searchModal");
         }
+        // showModal(item) {
+        //     // this.selectedFund = item;
+        //     this.$root.$emit("bv::show::modal", "searchModal");
+        // }
     }
 };
 </script>
