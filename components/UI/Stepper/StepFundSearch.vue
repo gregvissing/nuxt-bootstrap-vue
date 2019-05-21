@@ -2,7 +2,7 @@
     <div style="padding: 2rem 3rem; text-align: left;">
         <b-form-row>
             <b-col cols>
-                <h3>Gift Type</h3>
+                <!-- <h3>Gift Type</h3>
                 <b-form-group>
                     <b-form-radio-group
                         id="giftTypes"
@@ -13,15 +13,11 @@
                         size="lg"
                         name="radio-options"
                     ></b-form-radio-group>
-                </b-form-group>
+                </b-form-group>-->
 
-                <div>Selected: {{form.giftType}}</div>
-            </b-col>
-        </b-form-row>
-        <b-form-row>
-            <b-col>
-                <h3>Gift Amount</h3>
-                <Amounts/>
+                <!-- <div>Selected: {{form.giftType}}</div> -->
+
+                <MultiSelect v-model="value" :options="options"></MultiSelect>
             </b-col>
         </b-form-row>
     </div>
@@ -34,28 +30,32 @@ import { validationMixin } from "vuelidate";
 import { required } from "vuelidate/lib/validators";
 
 import Amounts from "~/components/cart/Amounts.vue";
+import MultiSelect from "~/components/UI/UI-Components/MultiSelect.vue";
 
 export default {
     props: ["clickedNext", "currentStep"],
     mixins: [validationMixin],
     components: {
-        Amounts
+        Amounts,
+        MultiSelect
     },
-    props: {
-        value: {
-            default: ""
-        },
-        options: {
-            type: Array,
-            default: () => [...Object.values(giftTypes)]
-        }
-    },
+    // props: {
+    //     value: {
+    //         default: ""
+    //     },
+    //     options: {
+    //         type: Array,
+    //         default: () => [...Object.values(giftTypes)]
+    //     }
+    // },
     data() {
         return {
             form: {
                 giftType: ""
             },
-            selected: ""
+            selected: "",
+            value: null,
+            options: ["list", "of", "options"]
         };
     },
     validations: {

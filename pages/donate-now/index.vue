@@ -21,11 +21,12 @@
 <script>
 import HorizontalStepper from "~/components/UI/Stepper/HorizontalStepper.vue";
 import StepGiftType from "~/components/UI/Stepper/StepGiftType.vue";
+import StepFundSearch from "~/components/UI/Stepper/StepFundSearch.vue";
 import StepOne from "~/components/UI/Stepper/StepOne.vue";
 import StepTwo from "~/components/UI/Stepper/StepTwo.vue";
 
 export default {
-    pageTitle: "Donation Form",
+    pageTitle: "Donation Now",
     layout: "internal",
     components: {
         HorizontalStepper
@@ -36,16 +37,24 @@ export default {
                 {
                     icon: "list",
                     name: "first",
-                    title: "Gift Type",
-                    subtitle: "Subtitle sample",
+                    title: "Gift Info",
+                    // subtitle: "Subtitle sample",
                     component: StepGiftType,
+                    completed: false
+                },
+                {
+                    icon: "attach_money",
+                    name: "first",
+                    title: "Fund Info",
+                    // subtitle: "Subtitle sample",
+                    component: StepFundSearch,
                     completed: false
                 },
                 {
                     icon: "person",
                     name: "first",
                     title: "Personal Details",
-                    subtitle: "Subtitle sample",
+                    // subtitle: "Subtitle sample",
                     component: StepOne,
                     completed: false
                 },
@@ -53,18 +62,18 @@ export default {
                     icon: "location_on",
                     name: "second",
                     title: "Address Info",
-                    subtitle: "Subtitle sample",
+                    // subtitle: "Subtitle sample",
                     component: StepTwo,
                     completed: false
-                },
-                {
-                    icon: "card_giftcard",
-                    name: "third",
-                    title: "Tribute",
-                    subtitle: "Subtitle sample",
-                    component: StepOne,
-                    completed: false
                 }
+                // {
+                //     icon: "card_giftcard",
+                //     name: "third",
+                //     title: "Tribute",
+                //     // subtitle: "Subtitle sample",
+                //     component: StepOne,
+                //     completed: false
+                // }
             ],
             activeStep: 0
         };
