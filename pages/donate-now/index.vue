@@ -24,9 +24,10 @@ import StepGiftType from "~/components/UI/Stepper/StepGiftType.vue";
 import StepFundSearch from "~/components/UI/Stepper/StepFundSearch.vue";
 import StepPersonalInfo from "~/components/UI/Stepper/StepPersonalInfo.vue";
 import StepAddress from "~/components/UI/Stepper/StepAddress.vue";
+import StepThree from "~/components/UI/Stepper/StepThree.vue";
 
 export default {
-    pageTitle: "Donation Now",
+    pageTitle: "Donate Now",
     layout: "internal",
     components: {
         HorizontalStepper
@@ -37,7 +38,7 @@ export default {
                 {
                     icon: "attach_money",
                     name: "donation info",
-                    title: "Donation Info",
+                    title: "Donation",
                     subtitle: "Choose Type/Amount",
                     component: StepGiftType,
                     completed: false
@@ -61,7 +62,7 @@ export default {
                 {
                     icon: "location_on",
                     name: "address",
-                    title: "Address Info",
+                    title: "Address",
                     subtitle: "Enter Your Address",
                     component: StepAddress,
                     completed: false
@@ -71,7 +72,7 @@ export default {
                 //     name: "third",
                 //     title: "Tribute",
                 //     // subtitle: "Subtitle sample",
-                //     component: StepOne,
+                //     component: StepThree,
                 //     completed: false
                 // }
             ],

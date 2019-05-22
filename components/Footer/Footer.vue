@@ -13,7 +13,7 @@
                 <b-col>
                     <h4>Connect</h4>
                     <p>
-                        <i class="fab fa-facebook-f"></i> Facebook
+                        <i class="fab fa-facebook-square"></i> Facebook
                     </p>
                     <p>
                         <i class="fab fa-linkedin"></i> LinkedIn

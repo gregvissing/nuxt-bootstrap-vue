@@ -3,6 +3,15 @@
         <b-form-row>
             <b-col cols="12">Choose a Fund to Impact</b-col>
             <b-col>
+                <b-button
+                    size="lg"
+                    variant="secondary"
+                    @click="showModal"
+                    v-b-modal.modal-xl
+                >Search Funds</b-button>
+
+                <SearchModal id="searchModal"/>
+
                 <div>
                     <label for>Filter By:</label>
                 </div>
@@ -28,6 +37,10 @@
                 <!-- <div>Selected: {{form.giftType}}</div> -->
 
                 <MultiSelect v-model="value" :options="options"></MultiSelect>
+
+                <AutoComplete
+                    :items="[ 'Apple', 'Banana', 'Orange', 'Mango', 'Pear', 'Peach', 'Grape', 'Tangerine', 'Pineapple']"
+                />
             </b-col>
         </b-form-row>
     </div>
@@ -41,13 +54,17 @@ import { required } from "vuelidate/lib/validators";
 
 import Amounts from "~/components/cart/Amounts.vue";
 import MultiSelect from "~/components/UI/UI-Components/MultiSelect.vue";
+import AutoComplete from "~/components/UI/UI-Components/AutoComplete.vue";
+import SearchModal from "~/components/UI/Modal/SearchModal.vue";
 
 export default {
     props: ["clickedNext", "currentStep"],
     mixins: [validationMixin],
     components: {
         Amounts,
-        MultiSelect
+        MultiSelect,
+        AutoComplete,
+        SearchModal
     },
     // props: {
     //     value: {
@@ -103,6 +120,10 @@ export default {
         otherValue() {
             this.selected = "";
             this.showOther = true;
+        },
+        showModal(item) {
+            // this.selectedFund = item;
+            this.$root.$emit("bv::show::modal", "searchModal");
         }
     },
     mounted() {
