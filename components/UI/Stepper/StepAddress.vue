@@ -1,8 +1,12 @@
 <template>
     <div style="padding: 2rem 3rem; text-align: left;">
-        <b-form-row>
+        <b-form-row class="justify-content-md-center">
             <b-col cols="4">
-                <b-form-group id="input-group-2" label="Zip Code:" label-for="input-2">
+                <b-form-group
+                    id="input-group-2"
+                    label="Start by entering your zip code."
+                    label-for="input-2"
+                >
                     <b-form-input
                         id="input-2"
                         :class="['zip', ($v.form.Address.PostalCode.$error) ? 'is-danger' : '']"

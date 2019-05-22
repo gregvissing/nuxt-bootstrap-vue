@@ -26,7 +26,7 @@
                 <b-form-group
                     id="input-group-2"
                     class="field"
-                    label="Your First Name:"
+                    label="First Name:"
                     label-for="input-2"
                 >
                     <b-form-input
@@ -43,7 +43,7 @@
                 <b-form-group
                     id="input-group-2"
                     class="field"
-                    label="Your Last Name:"
+                    label="Last Name:"
                     label-for="input-2"
                 >
                     <b-form-input
