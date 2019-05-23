@@ -2,6 +2,7 @@
     <div style="padding: 2rem 3rem; text-align: left;">
         <b-form-row>
             <b-col cols="12">Choose a Fund to Impact</b-col>
+            <b-col>Do you know what fund</b-col>
             <b-col>
                 <b-button
                     size="lg"
@@ -38,9 +39,9 @@
 
                 <MultiSelect v-model="value" :options="options"></MultiSelect>
 
-                <AutoComplete
+                <!-- <AutoComplete
                     :items="[ 'Apple', 'Banana', 'Orange', 'Mango', 'Pear', 'Peach', 'Grape', 'Tangerine', 'Pineapple']"
-                />
+                />-->
             </b-col>
         </b-form-row>
     </div>
