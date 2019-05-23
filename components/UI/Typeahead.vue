@@ -1,26 +1,18 @@
 /* eslint-disable */
 <template>
     <div>
-        <!-- <input
+        <label
+            class="placeholder"
+            @click="placeholderMove"
+            for="search-field"
+        >Start typing the fund you are looking for</label>
+        <input
             v-model="query"
-            @click="showModal"
-            v-b-modal.modal-xl
+            @click="placeholderMove"
             type="text"
             class="SearchInput"
             :placeholder="placeholder"
-        >-->
-
-        <!-- <b-modal
-            id="searchModal"
-            hide-footer
-            cancel-disabled
-            size="xl"
-            title="Search Funds"
-            :header-bg-variant="headerBgVariant"
-            :header-text-variant="headerTextVariant"
-            :body-bg-variant="bodyBgVariant"
-        >-->
-        <input v-model="query" type="text" class="SearchInput" :placeholder="placeholder">
+        >
         <i class="fas fa-times" v-show="showClear" @click="clearSearch"></i>
         <!-- <b-button class="typeahead-button">Search</b-button> -->
         <div id="results-container"></div>
@@ -40,7 +32,6 @@
             </li>
         </transition-group>
         <p v-show="isEmpty">Sorry, but we can't find any match for given term :(</p>
-        <!-- </b-modal> -->
     </div>
 </template>
 
@@ -124,6 +115,10 @@ export default {
         }
     },
     methods: {
+        placeholderMove() {
+            var $placeHolder = $(".placeholder");
+            $placeHolder.addClass("move-up");
+        },
         fetchItems() {
             var vm = this;
             axios
@@ -198,6 +193,8 @@ export default {
         clearSearch() {
             this.showClear = false;
             this.query = "";
+            var $placeHolder = $(".placeholder");
+            $placeHolder.removeClass("move-up");
         }
         // showModal(item) {
         //     // this.selectedFund = item;
@@ -217,6 +214,27 @@ export default {
     margin: 0;
     font-size: 1.5em;
     cursor: pointer;
+}
+
+.modal-header {
+    border: none !important;
+}
+
+label.placeholder {
+    position: absolute;
+    top: 20px;
+    left: 2rem;
+    font-size: 32px;
+    font-weight: 300;
+    color: $gray;
+    transition: all 0.3s;
+    margin: 0;
+
+    &.move-up {
+        top: -15px;
+        color: white;
+        font-size: 1rem;
+    }
 }
 
 .SearchInput {

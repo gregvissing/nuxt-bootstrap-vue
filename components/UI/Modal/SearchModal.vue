@@ -4,18 +4,21 @@
         hide-footer
         cancel-disabled
         size="xl"
-        title="Search Funds"
+        title
         :header-bg-variant="headerBgVariant"
         :header-text-variant="headerTextVariant"
         :body-bg-variant="bodyBgVariant"
     >
         <div class="typeahead-container">
-            <Typeahead
-                placeholder="Start typing the fund you are looking for..."
-                filter-key="titledesc"
-                :start-at="2"
-            ></Typeahead>
+            <Typeahead filter-key="titledesc" :start-at="2"></Typeahead>
         </div>
+        <b-container class="close-modal">
+            <b-row class="justify-content-md-center">
+                <b-col>
+                    <button class="btn btn-primary footer-close" @click="closeModal">CLOSE</button>
+                </b-col>
+            </b-row>
+        </b-container>
     </b-modal>
 </template>
 
@@ -157,6 +160,9 @@ export default {
         showModal(item) {
             // this.selectedFund = item;
             this.$root.$emit("bv::show::modal", "searchModal");
+        },
+        closeModal() {
+            this.$root.$emit("bv::hide::modal", "searchModal");
         }
     }
 };
@@ -173,6 +179,19 @@ export default {
         margin: 0 !important;
         > .modal-content {
             height: 100vh;
+            .close-modal {
+                position: absolute;
+                bottom: 0.5em;
+                left: 0;
+                right: 0;
+                width: 100%;
+                text-align: center;
+                z-index: 100;
+                button {
+                    padding: 0.5em 1.5em;
+                    letter-spacing: 1px;
+                }
+            }
         }
     }
 }

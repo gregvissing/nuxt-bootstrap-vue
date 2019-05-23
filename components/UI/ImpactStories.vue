@@ -1,10 +1,11 @@
 <template>
     <div>
         <b-container class="impact-stories">
-            <h2 class="text-center">
+            <h2 class="text-center">IMPACT STORIES</h2>
+            <!-- <h2 class="text-center">
                 REDEFINING
                 <span>NEXT</span> BY...
-            </h2>
+            </h2>-->
 
             <b-row v-for="(impactstory, index) in impactstories" :key="index">
                 <b-col>
@@ -59,7 +60,7 @@ export default {
         background: $black;
         color: $white;
         margin: 0;
-        font-style: italic;
+        /* font-style: italic; */
         font-weight: bold;
         span {
             color: $red;
