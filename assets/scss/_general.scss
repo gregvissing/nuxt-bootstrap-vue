@@ -44,3 +44,9 @@ hr {
         margin: 0 10px;
     }
 }
+
+.custom-control-input:checked~.custom-control-label::before {
+    color: #fff;
+    border-color: $red;
+    background-color: $red;
+}

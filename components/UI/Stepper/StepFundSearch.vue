@@ -2,8 +2,19 @@
     <div style="padding: 2rem 3rem; text-align: left;">
         <b-form-row>
             <b-col cols="12">Choose a Fund to Impact</b-col>
-            <b-col>Do you know what fund</b-col>
-            <b-col>
+            <b-col cols="8">
+                <label>Choose a Campaign Fund?</label>
+                <b-button-group vertical size="md" class="mb-1">
+                    <b-button variant="outline-primary">Greatest Need</b-button>
+                    <b-button variant="outline-primary">Fund/Cincinnatus Scholarship Fund</b-button>
+                    <b-button variant="outline-primary">Next Lives Here Fund</b-button>
+                    <b-button variant="outline-primary">President's Transformation Fund</b-button>
+                    <b-button variant="outline-primary">Student Need Scholarship Fund</b-button>
+                    <b-button variant="outline-primary">UC Bicentennial Fund</b-button>
+                </b-button-group>
+            </b-col>
+            <b-col cols="4">
+                <label>Search all Funds?</label>
                 <b-button
                     size="lg"
                     variant="secondary"
@@ -13,7 +24,7 @@
 
                 <SearchModal id="searchModal"/>
 
-                <div>
+                <!-- <div>
                     <label for>Filter By:</label>
                 </div>
 
@@ -21,7 +32,7 @@
                     <b-button size="lg" variant="outline-primary">Support Area</b-button>
                     <b-button size="lg" variant="outline-primary">Fund/Description</b-button>
                     <b-button size="lg" variant="outline-primary">Fund ID</b-button>
-                </b-button-group>
+                </b-button-group>-->
                 <!-- <h3>Gift Type</h3>
                 <b-form-group>
                     <b-form-radio-group
@@ -37,13 +48,16 @@
 
                 <!-- <div>Selected: {{form.giftType}}</div> -->
 
-                <MultiSelect v-model="value" :options="options"></MultiSelect>
+                <!-- <MultiSelect v-model="value" :options="options"></MultiSelect> -->
 
                 <!-- <AutoComplete
                     :items="[ 'Apple', 'Banana', 'Orange', 'Mango', 'Pear', 'Peach', 'Grape', 'Tangerine', 'Pineapple']"
                 />-->
             </b-col>
         </b-form-row>
+        <b-card class="mt-3" header="Form Data Result">
+            <pre class="m-0">{{ form }}</pre>
+        </b-card>
     </div>
 </template>
 
@@ -148,6 +162,8 @@ export default {
         padding: 0.5em 1em;
         font-weight: bold;
     }
+    .col-8,
+    .col-4,
     .col {
         padding: 1em;
         &:nth-child(2) {
@@ -159,6 +175,7 @@ export default {
     }
     label {
         font-weight: bold;
+        display: block;
     }
 }
 

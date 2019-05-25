@@ -20,7 +20,26 @@
             </b-col>
             <b-col>
                 <label>Make a One-Time Gift</label>
-                <b-button-group class="mb-1">
+                <Amounts v-model="amtValue"/>
+                <!-- <div class="areas-submenu btn-group btn-group-toggle">
+                    <label
+                        class="btn btn-outline-secondary"
+                        :class="{ 'select': selected === amount.value, '': selected !== amount.value }"
+                        v-for="(amount, index) in amountValues"
+                        :key="index"
+                        :item="amount.value"
+                        @click="changeSelectVal(amount.value)"
+                    >
+                        <input
+                            type="radio"
+                            :value="amount.value"
+                            name="area-filter"
+                            v-model="form.Gift.Amount"
+                        >
+                        {{ amount.text }}
+                    </label>
+                </div>-->
+                <!-- <b-button-group class="mb-1" v-model="form.Gift.Amount">
                     <b-button size="lg" variant="outline-primary">$50</b-button>
                     <b-button size="lg" variant="outline-primary">$100</b-button>
                     <b-button size="lg" variant="outline-primary">$250</b-button>
@@ -29,7 +48,7 @@
                 </b-button-group>
                 <b-button block variant="outline-primary" class="mb-3 p-0">
                     <b-form-input size="md" placeholder="Other Amount" class="text-center"></b-form-input>
-                </b-button>
+                </b-button>-->
                 <!-- <ul class="arr">
                     <li class="btn" data-set="0">$50</li>
                     <li class="btn" data-set="1">$100</li>
@@ -40,16 +59,19 @@
                         <input type="text" class="oneOpen" placeholder="Other">
                     </li>
                 </ul>-->
-
-                <b-form-checkbox
+                <button class="btn btn-secondary" @click="addFind">New Find</button>
+                <!-- <b-form-checkbox
                     id="checkbox-1"
                     v-model="tribute"
                     name="checkbox-1"
                     value="true"
                     unchecked-value="false"
-                >Is this gift in Honor/Memory of a friend or loved one?</b-form-checkbox>
+                >Is this gift in Honor/Memory of a friend or loved one?</b-form-checkbox>-->
             </b-col>
         </b-form-row>
+        <b-card class="mt-3" header="Form Data Result">
+            <pre class="m-0">{{ form }}</pre>
+        </b-card>
         <!-- <b-form-row>
             <b-col cols>
                 <h3>Gift Type</h3>
@@ -67,8 +89,8 @@
 
                 <div>Selected: {{form.giftType}}</div>
             </b-col>
-        </b-form-row>
-        <b-form-row>
+        </b-form-row>-->
+        <!-- <b-form-row>
             <b-col>
                 <h3>Gift Amount</h3>
                 <Amounts/>
@@ -79,7 +101,7 @@
 
 <script>
 import $ from "jquery";
-import { giftTypes } from "@/store";
+import { giftTypes, amounts } from "@/store";
 import { validationMixin } from "vuelidate";
 import { required } from "vuelidate/lib/validators";
 
@@ -98,15 +120,29 @@ export default {
         options: {
             type: Array,
             default: () => [...Object.values(giftTypes)]
+        },
+        amountValues: {
+            type: Array,
+            default: () => [...Object.values(amounts)]
         }
     },
     data() {
         return {
             form: {
-                giftType: ""
+                giftType: "",
+                Gift: {
+                    Designations: [
+                        // {
+                        //     Amount: "",
+                        //     DesignationId: ""
+                        // }
+                    ]
+                }
             },
             selected: "",
-            tribute: "false"
+            tribute: "false",
+            amountIndex: "",
+            amtValue: ""
         };
     },
     validations: {
@@ -141,9 +177,18 @@ export default {
         }
     },
     methods: {
+        addFind: function() {
+            this.form.Gift.Designations.push({
+                Amount: this.amtValue,
+                DesignationId: ""
+            });
+        },
         otherValue() {
             this.selected = "";
             this.showOther = true;
+        },
+        changeSelectVal: function(val) {
+            this.amountIndex = val;
         }
     },
     mounted() {
@@ -234,6 +279,12 @@ export default {
             position: absolute;
             left: 0;
             right: 0;
+        }
+        @include transition(all 0.4s ease);
+        &.select,
+        &:hover {
+            background-color: $white;
+            color: $black;
         }
     }
 }

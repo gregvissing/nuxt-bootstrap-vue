@@ -3,7 +3,7 @@
         <!-- <app-masthead/> -->
         <div class="contain">
             <!-- <app-sidebar :pricerange.sync="highprice"/> -->
-            <Amounts/>
+            <!-- <Amounts/> -->
 
             <transition-group name="items" tag="section" class="content">
                 <app-item
@@ -63,10 +63,10 @@ export default {
         Amounts
     },
     props: {
-        total: {
-            type: [Number, String],
-            default: "50.00"
-        },
+        // total: {
+        //     type: [Number, String],
+        //     default: "50.00"
+        // },
         success: {
             type: Boolean,
             default: false
@@ -74,8 +74,8 @@ export default {
     },
     data() {
         return {
-            highprice: 300,
-            success: false
+            highprice: 300
+            // success: false
         };
     },
     methods: {
@@ -130,7 +130,7 @@ aside {
     width: 79.7872%;
     /* grid */
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(1, 1fr);
     grid-gap: 10px;
     padding: 0 !important;
 }

@@ -6,7 +6,82 @@
             <p>Your gift to the UC and UC Health makes an impact where you want. Give to your favorite college, program or department, or contribute to the university’s most pressing needs.</p>
             <p>UC and UC Health need your private support to continue growing and meeting the needs of students, faculty, researchers, doctors, patients and society. Explore our funding opportunities to determine the best match for your charitable gift.</p>
 
-            <div class="areas-submenu btn-group btn-group-toggle">
+            <b-tabs
+                active-tab-class="font-weight-bold text-success"
+                content-class="mt-3"
+                justified
+                fill
+            >
+                <b-tab :title="area.name" v-for="(area, index) in areas" :key="index">
+                    <div class="container">
+                        <div class="row subareas">
+                            <h2>{{ area.name}}</h2>
+                            <p>
+                                <strong>Description:</strong>
+                                <br>
+                                {{ area.description }}
+                            </p>
+
+                            <b-button
+                                v-for="(subarea, index) in area.subareas"
+                                :key="index"
+                                variant="secondary"
+                                @click="showModal(subarea)"
+                            >{{ subarea.name }}</b-button>
+
+                            <b-modal
+                                id="modal1"
+                                hide-footer
+                                cancel-disabled
+                                size="xl"
+                                :title="selectedItem.name"
+                            >
+                                <h3>About</h3>
+                                <p class="my-4">{{ selectedItem.about }}</p>
+                                <hr>
+                                <h3>Vision</h3>
+                                <p class="my-4">{{ selectedItem.vision }}</p>
+                                <hr>
+                                <h3>Funding Opportunities</h3>
+                                <div id="accordion" role="tablist">
+                                    <b-card
+                                        no-body
+                                        class="mb-1"
+                                        v-for="(fund, index) in selectedItem.fundingOpportunities"
+                                        :key="index"
+                                    >
+                                        <b-card-header header-tag="header" class="p-0" role="tab">
+                                            <b-button
+                                                block
+                                                href="#"
+                                                v-b-toggle="'accordion-' + index"
+                                                variant="info"
+                                            >
+                                                <font-awesome-icon icon="plus"/>
+                                                {{ fund.name }}
+                                            </b-button>
+                                        </b-card-header>
+                                        <b-collapse
+                                            :id="'accordion-' + index"
+                                            accordion="my-accordion"
+                                            role="tabpanel"
+                                        >
+                                            <b-card-body>
+                                                <b-card-text
+                                                    v-for="(fund, index) in fund.funds"
+                                                    :key="index"
+                                                >{{ fund.fundName }}</b-card-text>
+                                            </b-card-body>
+                                        </b-collapse>
+                                    </b-card>
+                                </div>
+                            </b-modal>
+                        </div>
+                    </div>
+                </b-tab>
+            </b-tabs>
+
+            <!-- <div class="areas-submenu btn-group btn-group-toggle">
                 <label
                     class="btn btn-secondary"
                     :class="{ 'select': selected === area.name, '': selected !== area.name }"
@@ -88,7 +163,7 @@
                         </div>
                     </b-modal>
                 </div>
-            </div>
+            </div>-->
         </b-container>
     </div>
 </template>
@@ -146,9 +221,17 @@ export default {
     }
 }
 .subareas {
+    padding: 1.25rem;
     h2 {
-        margin-top: 1rem;
+        margin-top: 0;
+        display: block;
+        color: $black;
+        width: 100%;
         border-bottom: 3px solid $red;
+    }
+    p {
+        color: $black;
+        font-weight: normal;
     }
     label {
         color: $white;

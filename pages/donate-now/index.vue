@@ -5,9 +5,10 @@
                 <div class="columns">
                     <div class="column is-8 is-offset-2">
                         <horizontal-stepper
-                            :steps="demoSteps"
+                            :steps="steps"
                             @completed-step="completeStep"
                             :top-buttons="true"
+                            :keep-alive="true"
                             @active-step="isStepActive"
                             @stepper-finished="alert"
                         ></horizontal-stepper>
@@ -34,7 +35,7 @@ export default {
     },
     data() {
         return {
-            demoSteps: [
+            steps: [
                 {
                     icon: "attach_money",
                     name: "donation info",
@@ -82,14 +83,14 @@ export default {
     computed: {},
     methods: {
         completeStep(payload) {
-            this.demoSteps.forEach(step => {
+            this.steps.forEach(step => {
                 if (step.name === payload.name) {
                     step.completed = true;
                 }
             });
         },
         isStepActive(payload) {
-            this.demoSteps.forEach(step => {
+            this.steps.forEach(step => {
                 if (step.name === payload.name) {
                     if (step.completed === true) {
                         step.completed = false;

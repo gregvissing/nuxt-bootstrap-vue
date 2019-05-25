@@ -24,6 +24,19 @@ button {
 
     }
 
+    &.btn-outline-secondary {
+        background: $white;
+        color: $black;
+        border: 1px solid $black !important;
+        font-weight: bold !important;
+
+        &:hover {
+            background-color: $black;
+            color: $white;
+        }
+
+    }
+
     &:focus,
     &:active {
         outline: none !important;

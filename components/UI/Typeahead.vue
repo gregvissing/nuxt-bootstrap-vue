@@ -39,19 +39,9 @@
 import $ from "jquery";
 import axios from "axios";
 
-// import SearchModal from "~/components/UI/Modal/SearchModal.vue";
-// import _ from 'lodash';
-
 export default {
     name: "Typeahead",
-    components: {
-        // SearchModal
-    },
     props: {
-        // source: {
-        //     type: [String, Array],
-        //     required: true
-        // },
         filterKey: {
             type: String,
             required: true
@@ -71,10 +61,6 @@ export default {
             query: "",
             areas: [],
             showClear: false
-
-            // bodyBgVariant: "dark",
-            // headerBgVariant: "dark",
-            // headerTextVariant: "light"
         };
     },
     mounted() {
@@ -196,10 +182,6 @@ export default {
             var $placeHolder = $(".placeholder");
             $placeHolder.removeClass("move-up");
         }
-        // showModal(item) {
-        //     // this.selectedFund = item;
-        //     this.$root.$emit("bv::show::modal", "searchModal");
-        // }
     }
 };
 </script>
