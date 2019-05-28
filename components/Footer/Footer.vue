@@ -16,10 +16,10 @@
                         <i class="fab fa-facebook-square"></i> Facebook
                     </p>
                     <p>
-                        <i class="fab fa-linkedin"></i> LinkedIn
+                        <a href="https://www.linkedin.com/company/uofcincyfound/"><i class="fab fa-linkedin"></i> LinkedIn</a>
                     </p>
                     <p>
-                        <i class="fab fa-twitter-square"></i> Twitter
+                        <a href="https://twitter.com/uofcincyfound"><i class="fab fa-twitter-square"></i> Twitter</a>
                     </p>
                     <p>
                         <a href="https://foundation.uc.edu">UC Foundation</a>

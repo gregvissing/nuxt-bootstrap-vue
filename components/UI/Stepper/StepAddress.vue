@@ -142,19 +142,19 @@ export default {
         form: {
             Address: {
                 City: {
-                    // required
+                    required
                 },
                 Country: {
-                    // required
+                    required
                 },
                 PostalCode: {
-                    // required
+                    required
                 },
                 State: {
-                    // required
+                    required
                 },
                 StreetAddress: {
-                    // requered
+                    required
                 }
             }
         }

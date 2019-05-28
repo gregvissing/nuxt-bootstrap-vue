@@ -179,19 +179,20 @@ export default {
     validations: {
         form: {
             title: {
-                // required
+                required
             },
             firstName: {
-                // required
+                required
             },
             lastName: {
-                // required
+                required
             },
             phone: {
-                // requered
+                required
             },
             email: {
-                // requered
+                required,
+                email
             }
         }
     },
