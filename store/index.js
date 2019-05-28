@@ -497,6 +497,20 @@ export const ways = [{
 const createStore = () => {
     return new Vuex.Store({
         state: {
+            Donor: {
+                Title: "",
+                FirstName: "",
+                FastName: "",
+                Phone: "",
+                EmailAddress: "",
+                Address: {
+                    City: "",
+                    Country: "",
+                    PostalCode: "",
+                    State: "",
+                    StreetAddress: ""
+                }
+            },
 
             funds: [],
 

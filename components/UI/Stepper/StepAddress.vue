@@ -9,14 +9,14 @@
                 >
                     <b-form-input
                         id="input-2"
-                        :class="['zip', ($v.form.Address.PostalCode.$error) ? 'is-danger' : '']"
-                        v-model="form.Address.PostalCode"
+                        :class="['zip', ($v.Donor.Address.PostalCode.$error) ? 'is-danger' : '']"
+                        v-model="Donor.Address.PostalCode"
                         required
                         placeholder="Enter Zip Code"
                         autocomplete="off"
                     ></b-form-input>
                     <p
-                        v-if="$v.form.Address.PostalCode.$error"
+                        v-if="$v.Donor.Address.PostalCode.$error"
                         class="help is-danger"
                     >The title is required</p>
                     <!-- <p class="zip-error">Not a real zip code.</p> -->
@@ -30,7 +30,7 @@
                 <b-form-group id="input-group-2" label="City:" label-for="input-2">
                     <b-form-input
                         id="input-2"
-                        v-model="form.Address.City"
+                        v-model="Donor.Address.City"
                         required
                         placeholder="Enter city"
                     ></b-form-input>
@@ -41,7 +41,7 @@
                 <b-form-group id="input-group-2" label="State:" label-for="input-2">
                     <b-form-input
                         id="input-2"
-                        v-model="form.Address.State"
+                        v-model="Donor.Address.State"
                         required
                         placeholder="Enter State"
                     ></b-form-input>
@@ -53,7 +53,7 @@
                 <b-form-group id="input-group-2" label="Country:" label-for="input-2">
                     <b-form-input
                         id="input-2"
-                        v-model="form.Address.Country"
+                        v-model="Donor.Address.Country"
                         required
                         placeholder="Enter country"
                     ></b-form-input>
@@ -66,7 +66,7 @@
                     <b-form-input
                         id="input-2"
                         class="streetAddress"
-                        v-model="form.Address.StreetAddress"
+                        v-model="Donor.Address.StreetAddress"
                         required
                         placeholder="Enter Street Address"
                     ></b-form-input>
@@ -74,7 +74,7 @@
             </b-col>
         </b-form-row>
         <b-card class="mt-3" header="Form Data Result">
-            <pre class="m-0">{{ form }}</pre>
+            <pre class="m-0">{{ Donor }}</pre>
         </b-card>
     </div>
 </template>
@@ -107,7 +107,7 @@ export default {
         getCity: function() {
             let self = this;
             $.getJSON(
-                "https://ZiptasticAPI.com/" + this.form.Address.PostalCode,
+                "https://ZiptasticAPI.com/" + this.Donor.Address.PostalCode,
                 function(result) {
                     if (result.error) {
                         self.error = "zip code not found";
@@ -116,9 +116,9 @@ export default {
                         // $(".zip-error").slideDown();
                         // $(".error").addClass("no");
                     } else {
-                        self.form.Address.City = result.city;
-                        self.form.Address.State = result.state;
-                        self.form.Address.Country = result.country;
+                        self.Donor.Address.City = result.city;
+                        self.Donor.Address.State = result.state;
+                        self.Donor.Address.Country = result.country;
                         $(".cityState").slideDown();
                         // $(".zip-error").slideUp();
                         // $(".display").addClass("animated fadeInDown");
@@ -131,7 +131,7 @@ export default {
 
     data() {
         return {
-            form: {
+            Donor: {
                 Address: {
                     City: "",
                     Country: "",
@@ -146,7 +146,7 @@ export default {
         };
     },
     validations: {
-        form: {
+        Donor: {
             Address: {
                 City: {
                     required
@@ -156,7 +156,7 @@ export default {
                 },
                 PostalCode: {
                     required,
-                    phoneValid: isPhone
+                    // phoneValid: isPhone
                 },
                 State: {
                     required
@@ -184,16 +184,16 @@ export default {
         clickedNext(val) {
             console.log(val);
             if (val === true) {
-                this.$v.form.$touch();
+                this.$v.Donor.$touch();
             }
         },
-        "form.Address.PostalCode": function() {
-            if (this.form.Address.PostalCode.length === 5) {
+        "Donor.Address.PostalCode": function() {
+            if (this.Donor.Address.PostalCode.length === 5) {
                 this.getCity();
                 this.error = "";
                 $(".error").removeClass("no");
             }
-            if (this.form.Address.PostalCode.length < 5) {
+            if (this.Donor.Address.PostalCode.length < 5) {
                 this.city = "";
                 this.error = "hey, that's not a zipcode";
                 $(".error").addClass("no");

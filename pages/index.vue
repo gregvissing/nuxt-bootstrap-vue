@@ -42,5 +42,8 @@ export default {
     max-width: 100%;
     padding: 0;
     margin-top: 85px;
+    @media (max-width: 991px) {
+        margin-top: 65px;
+    }
 }
 </style>

@@ -38,6 +38,10 @@
                     </b-nav-item>
                 </b-navbar-nav>
             </b-collapse>
+            <div class="mobile cartitem">
+                <div v-if="cartTotal > 0" class="cartcount">{{ cartTotal }}</div>
+                <img src="~/assets/images/baseline-card_giftcard-24px.svg">
+            </div>
             <b-navbar-toggle target="nav_text_collapse"></b-navbar-toggle>
         </b-container>
     </b-navbar>
@@ -87,8 +91,13 @@ nav {
         }
     }
     .navbar-collapse {
+        background: transparent !important;
         ul {
+            @media (max-width: 991px) {
+                background: $black;
+            }
             li {
+                border-bottom: none !important;
                 a {
                     &.nav-link {
                         padding: 1rem 0.75rem;
@@ -100,6 +109,7 @@ nav {
                 }
                 &.donate {
                     background-color: $black;
+                    border-bottom: none !important;
                     .nuxt-link-active {
                         background: $white;
                         color: $red !important;
@@ -111,10 +121,22 @@ nav {
                     }
                 }
                 &.cart {
+                    .cartitem {
+                        img {
+                            @include transition(all 0.4s ease);
+                            &:hover {
+                                /* fill: $black; */
+                                filter: invert(1);
+                            }
+                        }
+                    }
                     svg {
                         path {
                             fill: $white;
                         }
+                    }
+                    @media (max-width: 991px) {
+                        display: none;
                     }
                 }
             }
@@ -128,6 +150,9 @@ nav {
         }
         .navbar-toggler {
             top: 0.6em !important;
+        }
+        .mobile.cartitem {
+            top: 1.25em;
         }
     }
     .container {
@@ -145,6 +170,16 @@ nav {
 .cartitem {
     position: relative;
     float: right;
+    &.mobile {
+        display: none;
+        float: none;
+        position: absolute;
+        top: 1.5em;
+        right: 6em;
+        @media (max-width: 991px) {
+            display: inline-block;
+        }
+    }
 }
 
 .cartcount {

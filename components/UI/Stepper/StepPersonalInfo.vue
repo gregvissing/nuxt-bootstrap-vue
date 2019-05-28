@@ -4,9 +4,9 @@
             <b-col cols="6">
                 <b-form-group id="input-group-2" label="Title:" label-for="input-2">
                     <b-form-select
-                        v-model="form.Title"
+                        v-model="Donor.Title"
                         :options="titles"
-                        :class="['mb-0', ($v.form.Title.$error) ? 'is-danger' : '']"
+                        :class="['mb-0', ($v.Donor.Title.$error) ? 'is-danger' : '']"
                     >
                         <!-- This slot appears above the options from 'options' prop -->
                         <template slot="first">
@@ -17,7 +17,7 @@
                         <!-- <option value="C">Option C</option>
                         <option value="D">Option D</option>-->
                     </b-form-select>
-                    <p v-if="$v.form.Title.$error" class="help is-danger">The Title is required</p>
+                    <p v-if="$v.Donor.Title.$error" class="help is-danger">The Title is required</p>
                 </b-form-group>
             </b-col>
         </b-form-row>
@@ -31,13 +31,13 @@
                 >
                     <b-form-input
                         id="input-2"
-                        v-model="form.FirstName"
-                        :class="['input', ($v.form.FirstName.$error) ? 'is-danger' : '']"
+                        v-model="Donor.FirstName"
+                        :class="['input', ($v.Donor.FirstName.$error) ? 'is-danger' : '']"
                         required
                         placeholder="Enter first name"
                     ></b-form-input>
                     <p
-                        v-if="$v.form.FirstName.$error"
+                        v-if="$v.Donor.FirstName.$error"
                         class="help is-danger"
                     >The first name is required</p>
                 </b-form-group>
@@ -51,13 +51,13 @@
                 >
                     <b-form-input
                         id="input-2"
-                        v-model="form.LastName"
-                        :class="['input', ($v.form.LastName.$error) ? 'is-danger' : '']"
+                        v-model="Donor.LastName"
+                        :class="['input', ($v.Donor.LastName.$error) ? 'is-danger' : '']"
                         required
                         placeholder="Enter last name"
                     ></b-form-input>
                     <p
-                        v-if="$v.form.LastName.$error"
+                        v-if="$v.Donor.LastName.$error"
                         class="help is-danger"
                     >The last name is required</p>
                 </b-form-group>
@@ -69,31 +69,31 @@
                 <b-form-group id="input-group-2" class="field" label="Phone #:" label-for="input-2">
                     <b-form-input
                         id="input-2"
-                        v-model="form.Phone"
+                        v-model="Donor.Phone"
                         :options="options.phoneNumber"
                         required
                         placeholder="Enter Phone #"
                     ></b-form-input>
-                    <p v-if="$v.form.Phone.$error" class="help is-danger">This phone # is invalid</p>
+                    <p v-if="$v.Donor.Phone.$error" class="help is-danger">This phone # is invalid</p>
                 </b-form-group>
             </b-col>
             <b-col cols="6">
                 <b-form-group id="input-group-2" class="field" label="Email:" label-for="input-2">
                     <b-form-input
                         id="input-2"
-                        v-model="form.EmailAddress"
+                        v-model="Donor.EmailAddress"
                         required
                         placeholder="Enter email"
                     ></b-form-input>
                     <p
-                        v-if="$v.form.EmailAddress.$error"
+                        v-if="$v.Donor.EmailAddress.$error"
                         class="help is-danger"
                     >This email is invalid</p>
                 </b-form-group>
             </b-col>
         </b-form-row>
         <b-card class="mt-3" header="Form Data Result">
-            <pre class="m-0">{{ form }}</pre>
+            <pre class="m-0">{{ Donor }}</pre>
         </b-card>
     </div>
 </template>
@@ -110,8 +110,8 @@ export default {
     mixins: [validationMixin],
     data() {
         return {
-            form: {
-                title: "",
+            Donor: {
+                Title: "",
                 FirstName: "",
                 LastName: "",
                 Phone: "",
@@ -197,22 +197,22 @@ export default {
         };
     },
     validations: {
-        form: {
+        Donor: {
             Title: {
-                required
+                // required
             },
             FirstName: {
-                required
+                // required
             },
             LastName: {
-                required
+                // required
             },
             Phone: {
-                required
+                // required
             },
             EmailAddress: {
-                required,
-                email
+                // required,
+                // email
             }
         }
     },
@@ -233,7 +233,7 @@ export default {
         clickedNext(val) {
             console.log(val);
             if (val === true) {
-                this.$v.form.$touch();
+                this.$v.Donor.$touch();
             }
         }
     },
