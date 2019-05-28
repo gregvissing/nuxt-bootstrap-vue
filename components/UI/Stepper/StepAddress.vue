@@ -82,7 +82,14 @@
 <script>
 import $ from "jquery";
 import { validationMixin } from "vuelidate";
-import { required } from "vuelidate/lib/validators";
+import {
+    required,
+    minLength,
+    between,
+    withParams
+} from "vuelidate/lib/validators";
+const isPhone = value => /^1(3|4|5|7|8)\d{9}$/.test(value); //phone valid
+
 export default {
     props: ["clickedNext", "currentStep"],
     mixins: [validationMixin],
@@ -148,7 +155,8 @@ export default {
                     required
                 },
                 PostalCode: {
-                    required
+                    required,
+                    phoneValid: isPhone
                 },
                 State: {
                     required

@@ -4,9 +4,9 @@
             <b-col cols="6">
                 <b-form-group id="input-group-2" label="Title:" label-for="input-2">
                     <b-form-select
-                        v-model="form.title"
+                        v-model="form.Title"
                         :options="titles"
-                        :class="['mb-0', ($v.form.title.$error) ? 'is-danger' : '']"
+                        :class="['mb-0', ($v.form.Title.$error) ? 'is-danger' : '']"
                     >
                         <!-- This slot appears above the options from 'options' prop -->
                         <template slot="first">
@@ -17,7 +17,7 @@
                         <!-- <option value="C">Option C</option>
                         <option value="D">Option D</option>-->
                     </b-form-select>
-                    <p v-if="$v.form.title.$error" class="help is-danger">The title is required</p>
+                    <p v-if="$v.form.Title.$error" class="help is-danger">The Title is required</p>
                 </b-form-group>
             </b-col>
         </b-form-row>
@@ -31,12 +31,15 @@
                 >
                     <b-form-input
                         id="input-2"
-                        v-model="form.firstName"
-                        :class="['input', ($v.form.firstName.$error) ? 'is-danger' : '']"
+                        v-model="form.FirstName"
+                        :class="['input', ($v.form.FirstName.$error) ? 'is-danger' : '']"
                         required
                         placeholder="Enter first name"
                     ></b-form-input>
-                    <p v-if="$v.form.firstName.$error" class="help is-danger">The title is required</p>
+                    <p
+                        v-if="$v.form.FirstName.$error"
+                        class="help is-danger"
+                    >The first name is required</p>
                 </b-form-group>
             </b-col>
             <b-col cols="6">
@@ -48,12 +51,15 @@
                 >
                     <b-form-input
                         id="input-2"
-                        v-model="form.lastName"
-                        :class="['input', ($v.form.lastName.$error) ? 'is-danger' : '']"
+                        v-model="form.LastName"
+                        :class="['input', ($v.form.LastName.$error) ? 'is-danger' : '']"
                         required
                         placeholder="Enter last name"
                     ></b-form-input>
-                    <p v-if="$v.form.lastName.$error" class="help is-danger">The title is required</p>
+                    <p
+                        v-if="$v.form.LastName.$error"
+                        class="help is-danger"
+                    >The last name is required</p>
                 </b-form-group>
             </b-col>
         </b-form-row>
@@ -63,22 +69,26 @@
                 <b-form-group id="input-group-2" class="field" label="Phone #:" label-for="input-2">
                     <b-form-input
                         id="input-2"
-                        v-model="form.phone"
+                        v-model="form.Phone"
+                        :options="options.phoneNumber"
                         required
-                        placeholder="Enter phone #"
+                        placeholder="Enter Phone #"
                     ></b-form-input>
-                    <p v-if="$v.form.phone.$error" class="help is-danger">This phone is invalid</p>
+                    <p v-if="$v.form.Phone.$error" class="help is-danger">This phone # is invalid</p>
                 </b-form-group>
             </b-col>
             <b-col cols="6">
                 <b-form-group id="input-group-2" class="field" label="Email:" label-for="input-2">
                     <b-form-input
                         id="input-2"
-                        v-model="form.email"
+                        v-model="form.EmailAddress"
                         required
                         placeholder="Enter email"
                     ></b-form-input>
-                    <p v-if="$v.form.email.$error" class="help is-danger">This email is invalid</p>
+                    <p
+                        v-if="$v.form.EmailAddress.$error"
+                        class="help is-danger"
+                    >This email is invalid</p>
                 </b-form-group>
             </b-col>
         </b-form-row>
@@ -92,6 +102,9 @@
 import $ from "jquery";
 import { validationMixin } from "vuelidate";
 import { required, email } from "vuelidate/lib/validators";
+// import Cleave from "../src/index.js";
+import "cleave.js/dist/addons/cleave-phone.us.js";
+
 export default {
     props: ["clickedNext", "currentStep"],
     mixins: [validationMixin],
@@ -99,10 +112,10 @@ export default {
         return {
             form: {
                 title: "",
-                firstName: "",
-                lastName: "",
-                phone: "",
-                email: ""
+                FirstName: "",
+                LastName: "",
+                Phone: "",
+                EmailAddress: ""
             },
             titles: [
                 { value: "Miss", text: "Miss" },
@@ -173,24 +186,31 @@ export default {
                 { value: "Staff Sergeant", text: "Staff Sergeant" },
                 { value: "SSgt", text: "SSgt" },
                 { value: "VADM", text: "VADM" }
-            ]
+            ],
+            options: {
+                phoneNumber: {
+                    phone: true,
+                    phoneRegionCode: "US",
+                    delimiter: "-"
+                }
+            }
         };
     },
     validations: {
         form: {
-            title: {
+            Title: {
                 required
             },
-            firstName: {
+            FirstName: {
                 required
             },
-            lastName: {
+            LastName: {
                 required
             },
-            phone: {
+            Phone: {
                 required
             },
-            email: {
+            EmailAddress: {
                 required,
                 email
             }
