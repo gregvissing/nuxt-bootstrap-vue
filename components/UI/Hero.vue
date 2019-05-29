@@ -13,20 +13,20 @@
                 v-b-modal.modal-xl
             >Search Funds</b-button>
 
-            <div class="typeahead-container">
+            <!-- <div class="typeahead-container">
                 <input
                     @click="showModal"
                     v-b-modal.modal-xl
                     type="text"
                     class="SearchInput"
                     placeholder="Start typing the fund you are looking for..."
-                >
-                <!-- <Typeahead
+            >-->
+            <!-- <Typeahead
                     placeholder="Start typing the fund you are looking for..."
                     filter-key="titledesc"
                     :start-at="2"
-                ></Typeahead>-->
-            </div>
+            ></Typeahead>-->
+            <!-- </div> -->
 
             <SearchModal id="searchModal"/>
         </b-jumbotron>
@@ -55,7 +55,7 @@ export default {
 @import "@/assets/scss/style.scss";
 
 .jumbotron {
-    padding: 4em 6em;
+    padding: 6em; // 4em 6em;
     border-radius: 0;
     background-color: rgba(233, 236, 239, 0.75);
     margin: 0;

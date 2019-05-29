@@ -12,11 +12,34 @@
                         <div class="card__content">
                             <div class="card__title">{{ card.title }}</div>
                             <p class="card__text">{{ card.text }}</p>
-                            <button class="btn btn-primary">View Details</button>
+                            <b-button variant="primary" @click="showModal(card)">View Details</b-button>
+                            <!-- <button class="btn btn-primary">View Details</button> -->
                         </div>
                     </div>
                 </li>
             </ul>
+
+            <b-modal
+                id="modalWhyGive"
+                hide-footer
+                cancel-disabled
+                size="lg"
+                :title="selected.title"
+            >
+                <!-- <b-button
+                        class="mt-3"
+                        variant="outline-danger"
+                        @click="hideModal"
+                >Close Me</b-button>-->
+
+                <p class="my-4">
+                    <strong>Description:</strong>
+                    {{ selected.text }}
+                </p>
+                <!-- <div class="btn-container text-center">
+                        <a :href="selected.donateLink" class="btn btn-primary">Donate Now</a>
+                </div>-->
+            </b-modal>
 
             <!-- <b-card-group deck>
                 <b-card title="Stories">
@@ -58,8 +81,15 @@ export default {
     layout: "internal",
     data() {
         return {
-            cards: whygive
+            cards: whygive,
+            selected: []
         };
+    },
+    methods: {
+        showModal(item) {
+            this.selected = item;
+            this.$root.$emit("bv::show::modal", "modalWhyGive");
+        }
     }
 };
 </script>

@@ -510,78 +510,7 @@ const createStore = () => {
                     State: "",
                     StreetAddress: ""
                 }
-            },
-
-            funds: [],
-
-            cartTotal: 0,
-            cart: {},
-            sale: false,
-            products: [{
-                    name: "Albert Barnes Voorheis",
-                    description: "Income supports a professorship of neurology.",
-                    hierachy: "https://foundation.uc.edu/donate?id=9795d396-2ab5-4001-a3c0-0e20ff745fde",
-                    price: 149.99,
-                    category: "women",
-                    sale: false,
-                    article: "shoe"
-                },
-                {
-                    name: "ALS Research",
-                    description: "To be used exclusively for neurological research with particular preference for research directed toward the discovery of a cure for Amyotrophic Lateral Sclerosis (ALS).",
-                    hierachy: "https://foundation.uc.edu/donate?id=d1b14e18-0b9c-4c0e-8a19-5555cef86abc",
-                    price: 139.99,
-                    category: "women",
-                    sale: false,
-                    article: "shoe"
-                },
-                {
-                    name: "Alzheimer Research Fund - Psychiatry",
-                    description: "To support Alzheimer's research in the Department of Psychiatry.",
-                    hierachy: "https://foundation.uc.edu/donate?id=0c68e179-ea30-46d4-8669-2a06875cafd6",
-                    price: 149.99,
-                    category: "women",
-                    sale: false,
-                    article: "shoe"
-                },
-                {
-                    name: "College of Law Annual Fund",
-                    description: "To be used exclusively for neurological research with particular preference for research directed toward the discovery of a cure for Amyotrophic Lateral Sclerosis (ALS).",
-                    hierachy: "https://foundation.uc.edu/donate?id=d1b14e18-0b9c-4c0e-8a19-5555cef86abc",
-                    price: 139.99,
-                    category: "College of Law",
-                    sale: false,
-                    article: "shoe"
-                },
-                {
-                    name: "C. Thomas and Fay Danner Dupuis Public Service Scholarship Endowment Fund",
-                    description: "To be used exclusively for neurological research with particular preference for research directed toward the discovery of a cure for Amyotrophic Lateral Sclerosis (ALS).",
-                    hierachy: "https://foundation.uc.edu/donate?id=d1b14e18-0b9c-4c0e-8a19-5555cef86abc",
-                    price: 139.99,
-                    category: "College of Law",
-                    sale: false,
-                    article: "shoe"
-                },
-
-                {
-                    name: "College of Nursing Annual Fund",
-                    description: "To be used exclusively for neurological research with particular preference for research directed toward the discovery of a cure for Amyotrophic Lateral Sclerosis (ALS).",
-                    hierachy: "https://foundation.uc.edu/donate?id=d1b14e18-0b9c-4c0e-8a19-5555cef86abc",
-                    price: 139.99,
-                    category: "Nursing",
-                    sale: false,
-                    article: "shoe"
-                },
-                {
-                    name: "Center for Aging with Dignity Fund",
-                    description: "To be used exclusively for neurological research with particular preference for research directed toward the discovery of a cure for Amyotrophic Lateral Sclerosis (ALS).",
-                    hierachy: "https://foundation.uc.edu/donate?id=d1b14e18-0b9c-4c0e-8a19-5555cef86abc",
-                    price: 139.99,
-                    category: "Nursing",
-                    sale: false,
-                    article: "shoe"
-                }
-            ]
+            }
         },
         getters: {
             women: state => filter(state.products, "category", "women"),

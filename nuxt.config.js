@@ -83,6 +83,11 @@ export default {
         '@nuxtjs/pwa',
     ],
 
+    // axios: {
+    //     baseURL: process.env.BASE_URL || 'https://uc-giving-page.netlify.com/'
+    // },
+
+
     /*
      ** Build configuration
      */

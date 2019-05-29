@@ -28,142 +28,57 @@
                                 variant="secondary"
                                 @click="showModal(subarea)"
                             >{{ subarea.name }}</b-button>
-
-                            <b-modal
-                                id="modal1"
-                                hide-footer
-                                cancel-disabled
-                                size="xl"
-                                :title="selectedItem.name"
-                            >
-                                <h3>About</h3>
-                                <p class="my-4">{{ selectedItem.about }}</p>
-                                <hr>
-                                <h3>Vision</h3>
-                                <p class="my-4">{{ selectedItem.vision }}</p>
-                                <hr>
-                                <h3>Funding Opportunities</h3>
-                                <div id="accordion" role="tablist">
-                                    <b-card
-                                        no-body
-                                        class="mb-1"
-                                        v-for="(fund, index) in selectedItem.fundingOpportunities"
-                                        :key="index"
-                                    >
-                                        <b-card-header header-tag="header" class="p-0" role="tab">
-                                            <b-button
-                                                block
-                                                href="#"
-                                                v-b-toggle="'accordion-' + index"
-                                                variant="info"
-                                            >
-                                                <font-awesome-icon icon="plus"/>
-                                                {{ fund.name }}
-                                            </b-button>
-                                        </b-card-header>
-                                        <b-collapse
-                                            :id="'accordion-' + index"
-                                            accordion="my-accordion"
-                                            role="tabpanel"
-                                        >
-                                            <b-card-body>
-                                                <b-card-text
-                                                    v-for="(fund, index) in fund.funds"
-                                                    :key="index"
-                                                >{{ fund.fundName }}</b-card-text>
-                                            </b-card-body>
-                                        </b-collapse>
-                                    </b-card>
-                                </div>
-                            </b-modal>
                         </div>
                     </div>
                 </b-tab>
             </b-tabs>
-
-            <!-- <div class="areas-submenu btn-group btn-group-toggle">
-                <label
-                    class="btn btn-secondary"
-                    :class="{ 'select': selected === area.name, '': selected !== area.name }"
-                    v-for="(area, index) in areas"
-                    :key="index"
-                    :item="area.name"
-                    @click="changeSelectVal(area.name)"
-                >
-                    <input type="radio" :value="area.name" name="area-filter" v-model="selected">
-                    {{ area.name }}
-                </label>
-            </div>
-
-            <div class="container">
-                <div class="row subareas">
-                    <div v-for="(area, index) in areas" :key="index">
-                        <div v-if="areaIndex == area.name">
-                            <h2>{{ area.name}}</h2>
-                            <p>
-                                <strong>Description:</strong>
-                                <br>
-                                {{ area.description }}
-                            </p>
-
-                            <b-button
-                                v-for="(subarea, index) in area.subareas"
-                                :key="index"
-                                variant="secondary"
-                                @click="showModal(subarea)"
-                            >{{ subarea.name }}</b-button>
-                        </div>
-                    </div>
-
-                    <b-modal
-                        id="modal1"
-                        hide-footer
-                        cancel-disabled
-                        size="xl"
-                        :title="selectedItem.name"
+            <b-modal
+                id="modalArea"
+                hide-footer
+                cancel-disabled
+                size="xl"
+                :title="selectedItem.name"
+            >
+                <h3>About</h3>
+                <p class="my-4" v-html="selectedItem.about"></p>
+                <hr>
+                <h3>Vision</h3>
+                <p class="my-4" v-html="selectedItem.vision"></p>
+                <hr>
+                <h3>Funding Opportunities</h3>
+                <div id="accordion" role="tablist">
+                    <b-card
+                        no-body
+                        class="mb-1"
+                        v-for="(fund, index) in selectedItem.fundingOpportunities"
+                        :key="index"
                     >
-                        <h3>About</h3>
-                        <p class="my-4">{{ selectedItem.about }}</p>
-                        <hr>
-                        <h3>Vision</h3>
-                        <p class="my-4">{{ selectedItem.vision }}</p>
-                        <hr>
-                        <h3>Funding Opportunities</h3>
-                        <div id="accordion" role="tablist">
-                            <b-card
-                                no-body
-                                class="mb-1"
-                                v-for="(fund, index) in selectedItem.fundingOpportunities"
-                                :key="index"
+                        <b-card-header header-tag="header" class="p-0" role="tab">
+                            <b-button
+                                block
+                                href="#"
+                                v-b-toggle="'accordion-' + index"
+                                variant="info"
                             >
-                                <b-card-header header-tag="header" class="p-0" role="tab">
-                                    <b-button
-                                        block
-                                        href="#"
-                                        v-b-toggle="'accordion-' + index"
-                                        variant="info"
-                                    >
-                                        <font-awesome-icon icon="plus"/>
-                                        {{ fund.name }}
-                                    </b-button>
-                                </b-card-header>
-                                <b-collapse
-                                    :id="'accordion-' + index"
-                                    accordion="my-accordion"
-                                    role="tabpanel"
-                                >
-                                    <b-card-body>
-                                        <b-card-text
-                                            v-for="(fund, index) in fund.funds"
-                                            :key="index"
-                                        >{{ fund.fundName }}</b-card-text>
-                                    </b-card-body>
-                                </b-collapse>
-                            </b-card>
-                        </div>
-                    </b-modal>
+                                <font-awesome-icon icon="plus"/>
+                                {{ fund.name }}
+                            </b-button>
+                        </b-card-header>
+                        <b-collapse
+                            :id="'accordion-' + index"
+                            accordion="my-accordion"
+                            role="tabpanel"
+                        >
+                            <b-card-body>
+                                <b-card-text
+                                    v-for="(fund, index) in fund.funds"
+                                    :key="index"
+                                >{{ fund.fundName }}</b-card-text>
+                            </b-card-body>
+                        </b-collapse>
+                    </b-card>
                 </div>
-            </div>-->
+            </b-modal>
         </b-container>
     </div>
 </template>
@@ -189,7 +104,7 @@ export default {
         },
         showModal(item) {
             this.selectedItem = item;
-            this.$root.$emit("bv::show::modal", "modal1");
+            this.$root.$emit("bv::show::modal", "modalArea");
         }
     }
 };

@@ -14,7 +14,10 @@
                     <b-nav-item to="/why-give/">WHY GIVE</b-nav-item>
                     <b-nav-item to="/areas-to-support/">AREAS TO SUPPORT</b-nav-item>
                     <b-nav-item class="donate" to="/donate-now/">DONATE NOW</b-nav-item>
-                    <b-nav-item class="cart" to="/cart/">
+                    <b-nav-item class="search" @click.prevent="searchToggle">
+                        <i class="fas fa-search"></i>
+                    </b-nav-item>
+                    <b-nav-item class="cart" to="/cart/" v-show="cartTotal > 0">
                         <div class="cartitem">
                             <div v-if="cartTotal > 0" class="cartcount">{{ cartTotal }}</div>
                             <img src="~/assets/images/baseline-card_giftcard-24px.svg">
@@ -37,7 +40,30 @@
                         <!-- <font-awesome-icon icon="shopping-cart" size="lg"/> -->
                     </b-nav-item>
                 </b-navbar-nav>
+                <div class="search-container animateblock close">
+                    <b-form-input
+                        class="searchInput"
+                        v-model="searchText"
+                        placeholder="Enter Fund Name then hit Enter"
+                        @keyup.enter="searchFunds"
+                    ></b-form-input>
+                    <b-form-group class="filter-boxes">
+                        <b-form-checkbox-group
+                            id="checkbox-filter"
+                            v-model="selected"
+                            name="search-filter"
+                        >
+                            <b-form-checkbox value="funds">
+                                <label>Funds</label>
+                            </b-form-checkbox>
+                            <b-form-checkbox value="areas">
+                                <label>Areas</label>
+                            </b-form-checkbox>
+                        </b-form-checkbox-group>
+                    </b-form-group>
+                </div>
             </b-collapse>
+
             <div class="mobile cartitem">
                 <div v-if="cartTotal > 0" class="cartcount">{{ cartTotal }}</div>
                 <img src="~/assets/images/baseline-card_giftcard-24px.svg">
@@ -50,18 +76,56 @@
 <script>
 import $ from "jquery";
 export default {
+    data() {
+        return {
+            searchText: "",
+            selected: []
+        };
+    },
     computed: {
         cartTotal() {
             return this.$store.state.cartTotal;
         }
     },
     methods: {
+        searchFunds() {
+            // console.log("enter clicked" + this.searchText);
+
+            this.$router.push("/search-results/?q=" + this.searchText);
+        },
         handleScroll() {
             if (window.scrollY > 100) {
                 $("nav").addClass("reduced");
             } else {
                 $("nav").removeClass("reduced");
             }
+        },
+        searchToggle: function() {
+            console.log("search");
+            $(".search-container").toggleClass("open close");
+            $(".search-container.open").animate(
+                {
+                    width: "70%",
+                    padding: "0.375rem 0.75rem",
+                    "font-weight": "normal !important"
+                },
+                500,
+                function() {
+                    $(".filter-boxes").slideDown();
+                }
+            );
+
+            $(".search-container.close").animate(
+                {
+                    width: "0%",
+                    padding: "0",
+                    "font-weight": "normal !important"
+                },
+                500,
+                function() {
+                    $(".filter-boxes").slideUp();
+                }
+            );
         }
     },
     created() {
@@ -92,6 +156,40 @@ nav {
     }
     .navbar-collapse {
         background: transparent !important;
+        position: relative;
+        /* .searchInput, */
+        .search-container {
+            display: block;
+            position: absolute;
+            right: 4.5%;
+            top: 0;
+            bottom: 0;
+            height: 100%;
+            width: 0%;
+            z-index: 10;
+            padding: 0 !important;
+            border: 0;
+            opacity: 1;
+            font-size: normal !important;
+            font-weight: normal !important;
+            &.close {
+                overflow: hidden;
+            }
+            .filter-boxes {
+                display: none;
+                background: rgba($black, 0.5);
+                margin: 0;
+                padding: 5px 10px;
+                label {
+                    color: $white !important;
+                    line-height: 1;
+                    font-weight: bold !important;
+                }
+            }
+            .searchInput {
+                height: 100%;
+            }
+        }
         ul {
             @media (max-width: 991px) {
                 background: $black;
