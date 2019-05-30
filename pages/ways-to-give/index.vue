@@ -27,7 +27,7 @@
 </template>
 
 <script>
-import { ways } from "@/store";
+import { ways } from "@/store/data";
 
 export default {
     pageTitle: "Ways to Give",

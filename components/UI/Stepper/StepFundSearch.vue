@@ -63,7 +63,7 @@
 
 <script>
 import $ from "jquery";
-import { giftTypes } from "@/store";
+import { giftTypes } from "@/store/data";
 import { validationMixin } from "vuelidate";
 import { required } from "vuelidate/lib/validators";
 

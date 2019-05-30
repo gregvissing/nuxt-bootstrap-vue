@@ -74,7 +74,7 @@
 </template>
 
 <script>
-import { whygive } from "@/store";
+import { whygive } from "@/store/data";
 
 export default {
     pageTitle: "Why Give",

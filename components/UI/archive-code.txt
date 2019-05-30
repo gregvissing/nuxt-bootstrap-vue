@@ -1,3 +1,89 @@
+<div class="areas-submenu btn-group btn-group-toggle">
+	<label
+		class="btn btn-secondary"
+		:class="{ 'select': selected === area.name, '': selected !== area.name }"
+		v-for="(area, index) in areas"
+		:key="index"
+		:item="area.name"
+		@click="changeSelectVal(area.name)"
+	>
+		<input type="radio" :value="area.name" name="area-filter" v-model="selected">
+		{{ area.name }}
+	</label>
+</div>
+
+<div class="container">
+	<div class="row subareas">
+		<div v-for="(area, index) in areas" :key="index">
+			<div v-if="areaIndex == area.name">
+				<h2>{{ area.name}}</h2>
+				<p>
+					<strong>Description:</strong>
+					<br>
+					{{ area.description }}
+				</p>
+
+				<b-button
+					v-for="(subarea, index) in area.subareas"
+					:key="index"
+					variant="secondary"
+					@click="showModal(subarea)"
+				>{{ subarea.name }}</b-button>
+			</div>
+		</div>
+
+		<b-modal
+			id="modal1"
+			hide-footer
+			cancel-disabled
+			size="xl"
+			:title="selectedItem.name"
+		>
+			<h3>About</h3>
+			<p class="my-4">{{ selectedItem.about }}</p>
+			<hr>
+			<h3>Vision</h3>
+			<p class="my-4">{{ selectedItem.vision }}</p>
+			<hr>
+			<h3>Funding Opportunities</h3>
+			<div id="accordion" role="tablist">
+				<b-card
+					no-body
+					class="mb-1"
+					v-for="(fund, index) in selectedItem.fundingOpportunities"
+					:key="index"
+				>
+					<b-card-header header-tag="header" class="p-0" role="tab">
+						<b-button
+							block
+							href="#"
+							v-b-toggle="'accordion-' + index"
+							variant="info"
+						>
+							<font-awesome-icon icon="plus"/>
+							{{ fund.name }}
+						</b-button>
+					</b-card-header>
+					<b-collapse
+						:id="'accordion-' + index"
+						accordion="my-accordion"
+						role="tabpanel"
+					>
+						<b-card-body>
+							<b-card-text
+								v-for="(fund, index) in fund.funds"
+								:key="index"
+							>{{ fund.fundName }}</b-card-text>
+						</b-card-body>
+					</b-collapse>
+				</b-card>
+			</div>
+		</b-modal>
+	</div>
+</div>
+
+=======================
+
 <template>
     <b-navbar toggleable="lg" fixed="top">
         <b-container>
@@ -14,9 +100,9 @@
                     <b-nav-item to="/why-give/">WHY GIVE</b-nav-item>
                     <b-nav-item to="/areas-to-support/">AREAS TO SUPPORT</b-nav-item>
                     <b-nav-item class="donate" to="/donate-now/">DONATE NOW</b-nav-item>
-                    <b-nav-item class="search" @click.prevent="searchToggle">
-                        <i class="fas fa-search"></i>
-                    </b-nav-item>
+                    <!-- <b-nav-text class="search">
+                        <i class="fas fa-search" @click="searchToggle"></i>
+                    </b-nav-text>-->
                     <b-nav-item class="cart" to="/cart/" v-show="cartTotal > 0">
                         <div class="cartitem">
                             <div v-if="cartTotal > 0" class="cartcount">{{ cartTotal }}</div>
@@ -40,28 +126,11 @@
                         <!-- <font-awesome-icon icon="shopping-cart" size="lg"/> -->
                     </b-nav-item>
                 </b-navbar-nav>
-                <div class="search-container animateblock close">
-                    <b-form-input
-                        class="searchInput"
-                        v-model="searchText"
-                        placeholder="Enter Fund Name then hit Enter"
-                        @keyup.enter="searchFunds"
-                    ></b-form-input>
-                    <b-form-group class="filter-boxes">
-                        <b-form-checkbox-group
-                            id="checkbox-filter"
-                            v-model="selected"
-                            name="search-filter"
-                        >
-                            <b-form-checkbox value="funds">
-                                <label>Funds</label>
-                            </b-form-checkbox>
-                            <b-form-checkbox value="areas">
-                                <label>Areas</label>
-                            </b-form-checkbox>
-                        </b-form-checkbox-group>
-                    </b-form-group>
-                </div>
+                <b-form-input
+                    class="searchInput animateblock"
+                    v-model="text"
+                    placeholder="Search Funds"
+                ></b-form-input>
             </b-collapse>
 
             <div class="mobile cartitem">
@@ -76,57 +145,22 @@
 <script>
 import $ from "jquery";
 export default {
-    data() {
-        return {
-            searchText: "",
-            selected: []
-        };
-    },
     computed: {
         cartTotal() {
             return this.$store.state.cartTotal;
         }
     },
     methods: {
-        searchFunds() {
-            // console.log("enter clicked" + this.searchText);
-
-            this.$router.push("/search-results/?q=" + this.searchText);
-        },
         handleScroll() {
             if (window.scrollY > 100) {
                 $("nav").addClass("reduced");
             } else {
                 $("nav").removeClass("reduced");
             }
-        },
-        searchToggle: function() {
-            console.log("search");
-            $(".search-container").toggleClass("open close");
-            $(".search-container.open").animate(
-                {
-                    width: "70%",
-                    padding: "0.375rem 0.75rem",
-                    "font-weight": "normal !important"
-                },
-                500,
-                function() {
-                    $(".filter-boxes").slideDown();
-                }
-            );
-
-            $(".search-container.close").animate(
-                {
-                    width: "0%",
-                    padding: "0",
-                    "font-weight": "normal !important"
-                },
-                500,
-                function() {
-                    $(".filter-boxes").slideUp();
-                }
-            );
         }
+        // searchToggle: function() {
+        //     console.log("search");
+        // }
     },
     created() {
         if (process.browser) {
@@ -157,41 +191,17 @@ nav {
     .navbar-collapse {
         background: transparent !important;
         position: relative;
-        /* .searchInput, */
-        .search-container {
-            display: block;
+        .searchInput {
+            display: none; // block;
             position: absolute;
-            right: 4.5%;
+            right: 4%;
             top: 0;
             bottom: 0;
             height: 100%;
-            width: 0%;
-            z-index: 10;
-            padding: 0 !important;
-            border: 0;
-            opacity: 1;
-            font-size: normal !important;
-            font-weight: normal !important;
-            &:hover {
-                opacity: 1 !important;
-            }
-            &.close {
-                overflow: hidden;
-            }
-            .filter-boxes {
-                display: none;
-                background: rgba($black, 0.5);
-                margin: 0;
-                padding: 5px 10px;
-                label {
-                    color: $white !important;
-                    line-height: 1;
-                    font-weight: bold !important;
-                }
-            }
-            .searchInput {
-                height: 100%;
-            }
+            width: 0;
+            z-index: -1;
+            /* width: 75%; */
+            /* left: 0; */
         }
         ul {
             @media (max-width: 991px) {

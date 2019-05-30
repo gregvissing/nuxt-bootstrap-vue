@@ -84,7 +84,7 @@
 </template>
 
 <script>
-import { areas } from "@/store";
+import { areas } from "@/store/data";
 
 export default {
     name: "areastosupport",

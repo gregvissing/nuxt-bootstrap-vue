@@ -30,7 +30,7 @@
         "vue-stepper": "^1.4.2",
         "vuelidate": "^0.7.4",
         "vuex": "^3.1.1",
-        "xml-to-json-stream": "^1.1.0"
+        "x2js": "^3.3.0"
     },
     "devDependencies": {
         "nodemon": "^1.18.9"

@@ -26,7 +26,7 @@
 </template>
 
 <script>
-import { impactstories } from "@/store";
+import { impactstories } from "@/store/data";
 
 export default {
     data() {

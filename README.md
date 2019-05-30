@@ -1,4 +1,4 @@
-# bootstrap-vue
+# UC Giving Page
 
 > My groovy Nuxt.js project
 

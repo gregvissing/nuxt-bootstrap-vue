@@ -101,7 +101,7 @@
 
 <script>
 import $ from "jquery";
-import { giftTypes, amounts } from "@/store";
+import { giftTypes, amounts } from "@/store/data";
 import { validationMixin } from "vuelidate";
 import { required } from "vuelidate/lib/validators";
 

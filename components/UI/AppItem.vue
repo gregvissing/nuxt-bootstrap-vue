@@ -1,22 +1,15 @@
 <template>
     <div class="item">
         <p>{{ item.name }}</p>
-        <p>{{ item.description }}</p>
-        <!-- <span class="salepill" v-if="item.sale">Sale</span> -->
-        <!-- <img :src="`/${item.img}`" :alt="`Image of ${item.name}`"> -->
-        <Amounts v-model="donation"/>
-        {{ this.donation }}
+        <span class="salepill" v-if="item.sale">Sale</span>
+        <img :src="`/${item.img}`" :alt="`Image of ${item.name}`">
         <p>{{ item.price | usdollar }}</p>
-        <button class="add btn btn-primary" @click="addItem">Add Fund</button>
+        <button class="add" @click="addItem">Add Item</button>
     </div>
 </template>
 
 <script>
-import { amounts } from "@/store/data";
-import Amounts from "~/components/cart/Amounts.vue";
-
 export default {
-    name: "item",
     props: {
         item: {
             type: Object,
@@ -25,19 +18,6 @@ export default {
         index: {
             type: Number,
             required: true
-        }
-    },
-    data() {
-        return {
-            donation: ""
-        };
-    },
-    components: {
-        Amounts
-    },
-    watch: {
-        donation() {
-            console.log("changed!" + this.donation);
         }
     },
     filters: {
@@ -53,9 +33,7 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
-@import "@/assets/scss/style.scss";
-
+<style scoped>
 .item {
     border-radius: 5px;
     padding: 20px;
@@ -66,9 +44,8 @@ export default {
     align-items: center;
     position: relative;
 }
-
 .salepill {
-    background: $black;
+    background: rgb(232, 35, 25);
     color: white;
     font-family: "Barlow", sans-serif;
     position: absolute;
@@ -80,7 +57,6 @@ export default {
     font-weight: 700;
     border-radius: 1000px;
 }
-
 p {
     font-size: 18px;
 }

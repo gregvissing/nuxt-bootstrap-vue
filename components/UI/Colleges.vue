@@ -1,40 +1,65 @@
 <template>
     <b-container>
-        <h1 class="text-center">Areas to Support</h1>
+        <h1 class="text-center">Colleges</h1>
         <p>Your gift to the UC and UC Health makes an impact where you want. Give to your favorite college, program or department, or contribute to the university’s most pressing needs.</p>
 
         <div class="marquee">
-            <div v-for="(area, index) in alphaAreas" :key="index" class="slideitem">
-                <a href="#">
-                    <font-awesome-icon size="2x" :icon="area.icon" :style="{ color: area.color }"/>
-                    <h4 class="theme">{{ area.title }}</h4>
-                </a>
-            </div>
+            <b-form-group class="college-container">
+                <b-form-radio-group
+                    id="radio-group-1"
+                    class="college"
+                    v-model="selected"
+                    :options="alphaColleges"
+                    name="college-radio-options"
+                    buttons
+                    button-variant="outline-primary"
+                ></b-form-radio-group>
+            </b-form-group>
         </div>
     </b-container>
 </template>
 
 <script>
 import _ from "lodash";
-import { areasToSupport } from "@/store/data";
+import { colleges } from "@/store/data";
+
 export default {
     name: "areas",
     props: {
-        areas: {
+        colleges: {
             type: Array,
             default: ""
         }
     },
     computed: {
-        alphaAreas() {
-            return _.orderBy(areasToSupport, "title");
+        alphaColleges() {
+            return _.orderBy(colleges, "title");
         }
+    },
+    data() {
+        return {
+            selected: ""
+        };
     }
 };
 </script>
 
 <style lang="scss" scoped>
 @import "@/assets/scss/style.scss";
+
+.college-container {
+    text-align: center;
+    > div {
+        margin: 0 auto;
+        text-align: center;
+        width: inherit;
+        display: inline-block;
+
+        label {
+            float: left;
+        }
+    }
+}
 
 .container {
     padding: 2em 15px;
@@ -51,6 +76,7 @@ export default {
         -ms-flex-wrap: wrap;
         flex-wrap: wrap;
         text-align: center;
+        overflow-y: scroll;
         .slideitem {
             -webkit-transition: all 0.15s ease;
             transition: all 0.15s ease;
@@ -65,6 +91,20 @@ export default {
                     margin-top: 1rem;
                     margin-bottom: 1rem;
                     line-height: 1.5;
+                }
+            }
+        }
+        .college {
+            > label {
+                position: relative;
+                width: 200px;
+                input {
+                    position: absolute;
+                }
+                > span {
+                    position: absolute;
+                    top: 50%;
+                    vertical-align: middle;
                 }
             }
         }

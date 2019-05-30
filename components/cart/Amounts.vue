@@ -33,7 +33,7 @@
 </template>
 
 <script>
-import { amounts } from "@/store";
+import { amounts } from "@/store/data";
 
 export default {
     props: {
