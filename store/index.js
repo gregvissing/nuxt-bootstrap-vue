@@ -83,84 +83,28 @@ const createStore = () => {
                 context.commit('add')
             },
 
-            nuxtServerInit({
-                vuexContext,
-                context
-            }, {
-                req
-            }) {
-                axios
-                    .get(
-                        "https://foundation.uc.edu/WebApi/Query/d968555d-dea8-4c1a-9b5c-4e3be2d750be"
-                    )
+            nuxtServerInit(vuexContext, context) {
+                return axios
+                    .get("https://foundation.uc.edu/WebApi/Query/d968555d-dea8-4c1a-9b5c-4e3be2d750be")
                     .then(response => {
-                        const rows = [];
-                        rows = [...Object.values(response.data.Rows)];
-                        // console.log(rows);
-
-                        // var topLevelAll = [];
-                        var fundMaster = [];
-                        var areaMaster = [];
-                        $.each(rows, function () {
-                            // define values
-                            var values = this.Values;
-                            var target = values[1]; // Fund names
-                            var splitter = target.split("\\");
-                            if (splitter.length > 1) {
-                                splitter.shift();
-                            }
-                            splitter.push(values[4]); // Descriptions
-
-                            var area = values[8];
-                            areaMaster.push(area);
-
-                            // topLevelAll.push(splitter[0]);
-                            fundMaster.push(splitter);
-                        });
-
-                        function onlyUnique(value, index, self) {
-                            return self.indexOf(value) === index;
-                        }
-                        var topLevelUnique = areaMaster.filter(onlyUnique);
-                        console.log(topLevelUnique);
-
-                        // vm.areas = topLevelUnique;
-
-                        function multiDimensionalUnique(arr) {
-                            var uniques = [];
-                            var itemsFound = {};
-                            for (var i = 0, l = arr.length; i < l; i++) {
-                                var stringified = JSON.stringify(arr[i]);
-                                if (itemsFound[stringified]) {
-                                    continue;
-                                }
-                                if (arr[i][0].length != 0) {
-                                    uniques.push(arr[i]);
-                                }
-                                itemsFound[stringified] = true;
-                            }
-                            return uniques;
-                        }
-                        var uniqueFunds = multiDimensionalUnique(fundMaster);
-
-                        var fundArr = [];
-                        $.each(uniqueFunds, function (x, subFund) {
-                            var fundRowData = {
-                                title: subFund[0],
-                                desc: subFund[1],
-                                titledesc: subFund[0] + " " + subFund[1]
-                            };
-                            fundArr.push(fundRowData);
-                        });
-
-                        vuexContext.commit('setFunds', fundArr);
-                        this.funds = fundArr;
-                        this.items = fundArr;
-                    });
+                        let rows = [...Object.values(response.data.Rows)];
+                        console.log(rows);
+                        // const postsArray = [];
+                        // for (const key in response) {
+                        //     postsArray.push({
+                        //         ...data[key],
+                        //         id: key
+                        //     })
+                        // }
+                        vuexContext.commit('setFunds', rows)
+                    })
+                    .catch(e => context.error(e));
             },
             setFunds(vuexContext, funds) {
+                console.log('actions: setFunds');
                 vuexContext.commit('setFunds', funds)
             }
+
         },
         getters: {
             total: state => {
