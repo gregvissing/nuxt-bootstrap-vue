@@ -3,22 +3,28 @@
         <h1 class="text-center">Areas to Support</h1>
         <p>Your gift to the UC and UC Health makes an impact where you want. Give to your favorite college, program or department, or contribute to the university’s most pressing needs.</p>
 
-        <div class="marquee">
+        <Carousel/>
+
+        <!-- <div class="marquee">
             <div v-for="(area, index) in alphaAreas" :key="index" class="slideitem">
                 <a href="#">
                     <font-awesome-icon size="2x" :icon="area.icon" :style="{ color: area.color }"/>
-                    <h4 class="theme">{{ area.title }}</h4>
+                    <h4 class="theme">{{ area.text }}</h4>
                 </a>
             </div>
-        </div>
+        </div>-->
     </b-container>
 </template>
 
 <script>
+import $ from "jquery";
 import _ from "lodash";
-import { areasToSupport } from "@/store/data";
+import { colleges } from "@/store/data";
+import Carousel from "~/components/UI/UI-Components/Carousel.vue";
+
 export default {
     name: "areas",
+    components: { Carousel },
     props: {
         areas: {
             type: Array,
@@ -27,7 +33,7 @@ export default {
     },
     computed: {
         alphaAreas() {
-            return _.orderBy(areasToSupport, "title");
+            return _.orderBy(colleges, "text");
         }
     }
 };

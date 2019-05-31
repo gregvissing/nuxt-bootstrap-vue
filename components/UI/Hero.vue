@@ -34,7 +34,7 @@
 </template>
 
 <script>
-// import Typeahead from "~/components/UI/Typeahead.vue";
+// import Typeahead from "~/components/UI/UI-Components/Typeahead.vue";
 import SearchModal from "~/components/UI/Modal/SearchModal.vue";
 
 export default {

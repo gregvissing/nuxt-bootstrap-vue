@@ -3,14 +3,6 @@
     <div>
         <Hero/>
 
-        <!-- <Colleges :colleges="colleges"/>
-
-        <hr>-->
-        <!--
-        <ul>
-            <li v-for="user in users" :key="user.id">{{ user.login }}</li>
-        </ul>-->
-
         <Areas :areas="areas"/>
 
         <FeaturedFunds/>
@@ -42,9 +34,9 @@ export default {
         ImpactStories
     },
     computed: {
-        // loadedFunds() {
-        //     return this.$store.state.loadedFunds;
-        // }
+        loadedFunds() {
+            return this.$store.getters.loadedFunds;
+        }
     },
     data() {
         return {
@@ -81,6 +73,7 @@ export default {
                             splitter.shift();
                         }
                         splitter.push(values[4]); // Descriptions
+                        splitter.push(values[6]); // GUID
 
                         var area = values[8];
                         areaMaster.push(area);
@@ -119,11 +112,12 @@ export default {
                         var fundRowData = {
                             title: subFund[0],
                             desc: subFund[1],
-                            titledesc: subFund[0] + " " + subFund[1]
+                            titledesc: subFund[0] + " " + subFund[1],
+                            guid: subFund[2]
                         };
                         fundArr.push(fundRowData);
                     });
-
+                    console.log(JSON.stringify(fundArr));
                     this.funds = fundArr;
                     this.items = fundArr;
                 });

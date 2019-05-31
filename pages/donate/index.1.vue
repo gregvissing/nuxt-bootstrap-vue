@@ -140,7 +140,7 @@
 
 
 <script>
-import Typeahead from "~/components/UI/Typeahead.vue";
+import Typeahead from "~/components/UI/UI-Components/Typeahead.vue";
 
 export default {
     pageTitle: "Donate Now",

@@ -38,6 +38,9 @@
 <script>
 import $ from "jquery";
 import axios from "axios";
+import Vuex from "vuex";
+
+// import { funds } from "@/store";
 
 export default {
     name: "Typeahead",
@@ -106,6 +109,8 @@ export default {
             $placeHolder.addClass("move-up");
         },
         fetchItems() {
+            this.items = this.$store.state.funds;
+
             var vm = this;
             axios
                 .get(
@@ -127,6 +132,8 @@ export default {
                             splitter.shift();
                         }
                         splitter.push(values[4]); // Descriptions
+                        splitter.push(values[6]); // GUID
+                        splitter.push(values[8]); // College
 
                         var area = values[8];
                         areaMaster.push(area);
@@ -164,11 +171,13 @@ export default {
                         var fundRowData = {
                             title: subFund[0],
                             desc: subFund[1],
-                            titledesc: subFund[0] + " " + subFund[1]
+                            titledesc: subFund[0] + " " + subFund[1],
+                            guid: subFund[2],
+                            college: subFund[3]
                         };
                         fundArr.push(fundRowData);
                     });
-                    // console.log(fundArr);
+                    // console.log(JSON.stringify(fundArr));
                     this.items = fundArr;
                 });
         },

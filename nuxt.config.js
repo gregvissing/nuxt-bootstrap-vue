@@ -54,7 +54,8 @@ export default {
                 type: 'text/css',
                 href: 'https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css'
             },
-        ]
+        ],
+
     },
 
     /*
@@ -81,6 +82,7 @@ export default {
         // Doc: https://bootstrap-vue.js.org/docs/
         'bootstrap-vue/nuxt',
         '@nuxtjs/pwa',
+        '@nuxtjs/axios'
     ],
 
     // axios: {

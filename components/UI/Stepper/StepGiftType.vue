@@ -60,13 +60,13 @@
                     </li>
                 </ul>-->
                 <button class="btn btn-secondary" @click="addFind">New Find</button>
-                <!-- <b-form-checkbox
+                <b-form-checkbox
                     id="checkbox-1"
                     v-model="tribute"
                     name="checkbox-1"
                     value="true"
                     unchecked-value="false"
-                >Is this gift in Honor/Memory of a friend or loved one?</b-form-checkbox>-->
+                >Is this gift in Honor/Memory of a friend or loved one?</b-form-checkbox>
             </b-col>
         </b-form-row>
         <b-card class="mt-3" header="Form Data Result">

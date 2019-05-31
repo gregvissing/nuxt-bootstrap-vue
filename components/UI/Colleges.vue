@@ -6,13 +6,14 @@
         <div class="marquee">
             <b-form-group class="college-container">
                 <b-form-radio-group
-                    id="radio-group-1"
+                    id="radio-group-colleges"
                     class="college"
                     v-model="selected"
                     :options="alphaColleges"
                     name="college-radio-options"
                     buttons
                     button-variant="outline-primary"
+                    @click="showModal(college)"
                 ></b-form-radio-group>
             </b-form-group>
         </div>

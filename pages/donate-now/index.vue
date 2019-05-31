@@ -25,7 +25,7 @@ import StepGiftType from "~/components/UI/Stepper/StepGiftType.vue";
 import StepFundSearch from "~/components/UI/Stepper/StepFundSearch.vue";
 import StepPersonalInfo from "~/components/UI/Stepper/StepPersonalInfo.vue";
 import StepAddress from "~/components/UI/Stepper/StepAddress.vue";
-import StepThree from "~/components/UI/Stepper/StepThree.vue";
+import StepTribute from "~/components/UI/Stepper/StepTribute.vue";
 
 export default {
     pageTitle: "Donate Now",
@@ -37,19 +37,19 @@ export default {
         return {
             steps: [
                 {
-                    icon: "attach_money",
-                    name: "donation info",
-                    title: "Donation",
-                    subtitle: "Choose Type/Amount",
-                    component: StepGiftType,
-                    completed: false
-                },
-                {
                     icon: "list",
                     name: "fund info",
                     title: "Fund",
                     subtitle: "Choose Fund",
                     component: StepFundSearch,
+                    completed: false
+                },
+                {
+                    icon: "attach_money",
+                    name: "donation info",
+                    title: "Donation",
+                    subtitle: "Choose Type/Amount",
+                    component: StepGiftType,
                     completed: false
                 },
                 {
@@ -67,15 +67,15 @@ export default {
                     subtitle: "Enter Your Address",
                     component: StepAddress,
                     completed: false
+                },
+                {
+                    icon: "card_giftcard",
+                    name: "third",
+                    title: "Tribute",
+                    // subtitle: "Subtitle sample",
+                    component: StepTribute,
+                    completed: false
                 }
-                // {
-                //     icon: "card_giftcard",
-                //     name: "third",
-                //     title: "Tribute",
-                //     // subtitle: "Subtitle sample",
-                //     component: StepThree,
-                //     completed: false
-                // }
             ],
             activeStep: 0
         };

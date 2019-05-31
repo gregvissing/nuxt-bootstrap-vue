@@ -26,7 +26,7 @@
 <script>
 import $ from "jquery";
 import axios from "axios";
-import Typeahead from "~/components/UI/Typeahead.vue";
+import Typeahead from "~/components/UI/UI-Components/Typeahead.vue";
 
 export default {
     pageTitle: "Search Funds",
