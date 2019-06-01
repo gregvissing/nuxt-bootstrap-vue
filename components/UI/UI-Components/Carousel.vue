@@ -20,7 +20,7 @@
                         <div class="card-carousel--card--footer">
                             <p>{{ college.text }}</p>
                         </div>
-                        <b-button variant="primary" @click="showModal(college)">View Funds</b-button>
+                        <b-button block variant="primary" @click="showModal(college)">View Funds</b-button>
                     </div>
                 </div>
             </div>
@@ -31,20 +31,42 @@
             id="modalCollege"
             hide-footer
             cancel-disabled
-            size="lg"
+            size="xl"
             :title="selectedCollege.text"
         >
             <p class="my-4">
                 <strong>Description:</strong>
-                {{ selectedCollege.text }}
+                {{ selectedCollege.description }}
+                <!-- {{ selectedCollege.text }} -->
             </p>
-            {{selectedCollege.column}}
-            <ul>
+            <!-- {{selectedCollege.column}} -->
+            <div id="accordion" role="tablist">
+                <b-card no-body class="mb-1" v-for="(fund, index) in alphaFunds" :key="index">
+                    <b-card-header header-tag="header" class="p-0" role="tab">
+                        <b-button block href="#" v-b-toggle="'accordion-' + index" variant="info">
+                            <font-awesome-icon icon="plus"/>
+                            {{ fund.title }}
+                        </b-button>
+                    </b-card-header>
+                    <b-collapse :id="'accordion-' + index" accordion="my-accordion" role="tabpanel">
+                        <b-card-body>
+                            <b-card-text>
+                                <p>Description: {{ fund.title }}</p>
+                                <p>College: {{ fund.college }}</p>
+                                <a
+                                    :href="'https://foundation.uc.edu/donate?id=' + fund.guid"
+                                >{{ fund.title }}</a>
+                            </b-card-text>
+                        </b-card-body>
+                    </b-collapse>
+                </b-card>
+            </div>
+            <!-- <ul>
                 <li v-for="(fund, index) in alphaFunds" :key="index">
                     <a :href="'https://foundation.uc.edu/donate?id=' + fund.guid">{{ fund.title }}</a>
                     - {{ fund.college }}
                 </li>
-            </ul>
+            </ul>-->
 
             <!-- <div class="btn-container text-center">
                 <a :href="'https://foundation.uc.edu/donate?id=' + selectedCollege.guid" class="btn btn-primary">Donate Now</a>
@@ -203,7 +225,8 @@ $light-gray: #f8f8f8;
                 z-index: 3;
                 margin-bottom: 2px;
                 position: relative;
-                padding-bottom: 2rem;
+                padding: 0 0.5rem 2rem;
+                /* padding-bottom: 2rem; */
                 &:first-child {
                     margin-left: 0;
                 }
@@ -232,7 +255,8 @@ $light-gray: #f8f8f8;
                         padding: 3px 0;
                         margin: 0;
                         margin-bottom: 2px;
-                        font-size: 19px;
+                        font-size: 18px;
+                        line-height: 24px;
                         font-weight: 500;
                         color: $black;
                         user-select: none;
