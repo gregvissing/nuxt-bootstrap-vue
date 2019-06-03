@@ -1,6 +1,21 @@
 <template>
     <div class="card-carousel-wrapper">
-        <div class="card-carousel--nav__left" @click="moveCarousel(-1)" :disabled="atHeadOfList"></div>
+        <div class="carousel__nav">
+            <div
+                class="card-carousel--nav__left"
+                @click="moveCarousel(-1)"
+                :disabled="atHeadOfList"
+            ></div>
+            <div class="card-carousel--nav__right" @click="moveCarousel(1)" :disabled="atEndOfList"></div>
+            <!-- <button class="carousel__button--prev js-carousel-button" data-dir="prev">&lt;</button>
+            <button class="carousel__button--next js-carousel-button" data-dir="next">&gt;</button>-->
+        </div>
+        <!-- <div
+            class="card-carousel--nav__left"
+            @click="moveCarousel(-1)"
+            :disabled="atHeadOfList"
+        ></div>-->
+
         <div class="card-carousel">
             <div class="card-carousel--overflow-container">
                 <div
@@ -12,20 +27,23 @@
                         v-for="(college, index) in alphaColleges"
                         :key="index"
                     >
-                        <font-awesome-icon
-                            size="2x"
-                            :icon="college.icon"
-                            :style="{ color: college.color }"
-                        />
-                        <div class="card-carousel--card--footer">
-                            <p>{{ college.text }}</p>
+                        <div class="text-container">
+                            <font-awesome-icon
+                                size="2x"
+                                :icon="college.icon"
+                                :style="{ color: college.color }"
+                            />
+                            <div class="card-carousel--card--footer">
+                                <p>{{ college.text }}</p>
+                            </div>
                         </div>
-                        <b-button block variant="primary" @click="showModal(college)">View Funds</b-button>
+
+                        <!-- <b-button block variant="primary" @click="showModal(college)">View Funds</b-button> -->
                     </div>
                 </div>
             </div>
         </div>
-        <div class="card-carousel--nav__right" @click="moveCarousel(1)" :disabled="atEndOfList"></div>
+        <!-- <div class="card-carousel--nav__right" @click="moveCarousel(1)" :disabled="atEndOfList"></div> -->
 
         <b-modal
             id="modalCollege"
@@ -85,7 +103,7 @@ export default {
     data() {
         return {
             currentOffset: 0,
-            windowSize: 3,
+            windowSize: 10,
             paginationFactor: 220,
             items: [
                 { name: "Tycoon Thai", tag: "Thai" },
@@ -157,22 +175,47 @@ export default {
 <style lang="scss" scoped>
 @import "@/assets/scss/style.scss";
 
-$vue-navy: #2c3e50;
-$vue-navy-light: #3a5169;
-$vue-teal: #42b883;
-$vue-teal-light: #42b983;
 $gray: #666a73;
 $light-gray: #f8f8f8;
 
 .card-carousel-wrapper {
-    display: flex;
+    /* display: flex; */
     align-items: center;
     justify-content: center;
     margin: 20px 0;
     color: $gray;
-    .card-carousel {
+    position: relative;
+    .carousel__nav {
+        position: static;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        margin: auto;
+        z-index: auto;
+        .card-carousel--nav__left,
+        .card-carousel--nav__right {
+            position: absolute;
+            top: 40%;
+            /* bottom: 0; */
+            z-index: 100;
+        }
+        .card-carousel--nav__left {
+            left: -35px;
+        }
+        .card-carousel--nav__right {
+            right: -35px;
+        }
+    }
+    /* .nav-container {
         display: flex;
-        justify-content: center;
+        flex-direction: column;
+        height: 100%;
+        min-height: 100%;
+    } */
+    .card-carousel {
+        /* display: flex;
+        justify-content: center; */
         width: 100%;
 
         &--overflow-container {
@@ -199,6 +242,10 @@ $light-gray: #f8f8f8;
 
         &--nav__left {
             transform: rotate(-135deg);
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
             &:active {
                 transform: rotate(-135deg) scale(0.9);
             }
@@ -212,21 +259,45 @@ $light-gray: #f8f8f8;
         }
         .card-carousel-cards {
             display: flex;
+            justify-content: center;
             transition: transform 150ms ease-out;
             transform: translatex(0px);
+
+            -webkit-overflow-scrolling: touch;
+            -ms-overflow-style: -ms-autohiding-scrollbar;
 
             .card-carousel--card {
                 margin: 0 10px;
                 cursor: pointer;
-                /* box-shadow: 0 4px 15px 0 rgba(40, 44, 53, 0.06), */
-                /* 0 2px 2px 0 rgba(40, 44, 53, 0.08); */
+                box-shadow: 0 4px 15px 0 rgba(40, 44, 53, 0.06),
+                    0 2px 2px 0 rgba(40, 44, 53, 0.08);
                 background-color: $white;
-                border-radius: 4px;
+                border: 1px solid rgba(40, 44, 53, 0.08);
+                border-radius: 50%;
+                @include transition(all 0.4s ease);
+
                 z-index: 3;
                 margin-bottom: 2px;
                 position: relative;
-                padding: 0 0.5rem 2rem;
+                /* padding: 0 0.5rem 2.5rem; */
+                /* padding-bottom: 1em; */
                 /* padding-bottom: 2rem; */
+                flex-wrap: nowrap;
+                /* flex: 1 1 0; */
+
+                position: relative;
+                display: inline-block;
+                vertical-align: top;
+                height: 0;
+                padding-bottom: 15%;
+                width: 0;
+
+                padding-left: 15%;
+
+                &:hover {
+                    box-shadow: none;
+                }
+
                 &:first-child {
                     margin-left: 0;
                 }
@@ -247,6 +318,19 @@ $light-gray: #f8f8f8;
                     }
                 } */
 
+                .text-container {
+                    position: absolute;
+                    /* top: 20%;
+                    bottom: 0;
+                    left: 0;
+                    right: 0;
+                    margin: auto; */
+                    left: 50%;
+                    top: 50%;
+                    transform: translate(-50%, -50%);
+                    width: 95%;
+                    /* height: 50%; */
+                }
                 &--footer {
                     border-top: 0;
                     padding: 7px 15px;
@@ -255,8 +339,8 @@ $light-gray: #f8f8f8;
                         padding: 3px 0;
                         margin: 0;
                         margin-bottom: 2px;
-                        font-size: 18px;
-                        line-height: 24px;
+                        font-size: 1rem;
+                        line-height: 1.25;
                         font-weight: 500;
                         color: $black;
                         user-select: none;

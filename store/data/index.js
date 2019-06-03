@@ -58,8 +58,6 @@ export const featuredfunds = [{
     }
 ];
 
-
-
 // Home page
 export const impactstories = [{
         name: "Chara Hood",

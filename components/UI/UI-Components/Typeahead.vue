@@ -234,7 +234,7 @@ label.placeholder {
     padding: 1.5em 1em !important;
     font-size: 1em !important;
     outline: 0 !important;
-    border: 5px solid #000 !important;
+    border: 5px solid $red !important;
     color: #000;
 
     border-radius: 0;

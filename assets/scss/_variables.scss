@@ -26,6 +26,8 @@ $twelve: 100%;
 
 $gutter: 1rem !global;
 
+// @include transition(all 0.4s ease);
+
 @mixin transition($args...) {
     -webkit-transition: $args;
     -moz-transition: $args;

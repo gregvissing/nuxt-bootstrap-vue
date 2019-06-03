@@ -1,6 +1,16 @@
 <template>
     <div style="padding: 2rem 3rem; text-align: left;">
         <b-form-row>
+            <!-- <b-col cols="12">Choose a Donation Type</b-col>
+            <b-col cols="12">
+                <b-button-group>
+                    <b-button variant="outline-primary">Button 1</b-button>
+                    <b-button variant="outline-primary">Button 2</b-button>
+                </b-button-group>
+            </b-col>
+            <b-col cols="12">
+                <hr>
+            </b-col>-->
             <b-col cols="12">Choose a Fund to Impact</b-col>
             <b-col cols="8">
                 <label>Choose a Campaign Fund?</label>
