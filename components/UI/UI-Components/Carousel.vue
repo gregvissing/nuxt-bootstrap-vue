@@ -18,29 +18,44 @@
 
         <div class="card-carousel">
             <div class="card-carousel--overflow-container">
-                <div
-                    class="card-carousel-cards"
-                    :style="{ transform: 'translateX' + '(' + currentOffset + 'px' + ')'}"
+                <transition
+                    name="slide"
+                    mode="out-in"
+                    appear
+                    enter-class="init-slide"
+                    enter-stagger="50"
+                    enter-active-class="animated slideInLeft"
+                    :duration="{ enter: 1000 }"
                 >
+                    <!-- <transition name="slide"> -->
                     <div
-                        class="card-carousel--card text-center"
-                        v-for="(college, index) in alphaColleges"
-                        :key="index"
+                        class="card-carousel-cards"
+                        :style="{ transform: 'translateX' + '(' + currentOffset + 'px' + ')'}"
                     >
-                        <div class="text-container">
-                            <font-awesome-icon
-                                size="2x"
-                                :icon="college.icon"
-                                :style="{ color: college.color }"
-                            />
-                            <div class="card-carousel--card--footer">
-                                <p>{{ college.text }}</p>
+                        <div
+                            class="card-carousel--card text-center animated"
+                            v-for="(college, index) in alphaColleges"
+                            :key="index"
+                        >
+                            <div class="text-container">
+                                <font-awesome-icon
+                                    size="2x"
+                                    :icon="college.icon"
+                                    :style="{ color: college.color }"
+                                />
+                                <div class="card-carousel--card--footer">
+                                    <p>{{ college.text }}</p>
+                                </div>
                             </div>
-                        </div>
 
-                        <!-- <b-button block variant="primary" @click="showModal(college)">View Funds</b-button> -->
+                            <b-button
+                                block
+                                variant="outline-primary"
+                                @click="showModal(college)"
+                            >View Funds</b-button>
+                        </div>
                     </div>
-                </div>
+                </transition>
             </div>
         </div>
         <!-- <div class="card-carousel--nav__right" @click="moveCarousel(1)" :disabled="atEndOfList"></div> -->
@@ -95,6 +110,7 @@
 
 <script>
 import _ from "lodash";
+import $ from "jquery";
 import { colleges } from "@/store/data";
 import { funds } from "@/store/data";
 
@@ -153,6 +169,9 @@ export default {
         }
     },
     methods: {
+        // beforeEnter: function(el) {
+        //     el.style.opacity = 0;
+        // },
         moveCarousel(direction) {
             // Find a more elegant way to express the :style. consider using props to make it truly generic
             if (direction === 1 && !this.atEndOfList) {
@@ -217,6 +236,8 @@ $light-gray: #f8f8f8;
         /* display: flex;
         justify-content: center; */
         width: 100%;
+        /* margin-left: -130%;
+        @include transition(all 1.5s linear); */
 
         &--overflow-container {
             overflow: hidden;
@@ -265,6 +286,8 @@ $light-gray: #f8f8f8;
 
             -webkit-overflow-scrolling: touch;
             -ms-overflow-style: -ms-autohiding-scrollbar;
+
+            padding-bottom: 70px;
 
             .card-carousel--card {
                 margin: 0 10px;
@@ -386,7 +409,7 @@ $light-gray: #f8f8f8;
                 }
                 button {
                     position: absolute;
-                    bottom: 0;
+                    bottom: -60px;
                     left: 0;
                     right: 0;
                     padding: 0.375rem 0.13rem !important;
@@ -395,5 +418,36 @@ $light-gray: #f8f8f8;
             }
         }
     }
+}
+
+/* .slide-enter-active, */
+/* .slide-leave-active { */
+/* margin-left: 0%; */
+/* @include transition(all 1.5s linear); */
+/* transition: opacity 1.5s ease-in;
+} */
+
+/* .slide-enter,
+.slide-leave-to {
+    margin-left: -130%;
+    opacity: 0;
+} */
+
+/* .slide-enter-active,
+.slide-leave-active { */
+// /* margin-left: 0%; */
+// @include transition(all 1.5s linear);
+/* transition: opacity 1.5s ease-in;
+} */
+
+/* .slide-enter,
+.slide-leave-to {
+    margin-left: -130%;
+    opacity: 0;
+} */
+
+.init-slide {
+    margin-left: -130%;
+    opacity: 0;
 }
 </style>

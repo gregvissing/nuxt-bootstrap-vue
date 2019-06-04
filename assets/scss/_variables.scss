@@ -51,47 +51,17 @@ $gutter: 1rem !global;
 
 }
 
-// Column Mixin
-// @mixin column($span: $columns) {
+// Animations / Transitions
 
-//   $columns: $span;
+.slide-enter-active,
+.slide-leave-active {
+    // /* margin-left: 0%; */
+    // @include transition(all 1.5s linear);
+    transition: opacity 1.5s ease-in;
+}
 
-//   box-sizing: border-box;
-//   flex: $columns $columns auto;
-//   flex-basis: $columns;
-//   max-width: $columns;
-
-//   padding-right: $gutter;
-//   padding-left: $gutter;
-//   padding-bottom: $gutter*2;
-
-// }
-
-// END: MIXINS
-
-// GRID styles
-// .grid {
-//   @include grid(1280px);
-// }
-
-// .grid__item {
-//   @include column($four);
-// }
-
-// .box {
-//   color: white;
-//   display: flex;
-//   align-items: center;
-//   justify-content: center;
-//   height: 100px;
-//   background-color: tomato;
-// }
-
-// .modules {
-//   @include grid(1024px);
-// }
-
-// .module__inner {
-//   height: 100px;
-//   background-color: tomato;
-// }
+.slide-enter,
+.slide-leave-to {
+    margin-left: -130%;
+    opacity: 0;
+}

@@ -89,7 +89,6 @@ export default {
     //     baseURL: process.env.BASE_URL || 'https://uc-giving-page.netlify.com/'
     // },
 
-
     /*
      ** Build configuration
      */
