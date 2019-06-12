@@ -1,29 +1,140 @@
 <template>
-    <section class="home">
+    <section :class="{
+    'internal' : (page != 'index'),
+    'home' : (page === 'index')
+    }">
         <Header/>
-        <b-container>
-            <transition name="fade" mode="out-in">
-                <nuxt/>
+
+        <div id="internal-hero">
+            <!-- <b-container> -->
+            <transition
+                name="title-anim"
+                enter-active-class="animated fadeInUp"
+                leave-active-class="animated fadeOutDown"
+                key="title"
+            >
+                <!-- <h1>{{title}}</h1> -->
+                <InternalTitle/>
             </transition>
-        </b-container>
+            <!--</b-container> -->
+        </div>
+
+        <transition
+            name="router-anim"
+            enter-active-class="animated fadeInLeft"
+            leave-active-class="animated fadeOutRight"
+            key="body"
+        >
+            <nuxt/>
+        </transition>
+
         <Footer/>
+        <a class="scrollToTop" href="#" @click.prevent="scrollToTop">
+            <span style="font-size: 1.25em;">
+                <i class="fas fa-chevron-circle-up"></i>
+            </span>
+        </a>
     </section>
 </template>
 
 <script>
+import $ from "jquery";
+import { mapState, mapGetters } from "vuex";
+import SearchModal from "@/components/UI/Modal/SearchModal.vue";
 import Header from "@/components/Navigation/Header.vue";
 import Footer from "@/components/Footer/Footer.vue";
+import InternalTitle from "@/components/Page-Components/internal-title.vue";
 
 export default {
+    data() {
+        return {
+            show: true
+        };
+    },
     components: {
         Header,
-        Footer
+        Footer,
+        SearchModal,
+        InternalTitle
+    },
+    computed: {
+        ...mapState(["page"]),
+        title() {
+            return this.$route.matched.map(r => {
+                return r.components.default.options
+                    ? r.components.default.options.pageTitle
+                    : r.components.default.pageTitle;
+            })[0];
+        }
+    },
+    methods: {
+        scrollToTop() {
+            $("html, body").animate(
+                {
+                    scrollTop: 0
+                },
+                300
+            );
+            return false;
+        },
+        created: function() {
+            window.addEventListener("scroll", this.handleScroll);
+        },
+        destroyed() {
+            window.removeEventListener("scroll", this.handleScroll);
+        }
     }
 };
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss" >
 @import "@/assets/scss/style.scss";
+@import "https://cdn.jsdelivr.net/npm/animate.css@3.5.1";
+
+@mixin header($imgurl) {
+    background: url($imgurl) center center;
+    background-size: cover;
+    position: absolute;
+    width: 100vw;
+    height: 300px;
+}
+
+.header-img1 {
+    @include header(
+        "https://www.alumni.uc.edu/image/home-full-width/MM-Geen-3.jpg"
+    );
+}
+
+.header-img2 {
+    @include header(
+        "https://foundation.uc.edu/image/annual-report/2018/letters/UC-Campus-Scenes0232.jpg"
+    );
+}
+
+#interna-hero {
+    .container {
+        vertical-align: middle;
+    }
+}
+
+/* .bk-enter-active,
+.bk-leave-active {
+    transition: all 0.4s ease;
+}
+
+.bk-enter,
+.bk-leave-to {
+    transform: scale(1.1) translateZ(0);
+    opacity: 0;
+}
+
+.bk-img {
+    position: absolute;
+    width: 100vw;
+    height: 300px;
+    overflow: hidden;
+    top: 80px;
+} */
 
 .home {
     > .container {
@@ -61,34 +172,5 @@ html {
 *:after {
     box-sizing: border-box;
     margin: 0;
-}
-
-.button--green {
-    display: inline-block;
-    border-radius: 4px;
-    border: 1px solid #3b8070;
-    color: #3b8070;
-    text-decoration: none;
-    padding: 10px 30px;
-}
-
-.button--green:hover {
-    color: #fff;
-    background-color: #3b8070;
-}
-
-.button--grey {
-    display: inline-block;
-    border-radius: 4px;
-    border: 1px solid #35495e;
-    color: #35495e;
-    text-decoration: none;
-    padding: 10px 30px;
-    margin-left: 15px;
-}
-
-.button--grey:hover {
-    color: #fff;
-    background-color: #35495e;
 }
 </style>

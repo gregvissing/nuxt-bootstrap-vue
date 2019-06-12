@@ -93,7 +93,7 @@
             </b-col>
         </b-form-row>-->
         <b-card class="mt-3" header="Form Data Result">
-            <pre class="m-0">{{ Tribute }}</pre>
+            <pre class="m-0">{{ $store.state.form }}</pre>
         </b-card>
     </div>
 </template>

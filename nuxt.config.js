@@ -61,6 +61,8 @@ export default {
     /*
      ** Customize the progress-bar color
      */
+
+    // loading: false,
     loading: {
         color: '#fff'
     },
@@ -73,17 +75,22 @@ export default {
     /*
      ** Plugins to load before mounting the App
      */
-    plugins: ['~/plugins/fontawesome.js'],
+    plugins: ['~plugins/core-components.js', '~plugins/date-filter.js', '~/plugins/fontawesome.js'],
 
     /*
      ** Nuxt.js modules
      */
     modules: [
         // Doc: https://bootstrap-vue.js.org/docs/
-        'bootstrap-vue/nuxt',
         '@nuxtjs/pwa',
+        'bootstrap-vue/nuxt',
+
         '@nuxtjs/axios'
     ],
+
+    router: {
+        middleware: 'pages'
+    },
 
     // axios: {
     //     baseURL: process.env.BASE_URL || 'https://uc-giving-page.netlify.com/'

@@ -1,16 +1,39 @@
 <template>
     <div style="padding: 2rem 3rem; text-align: left;">
         <b-form-row>
-            <!-- <b-col cols="12">Choose a Fund to Impact</b-col>
-            <b-col cols="12">
-                <b-button-group>
-                    <b-button variant="outline-primary">Button 1</b-button>
-                    <b-button variant="outline-primary">Button 2</b-button>
-                </b-button-group>
-            </b-col>
-            <b-col cols="12">
-                <hr>
+            <!-- <b-col cols="12">
+                <div id="accordion" role="tablist">
+                    <b-card
+                        no-body
+                        class="mb-1"
+                        v-for="(giftDetailStep, index) in giftSteps"
+                        :key="index"
+                    >
+                        <b-card-header header-tag="header" class="p-0" role="tab">
+                            <b-button
+                                block
+                                href="#"
+                                v-b-toggle="'accordion-' + index"
+                                variant="info"
+                            >
+                                {{ index + 1 }} -
+                                <font-awesome-icon icon="plus"/>
+                            </b-button>
+                        </b-card-header>
+                        <b-collapse
+                            :id="'accordion-' + index"
+                            accordion="my-accordion"
+                            role="tabpanel"
+                        >
+                            <b-card-body>
+                                <b-card-text v-html="giftDetailStep.text" ></b-card-text>
+                                <Amounts v-model="amtValue"/>
+                            </b-card-body>
+                        </b-collapse>
+                    </b-card>
+                </div>
             </b-col>-->
+
             <b-col cols="12" class="titlebar">How much will you give?</b-col>
             <b-col cols="12" class="stepBody">
                 <Amounts v-model="amtValue"/>
@@ -20,12 +43,6 @@
             <b-col cols="12" class="stepBody text-center">
                 <!-- <GiftType v-model="form.giftType"/> -->
                 <GiftType :giftTypes="giftTypes" :selected.sync="giftType" v-model="giftType"/>
-
-                <!-- <b-button-group>
-                    <b-button @click="giftTypeToggle(once)" variant="outline-primary">Right Now</b-button>
-                    <b-button disabled size="lg" variant="outline-secondary">-- OR --</b-button>
-                    <b-button @click="giftTypeToggle(monthly)" variant="outline-primary">Monthly</b-button>
-                </b-button-group>-->
                 <br>
                 Gift Type: {{ giftType }}
             </b-col>
@@ -39,7 +56,7 @@
                 </b-button-group>
             </b-col>
 
-            <b-col cols="8">
+            <!-- <b-col cols="8">
                 <label>Choose a Campaign Fund?</label>
                 <b-button-group vertical size="md" class="mb-1">
                     <b-button variant="outline-primary">Greatest Need</b-button>
@@ -61,37 +78,7 @@
                 >Search Funds</b-button>
 
                 <SearchModal id="searchModal"/>
-
-                <!-- <div>
-                    <label for>Filter By:</label>
-                </div>
-
-                <b-button-group block class="mb-1" size="lg">
-                    <b-button size="lg" variant="outline-primary">Support Area</b-button>
-                    <b-button size="lg" variant="outline-primary">Fund/Description</b-button>
-                    <b-button size="lg" variant="outline-primary">Fund ID</b-button>
-                </b-button-group>-->
-                <!-- <h3>Gift Type</h3>
-                <b-form-group>
-                    <b-form-radio-group
-                        id="giftTypes"
-                        v-model="form.giftType"
-                        :options="options"
-                        buttons
-                        button-variant="outline-dark"
-                        size="lg"
-                        name="radio-options"
-                    ></b-form-radio-group>
-                </b-form-group>-->
-
-                <!-- <div>Selected: {{form.giftType}}</div> -->
-
-                <!-- <MultiSelect v-model="value" :options="options"></MultiSelect> -->
-
-                <!-- <AutoComplete
-                    :items="[ 'Apple', 'Banana', 'Orange', 'Mango', 'Pear', 'Peach', 'Grape', 'Tangerine', 'Pineapple']"
-                />-->
-            </b-col>
+            </b-col>-->
         </b-form-row>
     </div>
 </template>
@@ -104,20 +91,31 @@ import { validationMixin } from "vuelidate";
 import { required } from "vuelidate/lib/validators";
 
 import Amounts from "~/components/cart/Amounts.vue";
-import MultiSelect from "~/components/UI/UI-Components/MultiSelect.vue";
-import AutoComplete from "~/components/UI/UI-Components/AutoComplete.vue";
 import SearchModal from "~/components/UI/Modal/SearchModal.vue";
 
 import GiftType from "~/components/UI/Stepper/GiftType.vue";
 import { giftTypeValues } from "@/store/data";
 
+import { giftDetailSteps } from "@/store/data";
+
 export default {
     props: ["clickedNext", "currentStep"],
+    props: {
+        // value: {
+        //     default: ""
+        // },
+        giftSteps: {
+            type: Array,
+            default: () => [...Object.values(giftDetailSteps)]
+        },
+        name: {
+            type: String,
+            default: "step-filter"
+        }
+    },
     mixins: [validationMixin],
     components: {
         Amounts,
-        MultiSelect,
-        AutoComplete,
         SearchModal,
         GiftType
     },

@@ -1,11 +1,14 @@
 /* eslint-disable */
 // import $ from "jquery";
 import Vuex from "vuex";
-import axios from "axios";
+// import axios from "axios";
 
 const createStore = () => {
     return new Vuex.Store({
+        strict: true,
         state: {
+            page: 'index',
+
             items: [{
                     id: 1,
                     name: 'Chelsea boots',
@@ -49,6 +52,8 @@ const createStore = () => {
                     image: "https://via.placeholder.com/140x100"
                 },
             ],
+
+            cartTotal: 0,
             cart: [],
 
             amount: "",
@@ -21472,21 +21477,37 @@ const createStore = () => {
             loadedFunds: [],
 
             // Donation page
-            Donor: {
-                Address: {
-                    City: "",
-                    Country: "",
-                    PostalCode: "",
-                    State: "",
-                    StreetAddress: ""
+            form: {
+                Donor: {
+                    Address: {
+                        City: "",
+                        Country: "",
+                        PostalCode: "",
+                        State: "",
+                        StreetAddress: ""
+                    },
+                    Title: "",
+                    FirstName: "",
+                    LastName: "",
+                    Phone: "",
+                    EmailAddress: ""
                 },
-                Title: "",
-                FirstName: "",
-                FastName: "",
-                Phone: "",
-                EmailAddress: "",
 
+                Gift: {
+                    Designations: [{
+                        Amount: "",
+                        DesignationId: ""
+                    }],
+                    FinderNumber: "",
+                    SourceCode: "",
+                    IsAnonymous: false,
+                    PaymentMethod: 1,
+                    Comments: "Gift comments here.",
+                    CreateGiftAidDeclaration: false,
+
+                }
             }
+
         },
         mutations: {
             addToCart(state, payload) {
@@ -21495,9 +21516,45 @@ const createStore = () => {
             setFunds(state, funds) {
                 state.loadedFunds = funds;
             },
-            updateMessage(state, message) {
-                state.message = message
+
+            updatePage(state, pageName) {
+                state.page = pageName
+            },
+
+            // Persoanl Info
+            updateDonorTitle(state, title) {
+                state.form.Donor.Title = title
+            },
+            updateDonorFirstName(state, firstName) {
+                state.form.Donor.FirstName = firstName
+            },
+            updateDonorLastName(state, lastName) {
+                state.form.Donor.LastName = lastName
+            },
+            updateDonorPhone(state, phone) {
+                state.form.Donor.Phone = phone
+            },
+            updateDonorEmailAddress(state, emailAddress) {
+                state.form.Donor.EmailAddress = emailAddress
+            },
+
+            // Address Info
+            updateDonorZip(state, postalCode) {
+                state.form.Donor.Address.PostalCode = postalCode
+            },
+            updateDonorCity(state, city) {
+                state.form.Donor.Address.City = city
+            },
+            updateDonorState(state, stateCode) {
+                state.form.Donor.Address.State = stateCode
+            },
+            updateDonorCountry(state, country) {
+                state.form.Donor.Address.Country = country
+            },
+            updateDonorStreetAddress(state, streetAddress) {
+                state.form.Donor.Address.StreetAddress = streetAddress
             }
+
         },
         actions: {
             add(context) {

@@ -12,6 +12,7 @@
 </template>
 
 <script>
+// import { mapState } from "vuex";
 import $ from "jquery";
 import Vuex from "vuex";
 import axios from "axios";

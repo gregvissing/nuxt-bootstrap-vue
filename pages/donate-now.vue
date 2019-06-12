@@ -22,6 +22,7 @@
 <script>
 import HorizontalStepper from "~/components/UI/Stepper/HorizontalStepper.vue";
 import StepGiftType from "~/components/UI/Stepper/StepGiftType.vue";
+import StepGiftDetails from "~/components/UI/Stepper/StepGiftDetails.vue";
 import StepFundSearch from "~/components/UI/Stepper/StepFundSearch.vue";
 import StepPersonalInfo from "~/components/UI/Stepper/StepPersonalInfo.vue";
 import StepAddress from "~/components/UI/Stepper/StepAddress.vue";
@@ -37,19 +38,27 @@ export default {
     data() {
         return {
             steps: [
+                // {
+                //     icon: "list",
+                //     name: "fund info",
+                //     title: "Your Gift",
+                //     // subtitle: "Choose Fund",
+                //     component: StepFundSearch,
+                //     completed: false
+                // },
                 {
                     icon: "list",
                     name: "fund info",
-                    title: "Fund",
-                    subtitle: "Choose Fund",
-                    component: StepFundSearch,
+                    title: "Your Gift",
+                    // subtitle: "Choose Fund",
+                    component: StepGiftDetails,
                     completed: false
                 },
                 {
                     icon: "attach_money",
                     name: "donation info",
                     title: "Donation",
-                    subtitle: "Choose Type/Amount",
+                    // subtitle: "Choose Type/Amount",
                     component: StepGiftType,
                     completed: false
                 },
@@ -57,7 +66,7 @@ export default {
                     icon: "person",
                     name: "personal details",
                     title: "Personal Details",
-                    subtitle: "Enter Your Info",
+                    // subtitle: "Enter Your Info",
                     component: StepPersonalInfo,
                     completed: false
                 },
@@ -65,17 +74,25 @@ export default {
                     icon: "location_on",
                     name: "address",
                     title: "Address",
-                    subtitle: "Enter Your Address",
+                    // subtitle: "Enter Your Address",
                     component: StepAddress,
                     completed: false
                 },
+                // {
+                //     icon: "card_giftcard",
+                //     name: "third",
+                //     title: "Tribute",
+                //     // subtitle: "Subtitle sample",
+                //     component: StepTribute,
+                //     completed: false
+                // },
                 {
                     icon: "card_giftcard",
-                    name: "third",
-                    title: "Tribute",
+                    name: "result",
+                    title: "Result",
                     // subtitle: "Subtitle sample",
-                    component: StepTribute,
-                    completed: false
+                    component: StepResult,
+                    completed: true
                 }
             ],
             activeStep: 0

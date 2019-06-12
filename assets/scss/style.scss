@@ -7,6 +7,7 @@
 @import "./_variables.scss";
 @import "./_typography.scss";
 @import "./_general.scss";
+@import "./Animations.scss";
 
 @import "./_include-media.scss";
 @import "./_HorizontalStepper.scss";
@@ -20,31 +21,10 @@
 @import "./_Accordion.scss";
 @import "./_Tabs.scss";
 @import "./_Footer.scss";
+@import "./_Transitions.scss";
+
+.modal {
+    padding: 0 !important;
+}
 
 // END: SCSS imports
-
-// .college {
-//     >label {
-//         position: relative;
-//         width: 200px;
-//         height: 200px;
-//         text-align: center;
-//         border-radius: 50% !important;
-//         margin-right: 10px;
-//         display: inline-block;
-
-//         >input {
-//             position: absolute !important;
-//         }
-
-//         >span {
-//             position: absolute;
-//             top: 0;
-//             bottom: 0;
-//             left: 0;
-//             right: 0;
-//             margin: auto;
-//             vertical-align: middle;
-//         }
-//     }
-// }

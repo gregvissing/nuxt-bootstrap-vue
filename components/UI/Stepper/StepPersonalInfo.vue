@@ -1,10 +1,16 @@
 <template>
     <div style="padding: 2rem 3rem; text-align: left;">
+        <!-- <b-form-row>
+        <b-col>-->
+        <!-- <b-form-input id="input-2" v-model="message"></b-form-input> -->
+        <!-- {{personalTitle}}
+            </b-col>
+        </b-form-row>-->
         <b-form-row>
             <b-col cols="6">
                 <b-form-group id="input-group-2" label="Title:" label-for="input-2">
                     <b-form-select
-                        v-model="Donor.Title"
+                        v-model="title"
                         :options="titles"
                         :class="['mb-0', ($v.Donor.Title.$error) ? 'is-danger' : '']"
                     >
@@ -31,7 +37,7 @@
                 >
                     <b-form-input
                         id="input-2"
-                        v-model="Donor.FirstName"
+                        v-model="firstName"
                         :class="['input', ($v.Donor.FirstName.$error) ? 'is-danger' : '']"
                         required
                         placeholder="Enter first name"
@@ -51,7 +57,7 @@
                 >
                     <b-form-input
                         id="input-2"
-                        v-model="Donor.LastName"
+                        v-model="lastName"
                         :class="['input', ($v.Donor.LastName.$error) ? 'is-danger' : '']"
                         required
                         placeholder="Enter last name"
@@ -69,7 +75,7 @@
                 <b-form-group id="input-group-2" class="field" label="Phone #:" label-for="input-2">
                     <b-form-input
                         id="input-2"
-                        v-model="Donor.Phone"
+                        v-model="phone"
                         :options="options.phoneNumber"
                         required
                         placeholder="Enter Phone #"
@@ -81,7 +87,7 @@
                 <b-form-group id="input-group-2" class="field" label="Email:" label-for="input-2">
                     <b-form-input
                         id="input-2"
-                        v-model="Donor.EmailAddress"
+                        v-model="emailAddress"
                         required
                         placeholder="Enter email"
                     ></b-form-input>
@@ -92,14 +98,15 @@
                 </b-form-group>
             </b-col>
         </b-form-row>
-        <b-card class="mt-3" header="Form Data Result">
-            <pre class="m-0">{{ Donor }}</pre>
-        </b-card>
+        <!-- <b-card class="mt-3" header="Form Data Result">
+            <pre class="m-0">{{ $store.state.form }}</pre>
+        </b-card>-->
     </div>
 </template>
 
 <script>
 import $ from "jquery";
+import { mapState } from "vuex";
 import { validationMixin } from "vuelidate";
 import { required, email } from "vuelidate/lib/validators";
 // import Cleave from "../src/index.js";
@@ -110,13 +117,13 @@ export default {
     mixins: [validationMixin],
     data() {
         return {
-            Donor: {
-                Title: "",
-                FirstName: "",
-                LastName: "",
-                Phone: "",
-                EmailAddress: ""
-            },
+            //Donor: {
+            // Title: "",
+            // FirstName: "",
+            // LastName: "",
+            // Phone: "",
+            // EmailAddress: ""
+            //},
             titles: [
                 { value: "Miss", text: "Miss" },
                 { value: "Mr", text: "Mr." },
@@ -242,6 +249,48 @@ export default {
             this.$emit("can-continue", { value: true });
         } else {
             this.$emit("can-continue", { value: false });
+        }
+    },
+    computed: {
+        title: {
+            get() {
+                return this.$store.state.form.Donor.Title;
+            },
+            set(value) {
+                this.$store.commit("updateDonorTitle", value);
+            }
+        },
+        firstName: {
+            get() {
+                return this.$store.state.form.Donor.FirstName;
+            },
+            set(value) {
+                this.$store.commit("updateDonorFirstName", value);
+            }
+        },
+        lastName: {
+            get() {
+                return this.$store.state.form.Donor.LastName;
+            },
+            set(value) {
+                this.$store.commit("updateDonorLastName", value);
+            }
+        },
+        phone: {
+            get() {
+                return this.$store.state.form.Donor.Phone;
+            },
+            set(value) {
+                this.$store.commit("updateDonorPhone", value);
+            }
+        },
+        emailAddress: {
+            get() {
+                return this.$store.state.form.Donor.EmailAddress;
+            },
+            set(value) {
+                this.$store.commit("updateDonorEmailAddress", value);
+            }
         }
     }
 };

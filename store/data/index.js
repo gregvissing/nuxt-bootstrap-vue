@@ -2,25 +2,8 @@
 import Vuex from "vuex";
 
 export const state = () => ({
-    list: []
+    // list: []
 })
-
-export const mutations = {
-    add(state, text) {
-        state.list.push({
-            text: text,
-            done: false
-        })
-    },
-    remove(state, {
-        todo
-    }) {
-        state.list.splice(state.list.indexOf(todo), 1)
-    },
-    toggle(state, todo) {
-        todo.done = !todo.done
-    }
-}
 
 // Why Give page
 export const whygive = [{
@@ -436,6 +419,54 @@ export const giftTypes = [{
         value: "seniorClass"
     }
 ];
+
+export const giftDetailSteps = [{
+    step: "amount",
+    text: "How much will you give?"
+}, {
+    step: "type",
+    text: "How often will you give?"
+}, {
+    step: "tribute",
+    text: "Is this gift in honor or memory of a person or pet?"
+}, {
+    step: "comments",
+    text: "Special Instructions / Comments?"
+}];
+
+// Gift Types
+export const giftTypeValues = {
+    onetime: {
+        label: "Right Now",
+        color: "#dd0031"
+    },
+    disabled: {
+        label: "-- OR --",
+        color: "#ffffff"
+    },
+    monthly: {
+        label: "Monthly",
+        color: "#fdcd3d"
+    },
+}
+
+// Gift Types
+// export const giftTypeValues = [{
+//         "type": "one-time",
+//         "text": "Right Now",
+//         "disabled": false
+//     },
+//     {
+//         "type": "disabled",
+//         "text": "-- OR --",
+//         "disabled": true
+//     },
+//     {
+//         "type": "recurring",
+//         "text": "Monthly",
+//         "disabled": false
+//     }
+// ];
 
 // Cart page
 export const amounts = [{

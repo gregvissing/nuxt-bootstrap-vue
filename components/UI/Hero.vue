@@ -13,38 +13,19 @@
                 v-b-modal.modal-xl
             >Search Funds</b-button>
 
-            <!-- <div class="typeahead-container">
-                <input
-                    @click="showModal"
-                    v-b-modal.modal-xl
-                    type="text"
-                    class="SearchInput"
-                    placeholder="Start typing the fund you are looking for..."
-            >-->
-            <!-- <Typeahead
-                    placeholder="Start typing the fund you are looking for..."
-                    filter-key="titledesc"
-                    :start-at="2"
-            ></Typeahead>-->
-            <!-- </div> -->
-
             <SearchModal id="searchModal"/>
         </b-jumbotron>
     </b-container>
 </template>
 
 <script>
-// import Typeahead from "~/components/UI/UI-Components/Typeahead.vue";
 import SearchModal from "~/components/UI/Modal/SearchModal.vue";
-
 export default {
     components: {
-        // Typeahead,
         SearchModal
     },
     methods: {
         showModal(item) {
-            // this.selectedFund = item;
             this.$root.$emit("bv::show::modal", "searchModal");
         }
     }
@@ -53,7 +34,6 @@ export default {
 
 <style lang="scss" scoped>
 @import "@/assets/scss/style.scss";
-
 .jumbotron {
     padding: 6em; // 4em 6em;
     border-radius: 0;
@@ -75,7 +55,6 @@ export default {
         background-color: rgba(0, 0, 0, 0.25);
     }
 }
-
 .SearchInput {
     display: inline-block;
     width: 100% !important;
@@ -84,7 +63,6 @@ export default {
     outline: 0 !important;
     border: 5px solid #000 !important;
     color: #000;
-
     border-radius: 0;
     border: none;
     /* width: 75%; */

@@ -450,4 +450,8 @@ $light-gray: #f8f8f8;
     margin-left: -130%;
     opacity: 0;
 }
+
+.modal {
+    padding: 0 !important;
+}
 </style>

@@ -39,7 +39,37 @@ nav {
         }
     }
 
-    .navbar-toggler {
-        right: 3% !important;
-    }
+
+
+    // Custon navbar toggler
+    // .navbar-toggle {
+    //     border: 0;
+    //     padding: 15px;
+    //     margin: 0;
+    //     height: 50px;
+    //     border-radius: 0;
+    //     background: #16a085 !important;
+    // }
+
+    // .icon-bar {
+    //     transition: all .3s;
+    //     background: $white !important;
+    //     // height: 3px!important;
+    // }
+
+    // .top-bar {
+    //     // transform-origin: 45%;
+    //     transform: translateY(6px) rotate(45deg);
+    // }
+
+    // .middle-bar {
+    //     opacity: 0;
+    //     // transform: translateX(-100%);
+    // }
+
+    // .bottom-bar {
+    //     // transform-origin: 40%;
+    //     transform: translateY(-6px) rotate(-45deg);
+    // }
+
 }

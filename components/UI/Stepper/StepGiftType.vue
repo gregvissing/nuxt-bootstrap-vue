@@ -69,9 +69,10 @@
                 >Is this gift in Honor/Memory of a friend or loved one?</b-form-checkbox>
             </b-col>
         </b-form-row>
-        <b-card class="mt-3" header="Form Data Result">
-            <pre class="m-0">{{ form }}</pre>
-        </b-card>
+        <!-- <b-card class="mt-3" header="Form Data Result">
+            <pre class="m-0">{{ $store.state.form }}</pre>
+        </b-card>-->
+
         <!-- <b-form-row>
             <b-col cols>
                 <h3>Gift Type</h3>
@@ -101,6 +102,7 @@
 
 <script>
 import $ from "jquery";
+import { mapState } from "vuex";
 import { giftTypes, amounts } from "@/store/data";
 import { validationMixin } from "vuelidate";
 import { required } from "vuelidate/lib/validators";

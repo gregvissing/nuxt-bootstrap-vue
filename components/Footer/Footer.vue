@@ -16,10 +16,14 @@
                         <i class="fab fa-facebook-square"></i> Facebook
                     </p>
                     <p>
-                        <a href="https://www.linkedin.com/company/uofcincyfound/"><i class="fab fa-linkedin"></i> LinkedIn</a>
+                        <a href="https://www.linkedin.com/company/uofcincyfound/">
+                            <i class="fab fa-linkedin"></i> LinkedIn
+                        </a>
                     </p>
                     <p>
-                        <a href="https://twitter.com/uofcincyfound"><i class="fab fa-twitter-square"></i> Twitter</a>
+                        <a href="https://twitter.com/uofcincyfound">
+                            <i class="fab fa-twitter-square"></i> Twitter
+                        </a>
                     </p>
                     <p>
                         <a href="https://foundation.uc.edu">UC Foundation</a>
@@ -68,55 +72,6 @@
 export default {};
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss" >
 @import "@/assets/scss/style.scss";
-
-footer {
-    background: $black;
-    margin-top: 3em;
-    padding-bottom: 1.5em;
-    .container {
-        .row {
-            .col {
-                padding-top: 2em;
-                padding-bottom: 2em;
-                h4,
-                p,
-                a {
-                    color: $white;
-                    margin: 0;
-                }
-                h4 {
-                    color: $red;
-                    font-family: "Bree Serif";
-                }
-                p {
-                    font-size: 0.9em;
-                }
-                a {
-                    text-decoration: underline;
-                }
-                svg {
-                    margin-left: 3px;
-                    margin-right: 5px;
-                    path {
-                        fill: $red;
-                    }
-                }
-                .fab {
-                    margin-right: 5px;
-                    color: $red;
-                }
-            }
-        }
-    }
-    .copyright {
-        padding: 10px 0;
-        background: rgba(255, 255, 255, 0.25);
-        .container {
-            color: $gray-light;
-            font-size: 0.9em;
-        }
-    }
-}
 </style>

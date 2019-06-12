@@ -4,10 +4,18 @@
         <Header/>
         <div id="internal-hero">
             <b-container>
+                <!-- <transition
+                    name="router-anim"
+                    enter-active-class="animated fadeInLeft"
+                    leave-active-class="animated fadeOutRight"
+                >-->
                 <InternalTitle/>
+                <!-- <h1>{{title}}</h1> -->
+                <!-- </transition> -->
             </b-container>
         </div>
         <b-container>
+            <!-- <transition name="fade" mode="out-in"> -->
             <transition
                 name="router-anim"
                 enter-active-class="animated fadeInLeft"

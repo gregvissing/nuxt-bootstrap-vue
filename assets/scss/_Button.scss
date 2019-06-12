@@ -49,4 +49,16 @@ button {
             box-shadow: none !important;
         }
     }
+
+    &.disabled {
+        background-color: $white;
+        color: $black;
+        border: none !important;
+        margin-right: 5px;
+        margin-left: 5px;
+
+        &:hover {
+            background-color: $white;
+        }
+    }
 }

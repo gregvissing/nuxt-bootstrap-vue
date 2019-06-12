@@ -12,7 +12,7 @@
             <div key="img2" v-else class="header-img2"></div>
         </transition-group>-->
         <b-navbar toggleable="lg" fixed="top">
-            <b-container>
+            <div class="container-fluid">
                 <b-navbar-brand class="d-flex align-items-center">
                     <nuxt-link to="/">
                         <img
@@ -80,15 +80,21 @@
                     <div v-if="cartTotal > 0" class="cartcount">{{ cartTotal }}</div>
                     <img src="~/assets/images/baseline-card_giftcard-24px.svg">
                 </div>
-
-                <b-navbar-toggle
-                    class="navbar-light menuWrapper"
-                    target="nav_text_collapse"
-                    @click="custonNavToggle"
+                <button
+                    type="button"
+                    class="navbar-toggle collapsed"
+                    data-toggle="collapse"
+                    data-target="#navbar"
+                    aria-expanded="false"
+                    aria-controls="navbar"
                 >
-                    <div class="menu"></div>
-                </b-navbar-toggle>
-            </b-container>
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar top-bar"></span>
+                    <span class="icon-bar middle-bar"></span>
+                    <span class="icon-bar bottom-bar"></span>
+                </button>
+                <!-- <b-navbar-toggle class="navbar-light" target="nav_text_collapse"></b-navbar-toggle> -->
+            </div>
         </b-navbar>
     </header>
 </template>
@@ -151,9 +157,6 @@ export default {
                     $(".filter-boxes").slideUp();
                 }
             );
-        },
-        custonNavToggle: function() {
-            $(".menu").toggleClass("is-active");
         }
     },
     created() {
@@ -171,78 +174,6 @@ export default {
 
 <style lang="scss" scoped>
 @import "@/assets/scss/style.scss";
-
-/* Custom nav styles */
-.navbar-toggler {
-    right: 0% !important;
-    position: absolute;
-    top: 35px !important;
-    right: 0;
-    /* transform: translate(-50%, -50%); */
-    padding: 20px 10px;
-    background: darken($black, 5%);
-    border-color: $white !important;
-    @include media("<=tablet") {
-        border-color: $white !important;
-    }
-}
-
-.menuWrapper {
-    position: absolute;
-    top: 50%;
-    right: 0;
-    transform: translate(-50%, -50%);
-    padding: 20px 10px;
-    background: darken($black, 5%);
-}
-
-.menu {
-    display: block;
-    height: 5px;
-    background: $white;
-    width: 30px;
-    position: relative;
-    text-align: center;
-    transition: all 0.3s;
-
-    &:before {
-        content: "";
-        position: absolute;
-        top: -10px;
-        left: 0;
-        background: $white;
-        width: 30px;
-        height: 5px;
-
-        transition: all 0.3s;
-    }
-
-    &:after {
-        content: "";
-        position: absolute;
-        top: 10px;
-        left: 0;
-        background: $white;
-        width: 30px;
-        height: 5px;
-
-        transition: all 0.3s;
-    }
-}
-
-.is-active {
-    background: transparent;
-
-    &:before {
-        top: 0;
-        transform: rotate(45deg);
-    }
-
-    &:after {
-        top: 0;
-        transform: rotate(-45deg);
-    }
-}
 
 header {
     width: 100vw;
@@ -408,13 +339,13 @@ header {
         }
         .container {
             position: relative;
-            /* .navbar-toggler {
+            .navbar-toggler {
                 position: absolute;
                 right: 0;
                 top: 0.8em;
                 border: 1px solid rgba(0, 0, 0, 0.5);
                 border-radius: 5px !important;
-            } */
+            }
         }
     }
 }
