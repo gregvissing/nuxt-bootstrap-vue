@@ -20,7 +20,7 @@
         "bootstrap-vue": "^2.0.0-rc.11",
         "cleave.js": "^1.4.2",
         "cross-env": "^5.2.0",
-        "gsap": "^2.1.2",
+        "gsap": "^3.6.0",
         "jquery": "^3.4.1",
         "lodash": "^4.17.11",
         "node-sass": "^4.12.0",
